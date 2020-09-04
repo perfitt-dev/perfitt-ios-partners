@@ -15,9 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        if let testView: UIView = PerfittPartners(frame: CGRect(x: 0, y: 100, width: 300, height: 300))  {
-            self.view.addSubview(testView)
-        }
+        
         
     }
 
@@ -25,6 +23,12 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    @IBAction func onPerfittPartners(_ sender: UIButton) {
+        sender.isHidden = true
+        if let testView: UIImageView = PerfittPartners(frame: self.view.frame)  {
+            self.view.addSubview(testView)
+        }
+    }
 }
 
