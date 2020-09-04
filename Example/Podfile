@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'PerfittPartners_iOS_Example' do
+  pod 'PerfittPartners_iOS', :path => '../'
+
+  target 'PerfittPartners_iOS_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
