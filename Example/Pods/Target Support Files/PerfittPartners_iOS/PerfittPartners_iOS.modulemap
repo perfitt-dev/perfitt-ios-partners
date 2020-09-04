@@ -1,0 +1,6 @@
+framework module PerfittPartners_iOS {
+  umbrella header "PerfittPartners_iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

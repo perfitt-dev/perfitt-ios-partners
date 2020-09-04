@@ -1,0 +1,16 @@
+PODS:
+  - PerfittPartners_iOS (0.1.0)
+
+DEPENDENCIES:
+  - PerfittPartners_iOS (from `../`)
+
+EXTERNAL SOURCES:
+  PerfittPartners_iOS:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  PerfittPartners_iOS: e7677380e33521893e0e40c3f9e0e9c89456078f
+
+PODFILE CHECKSUM: b842d23b503497fc1cf0e42011827dce9126c668
+
+COCOAPODS: 1.9.3
