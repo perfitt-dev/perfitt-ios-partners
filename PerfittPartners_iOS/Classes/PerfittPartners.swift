@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 
-open class PerfittPartners: UIViewController {
+@objc open class PerfittPartners: UIViewController {
     // 카메라 관련 컴포넌트
     private var session = AVCaptureSession()
     private var videoDeviceInput: AVCaptureDeviceInput!             // 사용될 카메라
@@ -34,7 +34,7 @@ open class PerfittPartners: UIViewController {
         var callBackName: String!
     }
     
-    public convenience init(APIKey: String) {
+    @objc public convenience init(APIKey: String) {
         self.init()
         self.APIKEY = APIKey
     }
