@@ -101,13 +101,13 @@ open class PerfittPartners: UIViewController {
             self.startSession()
         // 카메라 권한을 설정하지 않은경우
         case .denied:
-            BaseController.showAlertTwoBtn(title: "알림", message: "사진 촬영을 할 수 있도록 허용하시겠습니까?", handler: { _ in
+            BaseController.init().showAlertTwoBtn(title: "알림", message: "사진 촬영을 할 수 있도록 허용하시겠습니까?", handler: { _ in
                 guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
                 UIApplication.shared.open(url)
             }, cancelHandler: nil)
 
         case .restricted:
-            BaseController.showAlert(title: "알림", message: "카메라를 사용할 수 없습니다.", handler: nil)
+            BaseController.init().showAlert(title: "알림", message: "카메라를 사용할 수 없습니다.", handler: nil)
         default:
             debugPrint("status failed")
             break

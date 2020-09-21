@@ -150,7 +150,7 @@ open class PreviewVC: UIViewController {
                 debugPrint("!!!!ERROR :")
                 DispatchQueue.main.async {
                     self.indicator.stopAnimating()
-                    BaseController.showAlert(title: "api error", message: "api failed", handler: nil)
+                    BaseController.init().showAlert(title: "api error", message: "api failed", handler: nil)
                 }
 
             })
