@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0110F4632514419D006C0717 /* PreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0110F4622514419D006C0717 /* PreviewVC.swift */; };
+		012F5DE22514961E00F24F08 /* PerfittTutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F5DE12514961D00F24F08 /* PerfittTutorialVC.swift */; };
 		014C55292502408100C3DAB4 /* PerfittPartners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C55282502408100C3DAB4 /* PerfittPartners.swift */; };
 		014C552B2502409A00C3DAB4 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C552A2502409A00C3DAB4 /* BaseController.swift */; };
+		016CF24E250754CB0069E1AB /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CF24D250754CB0069E1AB /* APIController.swift */; };
+		016CF250250760510069E1AB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CF24F250760510069E1AB /* Model.swift */; };
+		01C23E132513425A002702C9 /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C23E122513425A002702C9 /* Motion.swift */; };
+		01D48E7A251446BC00D0A0F9 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D48E79251446BC00D0A0F9 /* Extension.swift */; };
+		01D48E822514644000D0A0F9 /* APIConsts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D48E812514644000D0A0F9 /* APIConsts.swift */; };
 		40BFD1BD2A2F0CD757BB8E87C4015FAA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		562EACAEA1A8E6EB50691E6B95B9195C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		5E7B64642F3D8CF1144A054FC4907606 /* Pods-PerfittPartners_iOS_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E9D5F8A00789FDCC3CFB30BB09E4C2FD /* Pods-PerfittPartners_iOS_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -39,8 +46,15 @@
 
 /* Begin PBXFileReference section */
 		0013AD9F5456FBA897526BCEA4307F67 /* Pods-PerfittPartners_iOS_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PerfittPartners_iOS_Tests-dummy.m"; sourceTree = "<group>"; };
+		0110F4622514419D006C0717 /* PreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewVC.swift; sourceTree = "<group>"; };
+		012F5DE12514961D00F24F08 /* PerfittTutorialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfittTutorialVC.swift; sourceTree = "<group>"; };
 		014C55282502408100C3DAB4 /* PerfittPartners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PerfittPartners.swift; path = PerfittPartners_iOS/Classes/PerfittPartners.swift; sourceTree = "<group>"; };
 		014C552A2502409A00C3DAB4 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseController.swift; path = PerfittPartners_iOS/Classes/BaseController.swift; sourceTree = "<group>"; };
+		016CF24D250754CB0069E1AB /* APIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
+		016CF24F250760510069E1AB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		01C23E122513425A002702C9 /* Motion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motion.swift; sourceTree = "<group>"; };
+		01D48E79251446BC00D0A0F9 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		01D48E812514644000D0A0F9 /* APIConsts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConsts.swift; sourceTree = "<group>"; };
 		05A8B0DD658BA222059BB7D019E2C845 /* Pods-PerfittPartners_iOS_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PerfittPartners_iOS_Tests-Info.plist"; sourceTree = "<group>"; };
 		17940F98593122AD6A8323742EB3605D /* PerfittPartners_iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PerfittPartners_iOS-prefix.pch"; sourceTree = "<group>"; };
 		2008BFA7DAFED6C021EF51DD785D14A6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -150,8 +164,15 @@
 			children = (
 				014C55282502408100C3DAB4 /* PerfittPartners.swift */,
 				014C552A2502409A00C3DAB4 /* BaseController.swift */,
+				016CF24D250754CB0069E1AB /* APIController.swift */,
+				016CF24F250760510069E1AB /* Model.swift */,
+				01C23E122513425A002702C9 /* Motion.swift */,
 				22BE8C7A7476CE4E459389A031B2E4FE /* Pod */,
 				BF6E502CDBB1D1199B6CF65646ECC729 /* Support Files */,
+				0110F4622514419D006C0717 /* PreviewVC.swift */,
+				01D48E79251446BC00D0A0F9 /* Extension.swift */,
+				01D48E812514644000D0A0F9 /* APIConsts.swift */,
+				012F5DE12514961D00F24F08 /* PerfittTutorialVC.swift */,
 			);
 			name = PerfittPartners_iOS;
 			path = ../..;
@@ -391,9 +412,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				016CF24E250754CB0069E1AB /* APIController.swift in Sources */,
+				01D48E822514644000D0A0F9 /* APIConsts.swift in Sources */,
+				0110F4632514419D006C0717 /* PreviewVC.swift in Sources */,
+				01C23E132513425A002702C9 /* Motion.swift in Sources */,
 				E1CD2FB4430BE61C44FD750520CE4B29 /* PerfittPartners_iOS-dummy.m in Sources */,
 				014C55292502408100C3DAB4 /* PerfittPartners.swift in Sources */,
 				014C552B2502409A00C3DAB4 /* BaseController.swift in Sources */,
+				012F5DE22514961E00F24F08 /* PerfittTutorialVC.swift in Sources */,
+				016CF250250760510069E1AB /* Model.swift in Sources */,
+				01D48E7A251446BC00D0A0F9 /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,7 +503,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -507,7 +535,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
