@@ -167,12 +167,12 @@
 				016CF24D250754CB0069E1AB /* APIController.swift */,
 				016CF24F250760510069E1AB /* Model.swift */,
 				01C23E122513425A002702C9 /* Motion.swift */,
-				22BE8C7A7476CE4E459389A031B2E4FE /* Pod */,
-				BF6E502CDBB1D1199B6CF65646ECC729 /* Support Files */,
 				0110F4622514419D006C0717 /* PreviewVC.swift */,
 				01D48E79251446BC00D0A0F9 /* Extension.swift */,
 				01D48E812514644000D0A0F9 /* APIConsts.swift */,
 				012F5DE12514961D00F24F08 /* PerfittTutorialVC.swift */,
+				22BE8C7A7476CE4E459389A031B2E4FE /* Pod */,
+				BF6E502CDBB1D1199B6CF65646ECC729 /* Support Files */,
 			);
 			name = PerfittPartners_iOS;
 			path = ../..;
