@@ -59,7 +59,10 @@ extension ViewController: WKNavigationDelegate, WKUIDelegate, WKScriptMessageHan
 
         if (message.name == "PERFITT_SDK") {
             if let getKey = message.body as? String {
-                PerfittPartners()
+                PerfittPartners(title: "tests", confirm: "oik") {
+                    debugPrint("success alert")
+                }.show(in: self.view)
+//                PerfittPartners()
 //                let vc = PerfittPartners(APIKey: getKey)
 //                self.navigationController?.pushViewController(vc, animated: true)
                 
