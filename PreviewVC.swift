@@ -117,43 +117,43 @@ open class PreviewVC: UIViewController {
     
     @objc func confirm(_ sender: UIButton) {
         debugPrint("source type : \(APIConsts.SDK_VERSION)_\(UIDevice.current.name)_\(self.getOSInfo())" )
-        if previewFor == "Right" {
-            let cameraVC = PerfittPartners(APIKey: self.APIKEY ?? "")
-            cameraVC.rightImg = false
-            cameraVC.rightImgData = base64Data
-            self.navigationController?.pushViewController(cameraVC, animated: true)
-        }
-        else {
-            
-            guard let right = self.rightImgData else {
-                debugPrint("right data empty")
-                return
-            }
-            
-            guard let left = self.base64Data else {
-                debugPrint("left data empty")
-                return
-            }
-            
-            indicator.startAnimating()
-            let requestData = FootModel(leftImage: left, rightImage: right , sourceType: "\(APIConsts.SDK_VERSION)_\(UIDevice.current.name)_\(self.getOSInfo())")
-            
-            APIController.init().reqeustFootData(requestData, self.APIKEY ?? "", successHandler: {
-                DispatchQueue.main.async {
-                    self.indicator.stopAnimating()
-                    let userInfo: [AnyHashable: Any] = ["methodName": "callback('\(self.APIKEY ?? "")')"]
-                    NotificationCenter.default.post(name: NSNotification.Name.init("PerfittPartners"), object: nil, userInfo: userInfo)
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
-            }, failedHandler: {
-                debugPrint("!!!!ERROR :")
-                DispatchQueue.main.async {
-                    self.indicator.stopAnimating()
-                    self.showAlert(title: "api error", message: "api failed", handler: nil)
-                }
-
-            })
-        }
+//        if previewFor == "Right" {
+//            let cameraVC = PerfittPartners(APIKey: self.APIKEY ?? "")
+//            cameraVC.rightImg = false
+//            cameraVC.rightImgData = base64Data
+//            self.navigationController?.pushViewController(cameraVC, animated: true)
+//        }
+//        else {
+//
+//            guard let right = self.rightImgData else {
+//                debugPrint("right data empty")
+//                return
+//            }
+//
+//            guard let left = self.base64Data else {
+//                debugPrint("left data empty")
+//                return
+//            }
+//
+//            indicator.startAnimating()
+//            let requestData = FootModel(leftImage: left, rightImage: right , sourceType: "\(APIConsts.SDK_VERSION)_\(UIDevice.current.name)_\(self.getOSInfo())")
+//
+//            APIController.init().reqeustFootData(requestData, self.APIKEY ?? "", successHandler: {
+//                DispatchQueue.main.async {
+//                    self.indicator.stopAnimating()
+//                    let userInfo: [AnyHashable: Any] = ["methodName": "callback('\(self.APIKEY ?? "")')"]
+//                    NotificationCenter.default.post(name: NSNotification.Name.init("PerfittPartners"), object: nil, userInfo: userInfo)
+//                    self.navigationController?.popToRootViewController(animated: true)
+//                }
+//            }, failedHandler: {
+//                debugPrint("!!!!ERROR :")
+//                DispatchQueue.main.async {
+//                    self.indicator.stopAnimating()
+//                    self.showAlert(title: "api error", message: "api failed", handler: nil)
+//                }
+//
+//            })
+//        }
     }
     
     private func showAlert(title: String, message: String, handler: ((UIAlertAction) -> ())?) {
