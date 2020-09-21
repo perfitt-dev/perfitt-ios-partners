@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0110F4632514419D006C0717 /* PreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0110F4622514419D006C0717 /* PreviewVC.swift */; };
-		012F5DE22514961E00F24F08 /* PerfittTutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F5DE12514961D00F24F08 /* PerfittTutorialVC.swift */; };
 		014C55292502408100C3DAB4 /* PerfittPartners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C55282502408100C3DAB4 /* PerfittPartners.swift */; };
-		016CF24E250754CB0069E1AB /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CF24D250754CB0069E1AB /* APIController.swift */; };
-		016CF250250760510069E1AB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CF24F250760510069E1AB /* Model.swift */; };
-		01C23E132513425A002702C9 /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C23E122513425A002702C9 /* Motion.swift */; };
-		01D48E7A251446BC00D0A0F9 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D48E79251446BC00D0A0F9 /* Extension.swift */; };
-		01D48E822514644000D0A0F9 /* APIConsts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D48E812514644000D0A0F9 /* APIConsts.swift */; };
+		015489402518D538004A39C3 /* PerfittTutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015489392518D538004A39C3 /* PerfittTutorialVC.swift */; };
+		015489412518D538004A39C3 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154893A2518D538004A39C3 /* APIController.swift */; };
+		015489422518D538004A39C3 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154893B2518D538004A39C3 /* Model.swift */; };
+		015489432518D538004A39C3 /* PreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154893C2518D538004A39C3 /* PreviewVC.swift */; };
+		015489442518D538004A39C3 /* APIConsts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154893D2518D538004A39C3 /* APIConsts.swift */; };
+		015489452518D538004A39C3 /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154893E2518D538004A39C3 /* Motion.swift */; };
+		015489462518D538004A39C3 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154893F2518D538004A39C3 /* Extension.swift */; };
 		40BFD1BD2A2F0CD757BB8E87C4015FAA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		562EACAEA1A8E6EB50691E6B95B9195C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		5E7B64642F3D8CF1144A054FC4907606 /* Pods-PerfittPartners_iOS_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E9D5F8A00789FDCC3CFB30BB09E4C2FD /* Pods-PerfittPartners_iOS_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -45,14 +45,14 @@
 
 /* Begin PBXFileReference section */
 		0013AD9F5456FBA897526BCEA4307F67 /* Pods-PerfittPartners_iOS_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PerfittPartners_iOS_Tests-dummy.m"; sourceTree = "<group>"; };
-		0110F4622514419D006C0717 /* PreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewVC.swift; sourceTree = "<group>"; };
-		012F5DE12514961D00F24F08 /* PerfittTutorialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfittTutorialVC.swift; sourceTree = "<group>"; };
 		014C55282502408100C3DAB4 /* PerfittPartners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PerfittPartners.swift; path = PerfittPartners_iOS/Classes/PerfittPartners.swift; sourceTree = "<group>"; };
-		016CF24D250754CB0069E1AB /* APIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
-		016CF24F250760510069E1AB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		01C23E122513425A002702C9 /* Motion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motion.swift; sourceTree = "<group>"; };
-		01D48E79251446BC00D0A0F9 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		01D48E812514644000D0A0F9 /* APIConsts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConsts.swift; sourceTree = "<group>"; };
+		015489392518D538004A39C3 /* PerfittTutorialVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PerfittTutorialVC.swift; path = PerfittPartners_iOS/Classes/PerfittTutorialVC.swift; sourceTree = "<group>"; };
+		0154893A2518D538004A39C3 /* APIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIController.swift; path = PerfittPartners_iOS/Classes/APIController.swift; sourceTree = "<group>"; };
+		0154893B2518D538004A39C3 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = PerfittPartners_iOS/Classes/Model.swift; sourceTree = "<group>"; };
+		0154893C2518D538004A39C3 /* PreviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreviewVC.swift; path = PerfittPartners_iOS/Classes/PreviewVC.swift; sourceTree = "<group>"; };
+		0154893D2518D538004A39C3 /* APIConsts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIConsts.swift; path = PerfittPartners_iOS/Classes/APIConsts.swift; sourceTree = "<group>"; };
+		0154893E2518D538004A39C3 /* Motion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Motion.swift; path = PerfittPartners_iOS/Classes/Motion.swift; sourceTree = "<group>"; };
+		0154893F2518D538004A39C3 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = PerfittPartners_iOS/Classes/Extension.swift; sourceTree = "<group>"; };
 		05A8B0DD658BA222059BB7D019E2C845 /* Pods-PerfittPartners_iOS_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PerfittPartners_iOS_Tests-Info.plist"; sourceTree = "<group>"; };
 		17940F98593122AD6A8323742EB3605D /* PerfittPartners_iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PerfittPartners_iOS-prefix.pch"; sourceTree = "<group>"; };
 		2008BFA7DAFED6C021EF51DD785D14A6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -160,14 +160,14 @@
 		332C3BB274599120751692A9AE591A91 /* PerfittPartners_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				0154893D2518D538004A39C3 /* APIConsts.swift */,
+				0154893A2518D538004A39C3 /* APIController.swift */,
+				0154893F2518D538004A39C3 /* Extension.swift */,
+				0154893B2518D538004A39C3 /* Model.swift */,
+				0154893E2518D538004A39C3 /* Motion.swift */,
+				015489392518D538004A39C3 /* PerfittTutorialVC.swift */,
+				0154893C2518D538004A39C3 /* PreviewVC.swift */,
 				014C55282502408100C3DAB4 /* PerfittPartners.swift */,
-				016CF24D250754CB0069E1AB /* APIController.swift */,
-				016CF24F250760510069E1AB /* Model.swift */,
-				01C23E122513425A002702C9 /* Motion.swift */,
-				0110F4622514419D006C0717 /* PreviewVC.swift */,
-				01D48E79251446BC00D0A0F9 /* Extension.swift */,
-				01D48E812514644000D0A0F9 /* APIConsts.swift */,
-				012F5DE12514961D00F24F08 /* PerfittTutorialVC.swift */,
 				22BE8C7A7476CE4E459389A031B2E4FE /* Pod */,
 				BF6E502CDBB1D1199B6CF65646ECC729 /* Support Files */,
 			);
@@ -409,15 +409,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				016CF24E250754CB0069E1AB /* APIController.swift in Sources */,
-				01D48E822514644000D0A0F9 /* APIConsts.swift in Sources */,
-				0110F4632514419D006C0717 /* PreviewVC.swift in Sources */,
-				01C23E132513425A002702C9 /* Motion.swift in Sources */,
+				015489462518D538004A39C3 /* Extension.swift in Sources */,
+				015489422518D538004A39C3 /* Model.swift in Sources */,
+				015489432518D538004A39C3 /* PreviewVC.swift in Sources */,
+				015489412518D538004A39C3 /* APIController.swift in Sources */,
 				E1CD2FB4430BE61C44FD750520CE4B29 /* PerfittPartners_iOS-dummy.m in Sources */,
+				015489442518D538004A39C3 /* APIConsts.swift in Sources */,
+				015489452518D538004A39C3 /* Motion.swift in Sources */,
 				014C55292502408100C3DAB4 /* PerfittPartners.swift in Sources */,
-				012F5DE22514961E00F24F08 /* PerfittTutorialVC.swift in Sources */,
-				016CF250250760510069E1AB /* Model.swift in Sources */,
-				01D48E7A251446BC00D0A0F9 /* Extension.swift in Sources */,
+				015489402518D538004A39C3 /* PerfittTutorialVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
