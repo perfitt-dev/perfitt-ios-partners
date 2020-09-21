@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 
-open class PerfittPartners: BaseController {
+open class PerfittPartners: UIViewController {
     // 카메라 관련 컴포넌트
     private var session = AVCaptureSession()
     private var videoDeviceInput: AVCaptureDeviceInput!             // 사용될 카메라
@@ -92,7 +92,7 @@ open class PerfittPartners: BaseController {
     }
 
     // 카메라 권한 확인및 설정
-    func configCameraAndStartSession() {
+    private func configCameraAndStartSession() {
         let status = AVCaptureDevice.authorizationStatus(for: .video)
         switch status {
         // 카메라 권한이 true인 경우
@@ -115,7 +115,7 @@ open class PerfittPartners: BaseController {
         }
     }
 
-    func setupSession() {
+    private func setupSession() {
         self.session = AVCaptureSession()
         self.session.sessionPreset = .hd1280x720          // photo 해상도 결정
         self.session.beginConfiguration()           // session 구성 시작
@@ -174,7 +174,7 @@ open class PerfittPartners: BaseController {
     }
 
     // 세션 시작
-    func startSession() {
+    private func startSession() {
         if !self.session.isRunning {
             sessionQueue.async {
                 self.session.startRunning()
@@ -192,6 +192,21 @@ open class PerfittPartners: BaseController {
         self.previewLayer.layer.addSublayer(videoPreviewLayer)
 //        self.layer.addSublayer(videoPreviewLayer)
     }
+    
+    private func showAlert(title: String, message: String, handler: ((UIAlertAction) -> ())?) {
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)
+        controller.addAction(okAction)
+        UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)
+    }
+    
+    func showAlertTwoBtn(title: String, message: String, handler: ((UIAlertAction) -> ())?, cancelHandler: ((UIAlertAction) -> ())?) {
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)
+        let cancelAction = UIAlertAction(title: "취소", style: .default, handler: cancelHandler)
+        controller.addAction(cancelAction)
+        controller.addAction(okAction)
+        UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)    }
 }
 
 

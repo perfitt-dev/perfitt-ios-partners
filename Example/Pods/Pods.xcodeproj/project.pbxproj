@@ -10,7 +10,6 @@
 		0110F4632514419D006C0717 /* PreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0110F4622514419D006C0717 /* PreviewVC.swift */; };
 		012F5DE22514961E00F24F08 /* PerfittTutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F5DE12514961D00F24F08 /* PerfittTutorialVC.swift */; };
 		014C55292502408100C3DAB4 /* PerfittPartners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C55282502408100C3DAB4 /* PerfittPartners.swift */; };
-		014C552B2502409A00C3DAB4 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C552A2502409A00C3DAB4 /* BaseController.swift */; };
 		016CF24E250754CB0069E1AB /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CF24D250754CB0069E1AB /* APIController.swift */; };
 		016CF250250760510069E1AB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CF24F250760510069E1AB /* Model.swift */; };
 		01C23E132513425A002702C9 /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C23E122513425A002702C9 /* Motion.swift */; };
@@ -49,7 +48,6 @@
 		0110F4622514419D006C0717 /* PreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewVC.swift; sourceTree = "<group>"; };
 		012F5DE12514961D00F24F08 /* PerfittTutorialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfittTutorialVC.swift; sourceTree = "<group>"; };
 		014C55282502408100C3DAB4 /* PerfittPartners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PerfittPartners.swift; path = PerfittPartners_iOS/Classes/PerfittPartners.swift; sourceTree = "<group>"; };
-		014C552A2502409A00C3DAB4 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseController.swift; path = PerfittPartners_iOS/Classes/BaseController.swift; sourceTree = "<group>"; };
 		016CF24D250754CB0069E1AB /* APIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 		016CF24F250760510069E1AB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		01C23E122513425A002702C9 /* Motion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Motion.swift; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 			isa = PBXGroup;
 			children = (
 				014C55282502408100C3DAB4 /* PerfittPartners.swift */,
-				014C552A2502409A00C3DAB4 /* BaseController.swift */,
 				016CF24D250754CB0069E1AB /* APIController.swift */,
 				016CF24F250760510069E1AB /* Model.swift */,
 				01C23E122513425A002702C9 /* Motion.swift */,
@@ -418,7 +415,6 @@
 				01C23E132513425A002702C9 /* Motion.swift in Sources */,
 				E1CD2FB4430BE61C44FD750520CE4B29 /* PerfittPartners_iOS-dummy.m in Sources */,
 				014C55292502408100C3DAB4 /* PerfittPartners.swift in Sources */,
-				014C552B2502409A00C3DAB4 /* BaseController.swift in Sources */,
 				012F5DE22514961E00F24F08 /* PerfittTutorialVC.swift in Sources */,
 				016CF250250760510069E1AB /* Model.swift in Sources */,
 				01D48E7A251446BC00D0A0F9 /* Extension.swift in Sources */,

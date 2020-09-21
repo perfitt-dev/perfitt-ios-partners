@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class PreviewVC: BaseController {
+open class PreviewVC: UIViewController {
     
     public var imageData: Data!
     var previewImageView: UIImageView!
@@ -154,6 +154,13 @@ open class PreviewVC: BaseController {
 
             })
         }
+    }
+    
+    private func showAlert(title: String, message: String, handler: ((UIAlertAction) -> ())?) {
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)
+        controller.addAction(okAction)
+        UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)
     }
     
     private func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
