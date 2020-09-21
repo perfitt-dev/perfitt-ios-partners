@@ -199,12 +199,12 @@ extension PerfittPartners: AVCaptureVideoDataOutputSampleBufferDelegate { }
 
 // 자이로센서를 사용해서 수평을 맞춥니다.
 extension PerfittPartners: MotionDelegate {
-    func setCurrentStatus(status: Bool) {
+    public func setCurrentStatus(status: Bool) {
         
     }
     
     // 셔터 클릭
-    func tapButton() {
+    public func tapButton() {
         debugPrint("testasetastase")
         // 저장될 화면을 셋팅
         var photoSettings: AVCapturePhotoSettings

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PreviewVC: UIViewController {
+open class PreviewVC: UIViewController {
     
     public var imageData: Data!
     var previewImageView: UIImageView!
@@ -31,14 +31,14 @@ class PreviewVC: UIViewController {
         return value
     }()
 
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         previewImageView = UIImageView(image: UIImage(data: imageData))

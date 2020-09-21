@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FootModel: Codable {
+public struct FootModel: Codable {
 //    leftImage: "base64 Image",
 //        rightImage: "base64 Image",
 //        sourceType: ""

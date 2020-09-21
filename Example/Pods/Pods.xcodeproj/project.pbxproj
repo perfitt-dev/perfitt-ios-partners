@@ -11,9 +11,6 @@
 		012F5DE22514961E00F24F08 /* PerfittTutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F5DE12514961D00F24F08 /* PerfittTutorialVC.swift */; };
 		014C55292502408100C3DAB4 /* PerfittPartners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C55282502408100C3DAB4 /* PerfittPartners.swift */; };
 		014C552B2502409A00C3DAB4 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014C552A2502409A00C3DAB4 /* BaseController.swift */; };
-		015488F6251876EF004A39C3 /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C23E122513425A002702C9 /* Motion.swift */; };
-		015488FA251876FC004A39C3 /* PreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0110F4622514419D006C0717 /* PreviewVC.swift */; };
-		015488FE25187702004A39C3 /* PerfittTutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F5DE12514961D00F24F08 /* PerfittTutorialVC.swift */; };
 		016CF24E250754CB0069E1AB /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CF24D250754CB0069E1AB /* APIController.swift */; };
 		016CF250250760510069E1AB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CF24F250760510069E1AB /* Model.swift */; };
 		01C23E132513425A002702C9 /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C23E122513425A002702C9 /* Motion.swift */; };
@@ -400,9 +397,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C619B09CAF7BE658F922B3421F8756D5 /* Pods-PerfittPartners_iOS_Example-dummy.m in Sources */,
-				015488FE25187702004A39C3 /* PerfittTutorialVC.swift in Sources */,
-				015488FA251876FC004A39C3 /* PreviewVC.swift in Sources */,
-				015488F6251876EF004A39C3 /* Motion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,11 +8,11 @@
 import UIKit
 import WebKit
 
-class PerfittTutorialVC: UIViewController {
+open class PerfittTutorialVC: UIViewController {
     
     private var webView: WKWebView!
     fileprivate let tutorialURL = "https://service.perfitt.io/howtomeasure"
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
     }

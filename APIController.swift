@@ -7,7 +7,7 @@
 
 import Foundation
 
-class APIController {
+open class APIController {
     // RESTFul API Type이 Get일 경우
     private func apiTypeTypeGet(url: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
         guard let encodingURL = url.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) else { return }
@@ -36,7 +36,8 @@ class APIController {
         session.dataTask(with: request, completionHandler: completionHander).resume()
     }
     
-    func reqeustFootData(_ footData: FootModel, _ APIKEY: String, successHandler: @escaping () -> Void, failedHandler: @escaping() -> Void) {
+    // 발정보 전송
+    public func reqeustFootData(_ footData: FootModel, _ APIKEY: String, successHandler: @escaping () -> Void, failedHandler: @escaping() -> Void) {
         do {
             let jsonData = try  JSONEncoder().encode(footData)
             let params = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any]
@@ -74,56 +75,4 @@ class APIController {
         
     }
     
-    
-//    func requestFootData(_ footData: )
-    
-//    func getHancerNewsExampleJson(successHandler: @escaping (Response) -> Void, failedHandler: @escaping(Error) -> Void) {
-//        self.methodGet(url: "https://hn.algolia.com/api/v1/search?tags=story&page=1", completionHandler: { (data, response, error) in
-//            if let err = error {
-//                debugPrint("response error")
-//                failedHandler(err)
-//                return
-//            }
-//
-//            guard let responseData = data else { return }
-//            let str = String(data: responseData, encoding: .utf8)
-//            do {
-//                let decoder = JSONDecoder()
-//                let model = try decoder.decode(Response.self, from: responseData)
-//                successHandler(model)
-//            } catch {
-//                debugPrint("parse error")
-//                failedHandler(error)
-//            }
-//
-//        })
-//    }
-//
-//    func postTest(successHandler: @escaping () -> Void, failedHandler: @escaping(Error) -> Void) {
-//        let parms = NSMutableDictionary()
-//        self.methodPost(url: "https://dev-api.perfitt.io/m/test", params: parms, completionHander: { (data, response, error) in
-//            // server error check
-//            guard let statusCode = (response as? HTTPURLResponse)?.statusCode else { return }
-//            guard (200..<300).contains(statusCode) else {
-//                print("~~> status code : \(statusCode)")
-//                // error handle
-//                return
-//            }
-//
-//            if let err = error {
-//                failedHandler(err)
-//                return
-//            }
-//
-//
-//
-//            guard let responseData = data else { return }
-//            if let str = String(data: responseData, encoding: .utf8) {
-//                debugPrint("post success", str)
-//                successHandler()
-//            }
-//        })
-//    }
-//
-
 }

@@ -8,7 +8,7 @@
 import UIKit
 import CoreMotion
 
-class Motion: UIView {
+open class Motion: UIView {
     weak var delegate: MotionDelegate?
     private var button: UIButton?
     private let motionManager = CMMotionManager()
@@ -33,7 +33,7 @@ class Motion: UIView {
         
     }
 
-    required init(coder: NSCoder) {
+    required public init(coder: NSCoder) {
         super.init(coder: coder)!
         self.backgroundColor = .white
         setMotionLayout()
@@ -162,7 +162,7 @@ class Motion: UIView {
     }
 }
 
-protocol MotionDelegate: class {
+public protocol MotionDelegate: class {
     func tapButton()
     func setCurrentStatus(status: Bool);
 }
