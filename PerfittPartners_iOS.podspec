@@ -31,7 +31,8 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '12.4'
 
   s.source_files = 'PerfittPartners_iOS/Classes/**/*.swift'
-  s.swift_version = '4.0'
+  s.public_header_files = 'PerfittPartners_iOS/Classes/**/*.swift'
+  s.swift_version = '4.2'
   s.frameworks = 'UIKit'
   
   # s.resource_bundles = {
