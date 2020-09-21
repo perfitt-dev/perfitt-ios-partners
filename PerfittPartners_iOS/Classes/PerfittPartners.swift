@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 
-open class PerfittPartners: UIViewController {
+open class PerfittPartners: BaseController {
     // 카메라 관련 컴포넌트
     private var session = AVCaptureSession()
     private var videoDeviceInput: AVCaptureDeviceInput!             // 사용될 카메라
@@ -101,13 +101,14 @@ open class PerfittPartners: UIViewController {
             self.startSession()
         // 카메라 권한을 설정하지 않은경우
         case .denied:
-            BaseController.init().showAlertTwoBtn(title: "알림", message: "사진 촬영을 할 수 있도록 허용하시겠습니까?", handler: { _ in
+            
+            self.showAlertTwoBtn(title: "알림", message: "사진 촬영을 할 수 있도록 허용하시겠습니까?", handler: { _ in
                 guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
                 UIApplication.shared.open(url)
             }, cancelHandler: nil)
 
         case .restricted:
-            BaseController.init().showAlert(title: "알림", message: "카메라를 사용할 수 없습니다.", handler: nil)
+            self.showAlert(title: "알림", message: "카메라를 사용할 수 없습니다.", handler: nil)
         default:
             debugPrint("status failed")
             break

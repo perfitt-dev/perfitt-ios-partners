@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class BaseController {
+open class BaseController: UIViewController {
     public func showAlertTwoBtn(title: String, message: String, handler: ((UIAlertAction) -> ())?, cancelHandler: ((UIAlertAction) -> ())?) {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)

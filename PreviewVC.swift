@@ -7,13 +7,12 @@
 
 import UIKit
 
-open class PreviewVC: UIViewController {
+open class PreviewVC: BaseController {
     
     public var imageData: Data!
     var previewImageView: UIImageView!
     var previewFor: String!
     var postProcessedImage: String?
-//    var loadingLayer: CircleDotLoadingLayer?
     var rightImgData: String?
     var leftImgData: String?
     var base64Data: String!
@@ -150,7 +149,7 @@ open class PreviewVC: UIViewController {
                 debugPrint("!!!!ERROR :")
                 DispatchQueue.main.async {
                     self.indicator.stopAnimating()
-                    BaseController.init().showAlert(title: "api error", message: "api failed", handler: nil)
+                    self.showAlert(title: "api error", message: "api failed", handler: nil)
                 }
 
             })
