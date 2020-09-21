@@ -7,8 +7,8 @@
 
 import UIKit
 
-class BaseController {
-    static func showAlertTwoBtn(title: String, message: String, handler: ((UIAlertAction) -> ())?, cancelHandler: ((UIAlertAction) -> ())?) {
+open class BaseController {
+    static public func showAlertTwoBtn(title: String, message: String, handler: ((UIAlertAction) -> ())?, cancelHandler: ((UIAlertAction) -> ())?) {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)
         let cancelAction = UIAlertAction(title: "취소", style: .default, handler: cancelHandler)
@@ -17,7 +17,7 @@ class BaseController {
         UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)
     }
     
-    static func showAlert(title: String, message: String, handler: ((UIAlertAction) -> ())?) {
+    static public func showAlert(title: String, message: String, handler: ((UIAlertAction) -> ())?) {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)
         controller.addAction(okAction)
