@@ -21,14 +21,27 @@ import AVFoundation
     let sessionQueue = DispatchQueue(label: "session-queue")
 
     // 카메라 뷰 레이어
-    private var previewLayer: UIImageView = UIImageView()
+    private var previewLayer: UIView = UIView()
     private var motionView: Motion!
+    private var overlayView: OverlayView!
+    
+    private let edgeOffset: CGFloat = 2.0
+    private let displayFont = UIFont.systemFont(ofSize: 14.0, weight: .medium)
 
     var rightImg: Bool?
     var rightImgData: String?
     var leftImgData: String?
 
     var APIKEY: String?
+    
+    // tensorflow lite
+    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: MobileNetSSD.modelInfo, labelsFileInfo: MobileNetSSD.labelsInfo)
+    
+    // run model
+    private var previousInferenceTimeMs: TimeInterval = Date.distantPast.timeIntervalSince1970 * 1000
+    private let delayBetweenInferencesMs: Double = 200
+    
+    private var result: Result?
 
     public struct PerfittPartnersModel: Codable {
         var callBackName: String!
@@ -49,7 +62,7 @@ import AVFoundation
 
     open override func viewDidLoad() {
         super.viewDidLoad()
-
+                
         if !UserDefaults.standard.bool(forKey: "isPerfittTutorial") {
             UserDefaults.standard.setValue(true, forKey: "isPerfittTutorial")
 
@@ -70,12 +83,17 @@ import AVFoundation
 
     private func setBaseLayout() {
         self.view.backgroundColor = .black
+        self.overlayView = OverlayView()
+        self.overlayView.backgroundColor = .clear
         self.motionView = Motion()
         self.motionView.delegate = self
         self.view.addSubview(previewLayer)
         self.view.addSubview(motionView)
+        self.view.addSubview(overlayView)
+//        self.previewLayer.addSubview(overlayView)
         self.previewLayer.translatesAutoresizingMaskIntoConstraints = false
         self.motionView.translatesAutoresizingMaskIntoConstraints = false
+        self.overlayView.translatesAutoresizingMaskIntoConstraints = false
 
         self.previewLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - 96)
         NSLayoutConstraint.activate([
@@ -87,7 +105,12 @@ import AVFoundation
             self.motionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.motionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.motionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            self.motionView.heightAnchor.constraint(equalToConstant: 96)
+            self.motionView.heightAnchor.constraint(equalToConstant: 96),
+
+            self.overlayView.topAnchor.constraint(equalTo: self.previewLayer.topAnchor),
+            self.overlayView.leadingAnchor.constraint(equalTo: self.previewLayer.leadingAnchor),
+            self.overlayView.trailingAnchor.constraint(equalTo: self.previewLayer.trailingAnchor),
+            self.overlayView.bottomAnchor.constraint(equalTo: self.previewLayer.bottomAnchor)
         ])
     }
 
@@ -117,7 +140,7 @@ import AVFoundation
 
     private func setupSession() {
         self.session = AVCaptureSession()
-        self.session.sessionPreset = .hd1280x720          // photo 해상도 결정
+        self.session.sessionPreset = .high          // photo 해상도 결정
         self.session.beginConfiguration()           // session 구성 시작
 
         // Add Video Input
@@ -136,14 +159,17 @@ import AVFoundation
             }
             // 화면의 정보를 가져올 장치를 정의
             let videoDeviceInput = try AVCaptureDeviceInput(device: camera)
+            
+            debugPrint("test init")
 
             // 화면의 정보를 매프레임마다 업데이트하는 컴포넌트 정의
             let sampleBufferQueue = DispatchQueue(label: "sampleBufferQueue")
-            videoDataOutput = AVCaptureVideoDataOutput()
-
+//            videoDataOutput = AVCaptureVideoDataOutput()
             videoDataOutput.setSampleBufferDelegate(self, queue: sampleBufferQueue)
             videoDataOutput.alwaysDiscardsLateVideoFrames = true
             videoDataOutput.videoSettings = [ String(kCVPixelBufferPixelFormatTypeKey) : kCMPixelFormat_32BGRA]
+            
+            debugPrint("test init video data")
 
             // 화면의 이미지를 한순간 가져올 컴포넌트 정의
             stillImageOutput = AVCapturePhotoOutput()
@@ -209,10 +235,6 @@ import AVFoundation
         UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)    }
 }
 
-
-extension PerfittPartners: AVCaptureVideoDataOutputSampleBufferDelegate { }
-
-
 // 자이로센서를 사용해서 수평을 맞춥니다.
 extension PerfittPartners: MotionDelegate {
     public func setCurrentStatus(status: Bool) {
@@ -254,5 +276,88 @@ extension PerfittPartners: AVCapturePhotoCaptureDelegate {
             previewVC.previewFor = "Left"
         }
         self.navigationController?.pushViewController(previewVC, animated: true)
+    }
+}
+
+extension PerfittPartners: AVCaptureVideoDataOutputSampleBufferDelegate {
+    /** This method delegates the CVPixelBuffer of the frame seen by the camera currently.
+     */
+    public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        // CMSampleBuffer를 CVPixelBuffer로 변환
+        let pixelBuffer: CVPixelBuffer? = CMSampleBufferGetImageBuffer(sampleBuffer)
+        guard let imagePixelBuffer = pixelBuffer else {
+            return
+        }
+        self.runModel(onPixelBuffer: imagePixelBuffer)
+    }
+    
+    // TFL 모델을 실행
+    @objc  func runModel(onPixelBuffer pixelBuffer: CVPixelBuffer) {
+        let currentTimeMs = Date().timeIntervalSince1970 * 1000
+        guard  (currentTimeMs - previousInferenceTimeMs) >= delayBetweenInferencesMs else { return }
+        previousInferenceTimeMs = currentTimeMs
+        result = self.modelDataHandler?.runModel(onFrame: pixelBuffer)
+        guard let displayResult = result else { return }
+        
+        let width = CVPixelBufferGetWidth(pixelBuffer)
+        let height = CVPixelBufferGetHeight(pixelBuffer)
+        
+//      overlayView에 라벨과 텍스트를 업데이트합니다.
+        DispatchQueue.main.async {
+            self.drawAfterPerformingCalculations(onInferences: displayResult.inferences, withImageSize: CGSize(width: CGFloat(width), height: CGFloat(height)))
+        }
+        
+    }
+    
+    func drawAfterPerformingCalculations(onInferences inferences: [Inference], withImageSize imageSize:CGSize) {
+        self.overlayView.objectOverlays = []
+        self.overlayView.setNeedsDisplay()
+
+        guard !inferences.isEmpty else { return }
+
+        var objectOverlays: [ObjectOverlay] = []
+
+        for inference in inferences {
+            // Translates bounding box rect to current view.
+            var convertedRect = inference.rect.applying(CGAffineTransform(scaleX: self.overlayView.bounds.size.width / imageSize.width, y: self.overlayView.bounds.size.height / imageSize.height))
+
+            if convertedRect.origin.x < 0 {
+                convertedRect.origin.x = self.edgeOffset
+            }
+            if convertedRect.origin.y < 0 {
+                convertedRect.origin.y = self.edgeOffset
+            }
+
+            if convertedRect.maxY > self.overlayView.bounds.maxY {
+                convertedRect.size.height = self.overlayView.bounds.maxY - convertedRect.origin.y - self.edgeOffset
+            }
+            if convertedRect.maxX > self.overlayView.bounds.maxX {
+                convertedRect.size.width = self.overlayView.bounds.maxX - convertedRect.origin.x - self.edgeOffset
+            }
+
+            let confidenceValue = Int(inference.confidence * 100.0)
+            let string = "\(inference.className)  (\(confidenceValue)%)"
+
+//            let size = string.size(usingFont: self.displayFont)
+            let size = CGSize(width: 0, height: 0)
+            let objectOverlay = ObjectOverlay(name: string, borderRect: convertedRect, nameStringSize: size, color: UIColor(red: 1, green: 0, blue: 0, alpha: 1), font: self.displayFont)
+            
+            objectOverlays.append(objectOverlay)
+        }
+        debugPrint("object overlay count: \(objectOverlays.count)")
+        debugPrint("preview size:", self.previewLayer.bounds)
+        // Hands off drawing to the OverlayView
+        self.draw(objectOverlays: objectOverlays)
+    }
+
+    /** Calls methods to update overlay view with detected bounding boxes and class names.
+     */
+    func draw(objectOverlays: [ObjectOverlay]) {
+        
+        self.overlayView.objectOverlays = objectOverlays
+//        for layer in objectOverlays {
+//            self.overlayView.createBorder(of: layer)
+//        }
+        self.overlayView.setNeedsDisplay()
     }
 }

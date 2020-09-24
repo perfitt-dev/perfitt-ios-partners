@@ -1,16 +1,28 @@
 PODS:
-  - PerfittPartners_iOS (0.1.0)
+  - PerfittPartners_iOS (1.0.0-alpha3):
+    - TensorFlowLiteSwift (~> 2.2.0)
+  - TensorFlowLiteC (2.2.0)
+  - TensorFlowLiteSwift (2.2.0):
+    - TensorFlowLiteC (= 2.2.0)
 
 DEPENDENCIES:
   - PerfittPartners_iOS (from `../`)
+  - TensorFlowLiteSwift (~> 2.2.0)
+
+SPEC REPOS:
+  trunk:
+    - TensorFlowLiteC
+    - TensorFlowLiteSwift
 
 EXTERNAL SOURCES:
   PerfittPartners_iOS:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PerfittPartners_iOS: e7677380e33521893e0e40c3f9e0e9c89456078f
+  PerfittPartners_iOS: 18f27543adbd3793fade36e2b253557cc431f38d
+  TensorFlowLiteC: b3ab9e867b0b71052ca102a32a786555b330b02e
+  TensorFlowLiteSwift: 2dd5e9c895e1819501f0fba3d8b69a536bda6c65
 
-PODFILE CHECKSUM: b842d23b503497fc1cf0e42011827dce9126c668
+PODFILE CHECKSUM: eec21e185caf5c7aa98804f274db0ce41919d29a
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0.rc.1

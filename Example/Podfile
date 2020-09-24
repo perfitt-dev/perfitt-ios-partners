@@ -1,7 +1,9 @@
 use_frameworks!
 
 target 'PerfittPartners_iOS_Example' do
+  pod 'TensorFlowLiteSwift', '~> 2.2.0'
   pod 'PerfittPartners_iOS', :path => '../'
+  
 
   target 'PerfittPartners_iOS_Tests' do
     inherit! :search_paths

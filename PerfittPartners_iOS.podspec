@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PerfittPartners_iOS'
-  s.version          = '1.0.0-alpha3'
+  s.version          = '1.0.0-alpha4'
   s.summary          = 'PerfittPartners_iOS is camera lib'
 
 # This description is used to generate tags and improve search results.
@@ -35,6 +35,9 @@ Pod::Spec.new do |s|
   s.swift_version = '4.2'
   s.framework = 'UIKit'
   s.framework = 'AVFoundation'
+  
+  s.static_framework = true
+  s.dependency 'TensorFlowLiteSwift', '~> 2.2.0'
   
   # s.resource_bundles = {
   #   'PerfittPartners_iOS' => ['PerfittPartners_iOS/Assets/*.png']
