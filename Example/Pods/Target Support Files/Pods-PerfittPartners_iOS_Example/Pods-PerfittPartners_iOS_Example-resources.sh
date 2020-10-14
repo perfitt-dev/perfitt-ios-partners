@@ -97,9 +97,37 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict.txt"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model.tflite"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIConsts.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIController.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIModel.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/Extension.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/ModelDataHandler.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/Motion.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/OverlayView.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/PerfittPartners.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/PerfittTutorialVC.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/PreviewVC.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict.txt"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model.tflite"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIConsts.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIController.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIModel.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/Extension.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/ModelDataHandler.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/Motion.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/OverlayView.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/PerfittPartners.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/PerfittTutorialVC.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/PreviewVC.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.bundle"
 fi
 

@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
     s.swift_version = '4.2'
 #    s.framework = 'UIKit'
 #    s.framework = 'AVFoundation'
-    s.frameworks = 'UIKit', 'AVFoundation', 'PerfittPartners_iOS'
+    s.frameworks = 'UIKit', 'AVFoundation'
     
     s.static_framework = true
     s.dependency 'TensorFlowLiteSwift', '~> 2.2.0'
@@ -52,6 +52,7 @@ Pod::Spec.new do |s|
         'PerfittPartners_iOS' => ['PerfittPartners_iOS/Assets/**/*']
     }
     
+    s.resources = 'PerfittPartners_iOS/**/*'
     # s.public_header_files = 'Pod/Classes/**/*.h'
     # s.frameworks = 'UIKit', 'MapKit'
     # s.dependency 'AFNetworking', '~> 2.3'

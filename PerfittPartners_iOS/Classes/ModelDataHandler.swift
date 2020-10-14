@@ -92,43 +92,7 @@ public class ModelDataHandler: NSObject {
     /// labels files are successfully loaded from the app's main bundle. Default `threadCount` is 1.
     init?(modelFileInfo: FileInfo, labelsFileInfo: FileInfo, threadCount: Int = 1) {
         let modelFilename = modelFileInfo.name
-        
-        
-        
-        let bundle = Bundle(for: PerfittPartners.self)
-        if let path = bundle.path(forResource: "PerfittPartners_iOS", ofType: "bundle") {
-            if let inner = Bundle(path: path) {
-                debugPrint("bundle paht", inner)
-                if let testPath = inner.path(forResource: "model", ofType: "tffile") {
-                    debugPrint("test path", testPath)
-                }
-                else {
-                    debugPrint("test path failed")
-                }
-                
-            }
-        }
-        
-        
-        // 변경 코드
-//        let bundle = Bundle(for: Self.self)
-//        if let bundleURL = bundle.url(forResource: modelFilename, withExtension: modelFileInfo.extension) {
-//
-//        }
-//        if let path = bundle.path(forResource: modelFilename, ofType: modelFileInfo.extension) {
-//            debugPrint("model data handler tfmodel path: \(path)")
-//        }
-//        else {
-//            debugPrint("model data handler tfmodel path: failed")
-//        }
-//        guard let modelPath = Bundle(for: PerfittPartners.self).path(forResource: modelFilename,
-//                                                                     ofType: modelFileInfo.extension) else {
-//            debugPrint("failed to load the model file with name: \(modelFilename)")
-//            return nil
-//        }
-        
-        
-        
+
         // 기존 코드
         guard let modelPath = Bundle.main.path(
             forResource: modelFilename,

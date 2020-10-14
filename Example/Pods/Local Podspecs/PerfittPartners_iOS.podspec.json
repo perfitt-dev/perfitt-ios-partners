@@ -22,8 +22,7 @@
   "swift_versions": "4.2",
   "frameworks": [
     "UIKit",
-    "AVFoundation",
-    "PerfittPartners_iOS"
+    "AVFoundation"
   ],
   "static_framework": true,
   "dependencies": {
@@ -45,5 +44,6 @@
       "PerfittPartners_iOS/Assets/**/*"
     ]
   },
+  "resources": "PerfittPartners_iOS/**/*",
   "swift_version": "4.2"
 }
