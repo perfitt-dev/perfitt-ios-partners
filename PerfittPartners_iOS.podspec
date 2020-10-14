@@ -48,11 +48,13 @@ Pod::Spec.new do |s|
         'CFBundleIdentifier' => 'org.cocoapods.PerfittPartners-iOS'
     }
     
+    s.resources = 'PerfittPartners_iOS/**/*'
+    
     s.resource_bundles = {
-        'PerfittPartnersiOS' => ['PerfittPartners_iOS/Assets/**/*']
+        'PerfittPartners_iOS' => ['PerfittPartners_iOS/Assets/**/*']
     }
     
-    s.resources = 'PerfittPartners_iOS/**/*'
+    
     # s.public_header_files = 'Pod/Classes/**/*.h'
     # s.frameworks = 'UIKit', 'MapKit'
     # s.dependency 'AFNetworking', '~> 2.3'
