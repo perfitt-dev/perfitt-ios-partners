@@ -37,40 +37,48 @@ open class APIController {
     }
     
     // 발정보 전송
-    public func reqeustFootData(_ footData: FootModel, _ APIKEY: String, successHandler: @escaping () -> Void, failedHandler: @escaping() -> Void) {
+    public func reqeustFootData(_ footData: FootModel, _ APIKEY: String, successHandler: @escaping (String?) -> Void, failedHandler: @escaping(ErrorModel) -> Void) {
         do {
             let jsonData = try  JSONEncoder().encode(footData)
             let params = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any]
             
             self.apiTypePost(url: APIConsts.FOOTDATA + "?apiKey=\(APIKEY)", params: params ?? [:], completionHander: { (data, response, error) in
                 guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
-                    failedHandler()
+                    let errModel = ErrorModel(message: "서버에러입니다.", type: "")
+                    failedHandler(errModel)
                     return
                 }
+                                
                 guard (200..<300).contains(statusCode) else {
                     print("~~> status code : \(statusCode)")
                     guard let responseData = data else { return }
-                    if let str = String(data: responseData, encoding: .utf8) {
-                        debugPrint("~~>pos failed body", str)
-                        successHandler()
-                    }
-                    failedHandler()
+                    let decoder = JSONDecoder()
+                    let errModel = try! decoder.decode(ErrorModel.self, from: responseData)
+                    failedHandler(errModel)
                     return
                 }
-
+                
                 if let _ = error {
-                    failedHandler()
+                    guard let responseData = data else { return }
+                    let decoder = JSONDecoder()
+                    let errModel = try! decoder.decode(ErrorModel.self, from: responseData)
+                    failedHandler(errModel)
                     return
                 }
-
-                guard let responseData = data else { return }
-                if let str = String(data: responseData, encoding: .utf8) {
-                    debugPrint("~~>post success", str)
-                    successHandler()
+                
+                if let responseData = data {
+                    let decoder = JSONDecoder()
+                    let json = try! JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
+                    
+                    let successStr = json?["id"] as? String
+                    
+                    successHandler(successStr)   
                 }
+                
+                
             })
         } catch {
-            failedHandler()
+            failedHandler(ErrorModel(message: "서버에러입니다.", type: ""))
         }
         
     }

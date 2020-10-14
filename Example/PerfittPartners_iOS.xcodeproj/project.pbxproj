@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		015665B0251C574A004881D6 /* dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 015665AE251C574A004881D6 /* dict.txt */; };
-		015665B1251C574A004881D6 /* model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 015665AF251C574A004881D6 /* model.tflite */; };
 		01C23E0425132E38002702C9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01C23E0325132E38002702C9 /* WebKit.framework */; };
-		01C23E0825133850002702C9 /* CameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C23E0725133850002702C9 /* CameraVC.swift */; };
 		416C4C7670054AFC0A938ACB /* Pods_PerfittPartners_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A853710B446F9161D6F6EB9D /* Pods_PerfittPartners_iOS_Example.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -32,10 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		015665AE251C574A004881D6 /* dict.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dict.txt; sourceTree = "<group>"; };
-		015665AF251C574A004881D6 /* model.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = model.tflite; sourceTree = "<group>"; };
 		01C23E0325132E38002702C9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		01C23E0725133850002702C9 /* CameraVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVC.swift; sourceTree = "<group>"; };
 		0E319F8C6B887916B484EF9C /* Pods_PerfittPartners_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerfittPartners_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37DE012C8A0DB1954DFE7A74 /* PerfittPartners_iOS.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PerfittPartners_iOS.podspec; path = ../PerfittPartners_iOS.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		38816B7DADE17FFB3CD97D53 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -78,15 +72,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		015665AB251C5734004881D6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				015665AE251C574A004881D6 /* dict.txt */,
-				015665AF251C574A004881D6 /* model.tflite */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
 		2AE14697CBED10250DA114CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,14 +106,12 @@
 		607FACD21AFB9204008FA782 /* Example for PerfittPartners_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				015665AB251C5734004881D6 /* Model */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
-				01C23E0725133850002702C9 /* CameraVC.swift */,
 			);
 			name = "Example for PerfittPartners_iOS";
 			path = PerfittPartners_iOS;
@@ -191,6 +174,7 @@
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
+				7087B2D963814F2A8C258837 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -267,10 +251,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				015665B1251C574A004881D6 /* model.tflite in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
-				015665B0251C574A004881D6 /* dict.txt in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +267,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7087B2D963814F2A8C258837 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PerfittPartners_iOS_Example/Pods-PerfittPartners_iOS_Example-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PerfittPartners_iOS.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PerfittPartners_iOS_Example/Pods-PerfittPartners_iOS_Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		792E136ED3095BC1A002ED89 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -337,7 +337,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
-				01C23E0825133850002702C9 /* CameraVC.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

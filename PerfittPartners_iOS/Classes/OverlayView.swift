@@ -46,10 +46,9 @@ public class OverlayView: UIView {
         self.clearsContextBeforeDrawing = false
         // Drawing code
         for objectOverlay in objectOverlays {
-
             drawBorders(of: objectOverlay)
-//            drawBackground(of: objectOverlay)
-//            drawName(of: objectOverlay)
+            drawBackground(of: objectOverlay)
+            drawName(of: objectOverlay)
         }
     }
     
@@ -74,7 +73,7 @@ public class OverlayView: UIView {
         )
         
         let stringBgPath = UIBezierPath(rect: stringBgRect)
-//        objectOverlay.color.withAlphaComponent(stringBgAlpha).setFill()
+        objectOverlay.color.withAlphaComponent(stringBgAlpha).setFill()
         stringBgPath.fill()
     }
     

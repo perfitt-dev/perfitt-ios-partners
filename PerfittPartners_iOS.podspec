@@ -31,7 +31,6 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = '12.4'
     
     s.source_files = 'PerfittPartners_iOS/Classes/**/*'
-    #  s.public_header_files = 'PerfittPartners_iOS/Classes/**/*'
     s.swift_version = '4.2'
     s.framework = 'UIKit'
     s.framework = 'AVFoundation'
@@ -44,9 +43,13 @@ Pod::Spec.new do |s|
     }
     s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
     
-    # s.resource_bundles = {
-    #   'PerfittPartners_iOS' => ['PerfittPartners_iOS/Assets/*.png']
-    # }
+    s.info_plist = {
+        'CFBundleIdentifier' => 'org.cocoapods.PerfittPartners-iOS'
+    }
+    
+    s.resource_bundles = {
+        'PerfittPartners_iOS' => ['PerfittPartners_iOS/Assets/*.*']
+    }
     
     # s.public_header_files = 'Pod/Classes/**/*.h'
     # s.frameworks = 'UIKit', 'MapKit'

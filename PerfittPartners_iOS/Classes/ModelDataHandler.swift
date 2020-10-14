@@ -82,16 +82,39 @@ public class ModelDataHandler: NSObject {
     /// labels files are successfully loaded from the app's main bundle. Default `threadCount` is 1.
     init?(modelFileInfo: FileInfo, labelsFileInfo: FileInfo, threadCount: Int = 1) {
         let modelFilename = modelFileInfo.name
-//        debugPrint("Bundle main path", Bundle.main.path(forResource: "ViewController", ofType: "swift"))
-//        debugPrint("bundle main path", Bundle.)
-        // Construct the path to the model file.
-        guard let modelPath = Bundle.main.path(
-            forResource: modelFilename,
-            ofType: modelFileInfo.extension
-            ) else {
-                print("Failed to load the model file with name: \(modelFilename).")
-                return nil
+        
+        // file maager 사용? 이게 맞는 작업일까?
+//        let fileManager = FileManager()
+//
+//        if let documentDirectory = fileManager.urls(for: .allLibrariesDirectory, in: .userDomainMask).first {
+//            debugPrint("filemanager failed: \(documentDirectory)")
+//        }
+//        else {
+//            debugPrint("filemanager failed")
+//        }
+        
+//        let id = Bundle(identifier: "org.cocoapods.PerfittPartners-iOS")
+//        debugPrint("model data handler identifier: \(id)")
+//        let bundle = Bundle(for: ModelDataHandler.self)
+//        let path = bundle.path(forResource: modelFilename, ofType: modelFileInfo.extension)
+//        debugPrint("model data handleer tf model path: \(path)")
+        
+        // 변경 코드
+        guard let modelPath = Bundle(for: PerfittPartners.self).path(forResource: modelFilename,
+                                                                     ofType: modelFileInfo.extension) else {
+            debugPrint("failed to load the model file with name: \(modelFilename)")
+            return nil
         }
+        
+        // 기존 코드
+//        guard let modelPath = Bundle.main.path(
+//            forResource: modelFilename,
+//            ofType: modelFileInfo.extension
+//            ) else {
+//                print("Failed to load the model file with name: \(modelFilename).")
+//                return nil
+//        }
+
         
         // Specify the options for the `Interpreter`.
         self.threadCount = threadCount
@@ -378,3 +401,13 @@ extension Array {
         #endif  // swift(>=5.0)
     }
 }
+
+//class func loadImage(name: String) -> UIImage? {
+//
+//    let podBundle = Bundle(for: PerfittPartners.self)
+//    if let url = podBundle.URLForResource("MyBundleName", withExtension: "bundle") {
+//        let bundle = NSBundle(URL: url)
+//        return UIImage(named: name, inBundle: bundle, compatibleWithTraitCollection: nil)
+//    }
+//    return nil
+//}

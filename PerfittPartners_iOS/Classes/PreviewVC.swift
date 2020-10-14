@@ -138,18 +138,18 @@ open class PreviewVC: UIViewController {
             indicator.startAnimating()
             let requestData = FootModel(leftImage: left, rightImage: right , sourceType: "\(APIConsts.SDK_VERSION)_\(UIDevice.current.name)_\(self.getOSInfo())")
 
-            APIController.init().reqeustFootData(requestData, self.APIKEY ?? "", successHandler: {
+            APIController.init().reqeustFootData(requestData, self.APIKEY ?? "", successHandler: { result in
                 DispatchQueue.main.async {
                     self.indicator.stopAnimating()
-                    let userInfo: [AnyHashable: Any] = ["methodName": "callback('\(self.APIKEY ?? "")')"]
+                    let userInfo: [AnyHashable: Any] = ["methodName": "callback('\(result ?? "")')"]
                     NotificationCenter.default.post(name: NSNotification.Name.init("PerfittPartners"), object: nil, userInfo: userInfo)
                     self.navigationController?.popToRootViewController(animated: true)
                 }
-            }, failedHandler: {
+            }, failedHandler: { errorResult in
                 debugPrint("!!!!ERROR :")
                 DispatchQueue.main.async {
                     self.indicator.stopAnimating()
-                    self.showAlert(title: "api error", message: "api failed", handler: nil)
+                    self.showAlert(title: "", message: errorResult.message, handler: nil)
                 }
 
             })

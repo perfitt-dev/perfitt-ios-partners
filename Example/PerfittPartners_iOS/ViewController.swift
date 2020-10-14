@@ -21,11 +21,9 @@ class ViewController: UIViewController {
         self.loadURL()
         
         NotificationCenter.default.addObserver(self, selector: #selector(callJSMethod), name: NSNotification.Name(rawValue: "PerfittPartners"), object: nil)
-        
     }
     
     private func loadURL() {
-//        let url = URL(string: "https://perfitt-static-files.s3.ap-northeast-2.amazonaws.com/resources/clutter/test.html")!
         let url = URL(string: "http://m.sgumg.cafe24.com")!
         let request = URLRequest(url: url)
         self.webView.load(request)
