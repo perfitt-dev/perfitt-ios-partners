@@ -49,7 +49,7 @@ Pod::Spec.new do |s|
     }
     
     s.resource_bundles = {
-        'PerfittPartners_iOS' => ['PerfittPartners_iOS/Assets/**/*']
+        'PerfittPartnersiOS' => ['PerfittPartners_iOS/Assets/**/*']
     }
     
     s.resources = 'PerfittPartners_iOS/**/*'
