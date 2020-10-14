@@ -22,24 +22,26 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(callJSMethod), name: NSNotification.Name(rawValue: "PerfittPartners"), object: nil)
         
+//        let bundel = Bundle.main
+//        debugPrint("main bundle \(bundel)")
+        
         self.loadmodel()
         
     }
     
     private func loadmodel() {
-//        guard let modelPath = Bundle(identifier: "org.cocoapods.PerfittPartners-iOS")?.path(forResource: "model", ofType: "tffile") else {
-//            debugPrint("model path failed")
+        let modelPath = Bundle(identifier: "org.cocoapods.PerfittPartners-iOS")
+        
+        
+        debugPrint("model path \(modelPath)")
+//        guard let modelPath = Bundle.main.path(
+//            forResource: "model",
+//            ofType: "tffile"
+//            ) else {
+//                print("Failed to load the model file with name: model.tffile.")
 //            return
 //        }
-//        debugPrint("model path \(modelPath)")
-        guard let modelPath = Bundle.main.path(
-            forResource: "model",
-            ofType: "tffile"
-            ) else {
-                print("Failed to load the model file with name: model.tffile.")
-            return
-        }
-        debugPrint("model path", modelPath)
+//        debugPrint("model path", modelPath)
     }
     
     private func loadURL() {

@@ -32,8 +32,9 @@ Pod::Spec.new do |s|
     
     s.source_files = 'PerfittPartners_iOS/Classes/**/*'
     s.swift_version = '4.2'
-    s.framework = 'UIKit'
-    s.framework = 'AVFoundation'
+#    s.framework = 'UIKit'
+#    s.framework = 'AVFoundation'
+    s.frameworks = 'UIKit', 'AVFoundation', 'PerfittPartners_iOS'
     
     s.static_framework = true
     s.dependency 'TensorFlowLiteSwift', '~> 2.2.0'

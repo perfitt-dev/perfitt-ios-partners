@@ -76,12 +76,39 @@ public class ModelDataHandler: NSObject {
         UIColor.brown
     ]
     
+    private func findBundle() -> Bundle{
+        let bundle = Bundle(for: PerfittPartners.self)
+        if let path = bundle.path(forResource: "PerfittPartners_iOS", ofType: "bundle") {
+            if let inner = Bundle(path: path) {
+                return inner
+            }
+        }
+        return bundle
+    }
+    
     // MARK: - Initialization
     
     /// A failable initializer for `ModelDataHandler`. A new instance is created if the model and
     /// labels files are successfully loaded from the app's main bundle. Default `threadCount` is 1.
     init?(modelFileInfo: FileInfo, labelsFileInfo: FileInfo, threadCount: Int = 1) {
         let modelFilename = modelFileInfo.name
+        
+        
+        
+        let bundle = Bundle(for: PerfittPartners.self)
+        if let path = bundle.path(forResource: "PerfittPartners_iOS", ofType: "bundle") {
+            if let inner = Bundle(path: path) {
+                debugPrint("bundle paht", inner)
+                if let testPath = inner.path(forResource: "model", ofType: "tffile") {
+                    debugPrint("test path", testPath)
+                }
+                else {
+                    debugPrint("test path failed")
+                }
+                
+            }
+        }
+        
         
         // 변경 코드
 //        let bundle = Bundle(for: Self.self)
@@ -99,6 +126,8 @@ public class ModelDataHandler: NSObject {
 //            debugPrint("failed to load the model file with name: \(modelFilename)")
 //            return nil
 //        }
+        
+        
         
         // 기존 코드
         guard let modelPath = Bundle.main.path(

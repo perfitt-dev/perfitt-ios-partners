@@ -20,7 +20,11 @@
   },
   "source_files": "PerfittPartners_iOS/Classes/**/*",
   "swift_versions": "4.2",
-  "frameworks": "AVFoundation",
+  "frameworks": [
+    "UIKit",
+    "AVFoundation",
+    "PerfittPartners_iOS"
+  ],
   "static_framework": true,
   "dependencies": {
     "TensorFlowLiteSwift": [

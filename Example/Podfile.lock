@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PerfittPartners_iOS: c52bb3e2f9496744f545b048444c774843ca11ca
+  PerfittPartners_iOS: de8291d4fe4efb3c639833aa7e02c77a7657b5b0
   TensorFlowLiteC: b3ab9e867b0b71052ca102a32a786555b330b02e
   TensorFlowLiteSwift: 2dd5e9c895e1819501f0fba3d8b69a536bda6c65
 
