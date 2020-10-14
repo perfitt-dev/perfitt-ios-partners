@@ -1,5 +1,5 @@
 PODS:
-  - PerfittPartners_iOS (1.0.0-alpha4):
+  - PerfittPartners_iOS (1.0.0-alpha5):
     - TensorFlowLiteSwift (~> 2.2.0)
   - TensorFlowLiteC (2.2.0)
   - TensorFlowLiteSwift (2.2.0):
@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PerfittPartners_iOS: ec8389b6fd5e75b634f2289cc2df0cb518a9d705
+  PerfittPartners_iOS: c52bb3e2f9496744f545b048444c774843ca11ca
   TensorFlowLiteC: b3ab9e867b0b71052ca102a32a786555b330b02e
   TensorFlowLiteSwift: 2dd5e9c895e1819501f0fba3d8b69a536bda6c65
 

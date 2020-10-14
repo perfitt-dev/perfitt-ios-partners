@@ -21,6 +21,25 @@ class ViewController: UIViewController {
         self.loadURL()
         
         NotificationCenter.default.addObserver(self, selector: #selector(callJSMethod), name: NSNotification.Name(rawValue: "PerfittPartners"), object: nil)
+        
+        self.loadmodel()
+        
+    }
+    
+    private func loadmodel() {
+//        guard let modelPath = Bundle(identifier: "org.cocoapods.PerfittPartners-iOS")?.path(forResource: "model", ofType: "tffile") else {
+//            debugPrint("model path failed")
+//            return
+//        }
+//        debugPrint("model path \(modelPath)")
+        guard let modelPath = Bundle.main.path(
+            forResource: "model",
+            ofType: "tffile"
+            ) else {
+                print("Failed to load the model file with name: model.tffile.")
+            return
+        }
+        debugPrint("model path", modelPath)
     }
     
     private func loadURL() {
@@ -45,7 +64,7 @@ class ViewController: UIViewController {
                 
                 // TODO: 결과 값을 이용해 기능구현?
             }
-
+            
         })
     }
     

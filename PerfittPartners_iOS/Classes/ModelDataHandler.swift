@@ -83,37 +83,31 @@ public class ModelDataHandler: NSObject {
     init?(modelFileInfo: FileInfo, labelsFileInfo: FileInfo, threadCount: Int = 1) {
         let modelFilename = modelFileInfo.name
         
-        // file maager 사용? 이게 맞는 작업일까?
-//        let fileManager = FileManager()
+        // 변경 코드
+//        let bundle = Bundle(for: Self.self)
+//        if let bundleURL = bundle.url(forResource: modelFilename, withExtension: modelFileInfo.extension) {
 //
-//        if let documentDirectory = fileManager.urls(for: .allLibrariesDirectory, in: .userDomainMask).first {
-//            debugPrint("filemanager failed: \(documentDirectory)")
+//        }
+//        if let path = bundle.path(forResource: modelFilename, ofType: modelFileInfo.extension) {
+//            debugPrint("model data handler tfmodel path: \(path)")
 //        }
 //        else {
-//            debugPrint("filemanager failed")
+//            debugPrint("model data handler tfmodel path: failed")
 //        }
-        
-//        let id = Bundle(identifier: "org.cocoapods.PerfittPartners-iOS")
-//        debugPrint("model data handler identifier: \(id)")
-//        let bundle = Bundle(for: ModelDataHandler.self)
-//        let path = bundle.path(forResource: modelFilename, ofType: modelFileInfo.extension)
-//        debugPrint("model data handleer tf model path: \(path)")
-        
-        // 변경 코드
-        guard let modelPath = Bundle(for: PerfittPartners.self).path(forResource: modelFilename,
-                                                                     ofType: modelFileInfo.extension) else {
-            debugPrint("failed to load the model file with name: \(modelFilename)")
-            return nil
-        }
+//        guard let modelPath = Bundle(for: PerfittPartners.self).path(forResource: modelFilename,
+//                                                                     ofType: modelFileInfo.extension) else {
+//            debugPrint("failed to load the model file with name: \(modelFilename)")
+//            return nil
+//        }
         
         // 기존 코드
-//        guard let modelPath = Bundle.main.path(
-//            forResource: modelFilename,
-//            ofType: modelFileInfo.extension
-//            ) else {
-//                print("Failed to load the model file with name: \(modelFilename).")
-//                return nil
-//        }
+        guard let modelPath = Bundle.main.path(
+            forResource: modelFilename,
+            ofType: modelFileInfo.extension
+            ) else {
+                print("Failed to load the model file with name: ghdfghdfg d\(modelFilename).")
+            return nil
+        }
 
         
         // Specify the options for the `Interpreter`.
