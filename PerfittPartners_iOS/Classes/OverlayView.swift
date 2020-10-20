@@ -42,7 +42,6 @@ public class OverlayView: UIView {
     
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
-        debugPrint("draw rect: \(rect)")
         self.clearsContextBeforeDrawing = false
         // Drawing code
         for objectOverlay in objectOverlays {

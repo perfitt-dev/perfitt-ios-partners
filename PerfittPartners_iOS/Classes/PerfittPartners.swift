@@ -25,6 +25,10 @@ import AVFoundation
     private var motionView: Motion!
     private var overlayView: OverlayView!
     
+    // object dection 위치값
+    private var baseObject: UILabel = UILabel()
+    private var footObject: UILabel = UILabel()
+    
     private let edgeOffset: CGFloat = 2.0
     private let displayFont = UIFont.systemFont(ofSize: 14.0, weight: .medium)
     
@@ -42,6 +46,8 @@ import AVFoundation
     private let minimumZoom: CGFloat = 1.4
     private let maximumZoom: CGFloat = 2.2
     private var lastZoomFactor: CGFloat = 1.8
+    
+    var guideLine: UIView = UIView()
     
     // tensorflow lite
     private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: MobileNetSSD.modelInfo, labelsFileInfo: MobileNetSSD.labelsInfo)
@@ -91,6 +97,7 @@ import AVFoundation
     }
     
     private func setBaseLayout() {
+        // 줌 버튼 설정
         self.zoomInButton.setTitle("-", for: .normal)
         self.zoomInButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         self.zoomInButton.titleLabel?.font = UIFont.systemFont(ofSize: 40)
@@ -107,6 +114,20 @@ import AVFoundation
         self.zoomOutButton.layer.masksToBounds = false
         self.zoomOutButton.layer.cornerRadius = 8
         
+        // object dection 위치 좌표
+        self.baseObject.font = .boldSystemFont(ofSize: 12)
+        self.baseObject.textColor = .white
+        self.baseObject.text = "A4 Pos = x: | y: | width: | height: "
+        
+        self.footObject.font = .boldSystemFont(ofSize: 12)
+        self.footObject.textColor = .white
+        self.footObject.text = "foot Pos = x: | y: | width: | height: "
+        
+        self.guideLine.backgroundColor = UIColor.init(red: 237 / 255, green: 0, blue: 30 / 255, alpha: 1)
+        
+        
+        
+        
         self.view.backgroundColor = .black
         self.overlayView = OverlayView()
         self.overlayView.backgroundColor = .clear
@@ -119,15 +140,26 @@ import AVFoundation
         
         self.overlayView.addSubview(zoomInButton)
         self.overlayView.addSubview(zoomOutButton)
+        self.overlayView.addSubview(baseObject)
+        self.overlayView.addSubview(footObject)
+        self.overlayView.addSubview(guideLine)
+        
+//        self.previewLayer.addSubview(guideLine)
+        
         
         self.previewLayer.translatesAutoresizingMaskIntoConstraints = false
         self.motionView.translatesAutoresizingMaskIntoConstraints = false
         self.overlayView.translatesAutoresizingMaskIntoConstraints = false
         self.zoomInButton.translatesAutoresizingMaskIntoConstraints = false
         self.zoomOutButton.translatesAutoresizingMaskIntoConstraints = false
+        self.baseObject.translatesAutoresizingMaskIntoConstraints = false
+        self.footObject.translatesAutoresizingMaskIntoConstraints = false
+        self.guideLine.translatesAutoresizingMaskIntoConstraints = false
         
         
         self.previewLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - 96)
+        self.overlayView.frame = self.previewLayer.frame
+        let guideLinePos = self.previewLayer.bounds.height * 0.3
         NSLayoutConstraint.activate([
             self.previewLayer.topAnchor.constraint(equalTo: self.view.topAnchor),
             self.previewLayer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -152,7 +184,18 @@ import AVFoundation
             self.zoomOutButton.centerXAnchor.constraint(equalTo: self.overlayView.centerXAnchor, constant: 24),
             self.zoomOutButton.bottomAnchor.constraint(equalTo: self.overlayView.bottomAnchor, constant: -8),
             self.zoomOutButton.widthAnchor.constraint(equalToConstant: 48),
-            self.zoomOutButton.heightAnchor.constraint(equalToConstant: 48)
+            self.zoomOutButton.heightAnchor.constraint(equalToConstant: 48),
+
+            self.baseObject.topAnchor.constraint(equalTo: self.overlayView.topAnchor, constant: 70),
+            self.baseObject.leadingAnchor.constraint(equalTo: self.overlayView.leadingAnchor, constant: 8),
+            
+            self.footObject.topAnchor.constraint(equalTo: self.baseObject.bottomAnchor, constant: 8),
+            self.footObject.leadingAnchor.constraint(equalTo: self.baseObject.leadingAnchor),
+            
+            self.guideLine.leadingAnchor.constraint(equalTo: self.previewLayer.leadingAnchor),
+            self.guideLine.trailingAnchor.constraint(equalTo: self.previewLayer.trailingAnchor),
+            self.guideLine.heightAnchor.constraint(equalToConstant: 2),
+            self.guideLine.centerYAnchor.constraint(equalTo: self.previewLayer.topAnchor, constant: guideLinePos)
             
         ])
     }
@@ -183,7 +226,7 @@ import AVFoundation
     
     private func setupSession() {
         self.session = AVCaptureSession()
-        self.session.sessionPreset = .high          // photo 해상도 결정
+        self.session.sessionPreset = .iFrame1280x720          // photo 해상도 결정
         self.session.beginConfiguration()           // session 구성 시작
         
         // Add Video Input
@@ -331,6 +374,8 @@ extension PerfittPartners: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard let imagePixelBuffer = pixelBuffer else {
             return
         }
+//        debugPrint("image pixel buffer size", pixelBuffer)
+        
         self.runModel(onPixelBuffer: imagePixelBuffer)
     }
     
@@ -341,6 +386,9 @@ extension PerfittPartners: AVCaptureVideoDataOutputSampleBufferDelegate {
         previousInferenceTimeMs = currentTimeMs
         result = self.modelDataHandler?.runModel(onFrame: pixelBuffer)
         guard let displayResult = result else { return }
+        if let temp = result {
+            debugPrint("tensor flow model result \(temp)")
+        }
         
         let width = CVPixelBufferGetWidth(pixelBuffer)
         let height = CVPixelBufferGetHeight(pixelBuffer)
@@ -384,11 +432,18 @@ extension PerfittPartners: AVCaptureVideoDataOutputSampleBufferDelegate {
             //            let size = string.size(usingFont: self.displayFont)
             let size = CGSize(width: 100, height: 20)
             let objectOverlay = ObjectOverlay(name: string, borderRect: convertedRect, nameStringSize: size, color: inference.displayColor, font: self.displayFont)
-            
+            if inference.className == "b'base'" {
+                self.baseObject.text = "A4 { x: \(String(format: "%.2f", convertedRect.minX)) y: \(String(format: "%.2f", convertedRect.minY)) width: \(String(format: "%.2f", convertedRect.width)) height: \(String(format: "%.2f", convertedRect.height)) }"
+            }
+            else {
+                self.footObject.text = "foot { x: \(String(format: "%.2f", convertedRect.minX)) y: \(String(format: "%.2f", convertedRect.minY)) width: \(String(format: "%.2f", convertedRect.width)) height: \(String(format: "%.2f", convertedRect.height)) }"
+            }
             objectOverlays.append(objectOverlay)
+            debugPrint("rect: ", convertedRect)
         }
         debugPrint("object overlay count: \(objectOverlays.count)")
         debugPrint("preview size:", self.previewLayer.bounds)
+        
         // Hands off drawing to the OverlayView
         self.draw(objectOverlays: objectOverlays)
     }

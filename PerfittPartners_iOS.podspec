@@ -32,8 +32,7 @@ Pod::Spec.new do |s|
     
     s.source_files = 'PerfittPartners_iOS/Classes/**/*'
     s.swift_version = '4.2'
-#    s.framework = 'UIKit'
-#    s.framework = 'AVFoundation'
+
     s.frameworks = 'UIKit', 'AVFoundation'
     
     s.static_framework = true
@@ -54,8 +53,4 @@ Pod::Spec.new do |s|
         'PerfittPartners_iOS' => ['PerfittPartners_iOS/Assets/**/*']
     }
     
-    
-    # s.public_header_files = 'Pod/Classes/**/*.h'
-    # s.frameworks = 'UIKit', 'MapKit'
-    # s.dependency 'AFNetworking', '~> 2.3'
 end

@@ -43,7 +43,7 @@ public class ModelDataHandler: NSObject {
     let threadCount: Int
     let threadCountLimit = 10
     
-    let threshold: Float = 0.7
+    let threshold: Float = 0.95
     
     // MARK: Model parameters
     let batchSize = 1
@@ -136,7 +136,7 @@ public class ModelDataHandler: NSObject {
         assert(sourcePixelFormat == kCVPixelFormatType_32ARGB ||
             sourcePixelFormat == kCVPixelFormatType_32BGRA ||
             sourcePixelFormat == kCVPixelFormatType_32RGBA)
-        
+         
         
         let imageChannels = 4
         assert(imageChannels >= inputChannels)
@@ -226,6 +226,7 @@ public class ModelDataHandler: NSObject {
             rect.size.height = CGFloat(boundingBox[4*i+2]) - rect.origin.y
             rect.size.width = CGFloat(boundingBox[4*i+3]) - rect.origin.x
             
+            
             // The detected corners are for model dimensions. So we scale the rect with respect to the
             // actual image dimensions.
             let newRect = rect.applying(CGAffineTransform(scaleX: width, y: height))
@@ -243,6 +244,7 @@ public class ModelDataHandler: NSObject {
         resultsArray.sort { (first, second) -> Bool in
             return first.confidence  > second.confidence
         }
+        
         
         return resultsArray
     }

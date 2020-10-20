@@ -103,6 +103,8 @@ open class Motion: UIView {
                 if let attitude = motion?.attitude {
                     self.pitch = attitude.pitch * 180.0 / Double.pi
                     self.roll = attitude.roll * 180.0 / Double.pi
+                    let yaw = attitude.yaw * 180.0 / Double.pi
+                    debugPrint("quernion: ", yaw)
                     DispatchQueue.main.async {
                         if abs(self.roll) > 5 || abs(self.pitch) > 5 {
                             self.isMotionStatusReady = false
