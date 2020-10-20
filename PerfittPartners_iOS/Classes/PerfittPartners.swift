@@ -47,7 +47,14 @@ import AVFoundation
     private let maximumZoom: CGFloat = 2.2
     private var lastZoomFactor: CGFloat = 1.8
     
+    // 사용자 가이드라인
     var guideLine: UIView = UIView()
+    var balanceLabel: UILabel = UILabel()
+    var footDectionLabel: UILabel = UILabel()
+    var baseDectetionLable: UILabel = UILabel()
+    
+    var maxY: CGFloat = 0.0
+    var minY: CGFloat = 0.0
     
     // tensorflow lite
     private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: MobileNetSSD.modelInfo, labelsFileInfo: MobileNetSSD.labelsInfo)
@@ -92,6 +99,11 @@ import AVFoundation
         self.configCameraAndStartSession()
     }
     
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.modelDataHandler?.delegate = self
+    }
+    
     @objc func pushTutorial() {
         self.navigationController?.pushViewController(PerfittTutorialVC(), animated: true)
     }
@@ -123,9 +135,18 @@ import AVFoundation
         self.footObject.textColor = .white
         self.footObject.text = "foot Pos = x: | y: | width: | height: "
         
+        self.baseObject.isHidden = true
+        self.footObject.isHidden = true
+        
+        
         self.guideLine.backgroundColor = UIColor.init(red: 237 / 255, green: 0, blue: 30 / 255, alpha: 1)
         
-        
+        self.balanceLabel.text = "수평을 맞춰주세요."
+        self.balanceLabel.textColor = .white
+        self.footDectionLabel.text = "발이 탐지 되지 않았습니다."
+        self.footDectionLabel.textColor = .white
+        self.baseDectetionLable.text = "A4 상단 모서리가 가이드 선과 닿지 않습니다"
+        self.baseDectetionLable.textColor = .white
         
         
         self.view.backgroundColor = .black
@@ -143,6 +164,9 @@ import AVFoundation
         self.overlayView.addSubview(baseObject)
         self.overlayView.addSubview(footObject)
         self.overlayView.addSubview(guideLine)
+        self.overlayView.addSubview(balanceLabel)
+        self.overlayView.addSubview(footDectionLabel)
+        self.overlayView.addSubview(baseDectetionLable)
         
 //        self.previewLayer.addSubview(guideLine)
         
@@ -155,11 +179,18 @@ import AVFoundation
         self.baseObject.translatesAutoresizingMaskIntoConstraints = false
         self.footObject.translatesAutoresizingMaskIntoConstraints = false
         self.guideLine.translatesAutoresizingMaskIntoConstraints = false
+        self.balanceLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.footDectionLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.baseDectetionLable.translatesAutoresizingMaskIntoConstraints = false
         
         
         self.previewLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - 96)
         self.overlayView.frame = self.previewLayer.frame
         let guideLinePos = self.previewLayer.bounds.height * 0.3
+        debugPrint("init guide line pos", guideLinePos)
+        let baseRange = self.previewLayer.bounds.height * 0.01
+        self.minY = guideLinePos - baseRange
+        self.maxY = guideLinePos + baseRange
         NSLayoutConstraint.activate([
             self.previewLayer.topAnchor.constraint(equalTo: self.view.topAnchor),
             self.previewLayer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -195,7 +226,16 @@ import AVFoundation
             self.guideLine.leadingAnchor.constraint(equalTo: self.previewLayer.leadingAnchor),
             self.guideLine.trailingAnchor.constraint(equalTo: self.previewLayer.trailingAnchor),
             self.guideLine.heightAnchor.constraint(equalToConstant: 2),
-            self.guideLine.centerYAnchor.constraint(equalTo: self.previewLayer.topAnchor, constant: guideLinePos)
+            self.guideLine.centerYAnchor.constraint(equalTo: self.previewLayer.topAnchor, constant: guideLinePos),
+            
+            self.balanceLabel.topAnchor.constraint(equalTo: self.overlayView.topAnchor, constant: 80),
+            self.balanceLabel.centerXAnchor.constraint(equalTo: self.overlayView.centerXAnchor),
+            
+            self.footDectionLabel.topAnchor.constraint(equalTo: self.balanceLabel.bottomAnchor, constant: 8),
+            self.footDectionLabel.centerXAnchor.constraint(equalTo: self.balanceLabel.centerXAnchor),
+            
+            self.baseDectetionLable.topAnchor.constraint(equalTo: self.footDectionLabel.bottomAnchor, constant: 8),
+            self.baseDectetionLable.centerXAnchor.constraint(equalTo: self.footDectionLabel.centerXAnchor)
             
         ])
     }
@@ -325,6 +365,15 @@ import AVFoundation
 extension PerfittPartners: MotionDelegate {
     public func setCurrentStatus(status: Bool) {
         
+        DispatchQueue.main.async {
+            if status {
+                self.balanceLabel.isHidden = true
+            }
+            else {
+                self.balanceLabel.isHidden = false
+            }
+        }
+        
     }
     
     // 셔터 클릭
@@ -374,8 +423,7 @@ extension PerfittPartners: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard let imagePixelBuffer = pixelBuffer else {
             return
         }
-//        debugPrint("image pixel buffer size", pixelBuffer)
-        
+
         self.runModel(onPixelBuffer: imagePixelBuffer)
     }
     
@@ -393,6 +441,10 @@ extension PerfittPartners: AVCaptureVideoDataOutputSampleBufferDelegate {
         let width = CVPixelBufferGetWidth(pixelBuffer)
         let height = CVPixelBufferGetHeight(pixelBuffer)
         
+//        DispatchQueue.main.async {
+//            debugPrint("gude line posX : \(self.guideLine.frame.origin.x) | posY : \(self.guideLine.frame.origin.y) " )
+//        }
+//        debugPrint("gude line posX : \(self.guideLine.transform.tx) | posY : \(self.guideLine.transform.ty) " )
         //      overlayView에 라벨과 텍스트를 업데이트합니다.
         DispatchQueue.main.async {
             self.drawAfterPerformingCalculations(onInferences: displayResult.inferences, withImageSize: CGSize(width: CGFloat(width), height: CGFloat(height)))
@@ -410,6 +462,7 @@ extension PerfittPartners: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         for inference in inferences {
             // Translates bounding box rect to current view.
+            
             var convertedRect = inference.rect.applying(CGAffineTransform(scaleX: self.overlayView.bounds.size.width / imageSize.width, y: self.overlayView.bounds.size.height / imageSize.height))
             
             if convertedRect.origin.x < 0 {
@@ -432,12 +485,14 @@ extension PerfittPartners: AVCaptureVideoDataOutputSampleBufferDelegate {
             //            let size = string.size(usingFont: self.displayFont)
             let size = CGSize(width: 100, height: 20)
             let objectOverlay = ObjectOverlay(name: string, borderRect: convertedRect, nameStringSize: size, color: inference.displayColor, font: self.displayFont)
-            if inference.className == "b'base'" {
-                self.baseObject.text = "A4 { x: \(String(format: "%.2f", convertedRect.minX)) y: \(String(format: "%.2f", convertedRect.minY)) width: \(String(format: "%.2f", convertedRect.width)) height: \(String(format: "%.2f", convertedRect.height)) }"
-            }
-            else {
-                self.footObject.text = "foot { x: \(String(format: "%.2f", convertedRect.minX)) y: \(String(format: "%.2f", convertedRect.minY)) width: \(String(format: "%.2f", convertedRect.width)) height: \(String(format: "%.2f", convertedRect.height)) }"
-            }
+            
+            
+//            if inference.className == "b'base'" {
+//                self.baseObject.text = "A4 { x: \(String(format: "%.2f", convertedRect.minX)) y: \(String(format: "%.2f", convertedRect.minY)) width: \(String(format: "%.2f", convertedRect.width)) height: \(String(format: "%.2f", convertedRect.height)) }"
+//            }
+//            else {
+//                self.footObject.text = "foot { x: \(String(format: "%.2f", convertedRect.minX)) y: \(String(format: "%.2f", convertedRect.minY)) width: \(String(format: "%.2f", convertedRect.width)) height: \(String(format: "%.2f", convertedRect.height)) }"
+//            }
             objectOverlays.append(objectOverlay)
             debugPrint("rect: ", convertedRect)
         }
@@ -514,4 +569,54 @@ extension PerfittPartners {
             
         }
     }
+}
+
+extension PerfittPartners: ModelDataHandlerDelegate {
+    func detectedFoot(status: Bool) {
+        DispatchQueue.main.async {
+            if status {
+                self.footDectionLabel.isHidden = true
+            }
+            else {
+                self.footDectionLabel.isHidden = false
+            }
+            
+        }
+        
+    }
+    
+    func detectedBase(rect: CGRect, imgSize: CGSize) {
+        
+        DispatchQueue.main.async {
+            let targetRect = rect.applying(CGAffineTransform(scaleX: self.overlayView.bounds.size.width / imgSize.width, y: self.overlayView.bounds.size.height / imgSize.height))
+            
+            if (self.minY...self.maxY).contains(targetRect.origin.y) {
+                self.baseDectetionLable.isHidden = true
+            }
+            else {
+                self.baseDectetionLable.isHidden = false
+            }
+        }
+    }
+    
+//    func detectedBase(rect: CGRect, height: CGFloat) {
+//        let targetRect = rect.applying(CGAffineTransform(scaleX: self.overlayView.bounds.width, y: <#T##CGFloat#>))
+//    }
+    
+//    func detectedBase(posY: CGFloat, height: CGFloat) {
+//        var convertedRect = inference.rect.applying(CGAffineTransform(scaleX: self.overlayView.bounds.size.width / imageSize.width, y: self.overlayView.bounds.size.height / imageSize.height))
+//        let rect = 
+//    }
+//    func detectedBase(posY: CGFloat, h) {
+//        debugPrint("detected base pos y", posY)
+//
+//        DispatchQueue.main.async {
+//            if (self.minY...self.maxY).contains(posY) {
+//                self.baseDectetionLable.isHidden = true
+//            }
+//            else {
+//                self.baseDectetionLable.isHidden = false
+//            }
+//        }
+//    }
 }

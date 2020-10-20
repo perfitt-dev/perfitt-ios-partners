@@ -137,23 +137,58 @@ open class PreviewVC: UIViewController {
 
             indicator.startAnimating()
             let requestData = FootModel(leftImage: left, rightImage: right , sourceType: "\(APIConsts.SDK_VERSION)_\(UIDevice.current.name)_\(self.getOSInfo())")
+            
+            self.showUserInfoAlert(requestData: requestData)
 
-            APIController.init().reqeustFootData(requestData, self.APIKEY ?? "", successHandler: { result in
-                DispatchQueue.main.async {
-                    self.indicator.stopAnimating()
-                    let userInfo: [AnyHashable: Any] = ["methodName": "callback('\(result ?? "")')"]
-                    NotificationCenter.default.post(name: NSNotification.Name.init("PerfittPartners"), object: nil, userInfo: userInfo)
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
-            }, failedHandler: { errorResult in
-                debugPrint("!!!!ERROR :")
-                DispatchQueue.main.async {
-                    self.indicator.stopAnimating()
-                    self.showAlert(title: "", message: errorResult.message, handler: nil)
-                }
-
-            })
+            
         }
+    }
+    
+    private func showUserInfoAlert(requestData: FootModel) {
+        let userInfoAlert = UIAlertController(title: "내 발 정보 편집하기", message: nil, preferredStyle: .alert)
+        let contentVC = UIViewController()
+        contentVC.view.backgroundColor = .systemTeal
+//        let nickName = UILabel()
+//        nickName.text = "별칭"
+//        nickName.font = .boldSystemFont(ofSize: 12)
+//        nickName.translatesAutoresizingMaskIntoConstraints = false
+        
+//        contentVC.view.addSubview(nickName)
+//        NSLayoutConstraint.activate([
+//            nickName.topAnchor.constraint(equalTo: contentVC.view.topAnchor, constant: 4),
+//            nickName.leadingAnchor.constraint(equalTo: contentVC.view.leadingAnchor, constant: 4),
+//            nickName.bottomAnchor.constraint(equalTo: contentVC.view.bottomAnchor, constant: 4)
+//        ])
+//        let v = UIViewController()
+//        v.view.backgroundColor = UIColor.gray
+//        v.view.bounds.size = CGSize(width: 1000, height: 900)
+        
+        //알림창에 뷰 컨트롤러를 등록
+        userInfoAlert.setValue(contentVC, forKey: "contentViewController")
+        //알림창 화면에 표시
+        let requestAPIBtn = UIAlertAction(title: "확인", style: .default, handler: {_ in
+            debugPrint("test")
+        })
+        
+        userInfoAlert.addAction(requestAPIBtn)
+        self.present(userInfoAlert, animated: false)
+        
+        // MARK : - Alert 확인 버튼을 눌렀을경우 API CALL을 진행 시킨다.
+//        APIController.init().reqeustFootData(requestData, self.APIKEY ?? "", successHandler: { result in
+//            DispatchQueue.main.async {
+//                self.indicator.stopAnimating()
+//                let userInfo: [AnyHashable: Any] = ["methodName": "callback('\(result ?? "")')"]
+//                NotificationCenter.default.post(name: NSNotification.Name.init("PerfittPartners"), object: nil, userInfo: userInfo)
+//                self.navigationController?.popToRootViewController(animated: true)
+//            }
+//        }, failedHandler: { errorResult in
+//            debugPrint("!!!!ERROR :")
+//            DispatchQueue.main.async {
+//                self.indicator.stopAnimating()
+//                self.showAlert(title: "", message: errorResult.message, handler: nil)
+//            }
+//
+//        })
     }
     
     private func showAlert(title: String, message: String, handler: ((UIAlertAction) -> ())?) {

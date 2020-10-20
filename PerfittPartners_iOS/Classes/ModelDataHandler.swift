@@ -86,6 +86,9 @@ public class ModelDataHandler: NSObject {
         return bundle
     }
     
+    var delegate: ModelDataHandlerDelegate?
+    var isFoot: Bool = false
+    
     // MARK: - Initialization
     
     /// A failable initializer for `ModelDataHandler`. A new instance is created if the model and
@@ -194,7 +197,22 @@ public class ModelDataHandler: NSObject {
         
         // Returns the inference time and inferences
         let result = Result(inferenceTime: interval, inferences: resultArray)
-        
+        if result.inferences.filter( { $0.className == "b'foot'" }).count > 0 {
+            self.delegate?.detectedFoot(status: true)
+        }
+        else {
+            
+            self.delegate?.detectedFoot(status: false)
+        }
+        if let index = result.inferences.firstIndex(where: {$0.className == "b'base'"}) as? Int {
+            let size = CGSize(width: CGFloat(imageWidth), height: CGFloat(imageHeight))
+            self.delegate?.detectedBase(rect: result.inferences[index].rect, imgSize: size)
+//            let posY = result.inferences[index].rect.
+//            self.delegate?.detectedBase(posY: posY)
+        }
+//        if let rect = result.inferences.filter({ $0.className == "b'base'"}).first(where: {$0.rect}) {
+//
+//        }
         return result
     }
     
@@ -203,8 +221,11 @@ public class ModelDataHandler: NSObject {
     func formatResults(boundingBox: [Float], outputClasses: [Float], outputScores: [Float], outputCount: Int, width: CGFloat, height: CGFloat) -> [Inference]{
         var resultsArray: [Inference] = []
         if (outputCount == 0) {
+            
             return resultsArray
         }
+        
+        
         for i in 0...outputCount - 1 {
             
             let score = outputScores[i]
@@ -218,6 +239,7 @@ public class ModelDataHandler: NSObject {
             let outputClassIndex = Int(outputClasses[i])
             let outputClass = labels[outputClassIndex + 1]
             
+            
             var rect: CGRect = CGRect.zero
             
             // Translates the detected bounding box to CGRect.
@@ -230,6 +252,7 @@ public class ModelDataHandler: NSObject {
             // The detected corners are for model dimensions. So we scale the rect with respect to the
             // actual image dimensions.
             let newRect = rect.applying(CGAffineTransform(scaleX: width, y: height))
+
             
             // Gets the color assigned for the class
             let colorToAssign = colorForClass(withIndex: outputClassIndex + 1)
@@ -390,13 +413,7 @@ extension Array {
         #endif  // swift(>=5.0)
     }
 }
-
-//class func loadImage(name: String) -> UIImage? {
-//
-//    let podBundle = Bundle(for: PerfittPartners.self)
-//    if let url = podBundle.URLForResource("MyBundleName", withExtension: "bundle") {
-//        let bundle = NSBundle(URL: url)
-//        return UIImage(named: name, inBundle: bundle, compatibleWithTraitCollection: nil)
-//    }
-//    return nil
-//}
+protocol ModelDataHandlerDelegate {
+    func detectedFoot(status: Bool)
+    func detectedBase(rect: CGRect, imgSize: CGSize)
+}
