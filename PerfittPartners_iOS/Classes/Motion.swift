@@ -103,8 +103,7 @@ open class Motion: UIView {
                 if let attitude = motion?.attitude {
                     self.pitch = attitude.pitch * 180.0 / Double.pi
                     self.roll = attitude.roll * 180.0 / Double.pi
-                    let yaw = attitude.yaw * 180.0 / Double.pi
-                    debugPrint("quernion: ", yaw)
+                    
                     DispatchQueue.main.async {
                         if abs(self.roll) > 5 || abs(self.pitch) > 5 {
                             self.isMotionStatusReady = false
@@ -119,7 +118,7 @@ open class Motion: UIView {
                         }
 
                         let posX = CGFloat((self.roll >= 0 ? min(self.roll, 10) : max(self.roll, -10)) * -1)
-                        let posY = CGFloat((self.pitch >= 0 ? min(self.pitch, 10) : max(self.pitch, -10)) * -1)
+                        let posY = CGFloat((self.pitch >= 0 ? min(self.pitch, 10) : max(self.pitch, -10)))
 
                         
                         self.movingImageView.transform = CGAffineTransform(translationX: posX, y: posY)

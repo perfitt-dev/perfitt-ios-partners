@@ -118,10 +118,14 @@ open class PreviewVC: UIViewController {
     @objc func confirm(_ sender: UIButton) {
         debugPrint("source type : \(APIConsts.SDK_VERSION)_\(UIDevice.current.name)_\(self.getOSInfo())" )
         if previewFor == "Right" {
-            let cameraVC = PerfittPartners(APIKey: self.APIKEY ?? "")
-            cameraVC.rightImg = false
-            cameraVC.rightImgData = base64Data
-            self.navigationController?.pushViewController(cameraVC, animated: true)
+//            let cameraVC = PerfittCameraVC.init(nibName: "PerfittCameraVC", bundle: nil)
+//            cameraVC.rightImg = false
+//            cameraVC.rightImgData = base64Data
+//            self.navigationController?.pushViewController(cameraVC, animated: true)
+//            let cameraVC = PerfittPartners(APIKey: self.APIKEY ?? "")
+//            cameraVC.rightImg = false
+//            cameraVC.rightImgData = base64Data
+//            self.navigationController?.pushViewController(cameraVC, animated: true)
         }
         else {
 
@@ -137,10 +141,10 @@ open class PreviewVC: UIViewController {
 
             indicator.startAnimating()
             let requestData = FootModel(leftImage: left, rightImage: right , sourceType: "\(APIConsts.SDK_VERSION)_\(UIDevice.current.name)_\(self.getOSInfo())")
-            
+
             self.showUserInfoAlert(requestData: requestData)
 
-            
+
         }
     }
     
@@ -173,12 +177,14 @@ open class PreviewVC: UIViewController {
         userInfoAlert.addAction(requestAPIBtn)
         self.present(userInfoAlert, animated: false)
         
+        
         // MARK : - Alert 확인 버튼을 눌렀을경우 API CALL을 진행 시킨다.
 //        APIController.init().reqeustFootData(requestData, self.APIKEY ?? "", successHandler: { result in
 //            DispatchQueue.main.async {
 //                self.indicator.stopAnimating()
-//                let userInfo: [AnyHashable: Any] = ["methodName": "callback('\(result ?? "")')"]
-//                NotificationCenter.default.post(name: NSNotification.Name.init("PerfittPartners"), object: nil, userInfo: userInfo)
+//                Perfitt.instance.delegate?.onConfirm("callback('\(result ?? "")')")
+////                let userInfo: [AnyHashable: Any] = ["methodName": "callback('\(result ?? "")')"]
+////                NotificationCenter.default.post(name: NSNotification.Name.init("PerfittPartners"), object: nil, userInfo: userInfo)
 //                self.navigationController?.popToRootViewController(animated: true)
 //            }
 //        }, failedHandler: { errorResult in
@@ -212,3 +218,13 @@ open class PreviewVC: UIViewController {
         return String(os.majorVersion) + "." + String(os.minorVersion) + "." + String(os.patchVersion)
     }
 }
+
+//extension UIViewController {
+//    class var storyboardID: String {
+//        return "\(self)"
+//    }
+//
+//    static func instantiate(appStoryboard: AppStoryboard) -> Self {
+//        return appStoryboard.viewController(viewControllerClass: self)
+//    }
+//}
