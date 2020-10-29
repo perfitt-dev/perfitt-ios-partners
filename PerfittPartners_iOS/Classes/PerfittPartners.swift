@@ -5,12 +5,24 @@ open class PerfittPartners {
     public var delegate: PerfittPartnersDelegate?
     
     private var apiKey: String?
+    
+    
     public var contentName: String {
         get {
             return "PERFITT_SDK"
         }
     }
-
+    
+    public func getCamera() -> UINavigationController {
+        let bundles = Bundle.main.loadNibNamed("PerfittCameraVC", owner: nil, options: nil)
+        let cameraVC = bundles?.filter({ $0 is PerfittCameraVC }).first as? PerfittCameraVC
+        cameraVC?.rightImg = true
+        let navigationController = UINavigationController(rootViewController: cameraVC!)
+        navigationController.navigationItem.backBarButtonItem?.title = ""
+        navigationController.modalPresentationStyle = .fullScreen
+        return navigationController
+    }
+    
     public func onConfirm(_ delegate: PerfittPartnersDelegate?) {
         self.delegate = delegate
     }
@@ -24,12 +36,15 @@ open class PerfittPartners {
          *        failedError("failed auth api key ") } )
          * }
          */
+        
+        // 인증에 성공하면 apikey를 저장합니다!
         self.apiKey = APIKey
     }
     
     public func getAPIKey() -> String? {
         return self.apiKey
     }
+    
 }
 
 public protocol PerfittPartnersDelegate {

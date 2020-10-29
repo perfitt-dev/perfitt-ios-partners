@@ -11,6 +11,9 @@ public struct FootModel: Codable {
     var leftImage: String
     var rightImage: String
     var sourceType: String = ""
+    var averageSize: Int
+    var nickName: String?
+    var gender: String?
 }
 
 public struct ErrorModel: Codable {

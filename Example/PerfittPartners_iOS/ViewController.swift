@@ -61,20 +61,22 @@ class ViewController: UIViewController {
     
     @objc private func callJSMethod(_ notification: Notification) {
         // TODO
-        PerfittPartners.instance.delegate?.confirm()
+//        PerfittPartners.instance.delegate?.confirm()
         // PerfitPartners.instance.onConfirm(){ apiKey ->
         // webview.laodUrl(url)
         //}
         guard let callBackName = notification.userInfo?["methodName"] as? String else { return }
-        webView.evaluateJavaScript(callBackName, completionHandler: { (any, err) in
-            if let callBackError = err {
-                debugPrint("callback error: \(callBackError)")
-                return
+        DispatchQueue.main.async {
+            self.webView.evaluateJavaScript(callBackName, completionHandler: { (any, err) in
+                if let callBackError = err {
+                    debugPrint("callback error: \(callBackError)")
+                    return
+                    
+                    // TODO: 결과 값을 이용해 기능구현?
+                }
                 
-                // TODO: 결과 값을 이용해 기능구현?
-            }
-            
-        })
+            })
+        }
     }
     
 }
@@ -85,10 +87,9 @@ extension ViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
 
         if (message.name == PerfittPartners.instance.contentName) {
-            if let getKey = message.body as? String {
-                guard let vc = Bundle.main.loadNibNamed("PerfittCameraVC", owner: self, options: nil)?.first as? UIViewController else { return }
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
+            let camera = PerfittPartners.instance.getCamera()
+            self.present(camera, animated: true, completion: nil)
+
         }
         
         

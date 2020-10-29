@@ -21,7 +21,7 @@ class CaptureVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
+        self.view.backgroundColor = UIColor.init(white: 0, alpha: 0.28)    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -56,23 +56,12 @@ class CaptureVC: UIViewController {
             self.navigationController?.pushViewController(cameraVC ?? self, animated: true)
         }
         else {
+            let bundle = Bundle.main.loadNibNamed("UserInfoAlert", owner: self, options: nil)
+            let userInfoAlert = bundle?.filter({ $0 is UserInfoAlert }).first as? UserInfoAlert
+            userInfoAlert?.delegate = self
+            userInfoAlert?.modalPresentationStyle = .fullScreen
             
-            guard let right = self.rightImgData else {
-                debugPrint("right data empty")
-                return
-            }
-            
-            guard let left = self.base64Data else {
-                debugPrint("left data empty")
-                return
-            }
-            
-//            indicator.startAnimating()
-            let requestData = FootModel(leftImage: left, rightImage: right , sourceType: "\(APIConsts.SDK_VERSION)_\(UIDevice.current.name)_\(self.getOSInfo())")
-            
-            self.showUserInfoAlert(requestData: requestData)
-            
-            
+            self.present(userInfoAlert!, animated: true, completion: nil)
         }
     }
     
@@ -91,56 +80,45 @@ extension CaptureVC {
         let os = ProcessInfo().operatingSystemVersion
         return String(os.majorVersion) + "." + String(os.minorVersion) + "." + String(os.patchVersion)
     }
-    
-    private func showUserInfoAlert(requestData: FootModel) {
-        let userInfoAlert = UIAlertController(title: "내 발 정보 편집하기", message: nil, preferredStyle: .alert)
-        let contentVC = UIViewController()
-        contentVC.view.backgroundColor = .systemTeal
-//        let nickName = UILabel()
-//        nickName.text = "별칭"
-//        nickName.font = .boldSystemFont(ofSize: 12)
-//        nickName.translatesAutoresizingMaskIntoConstraints = false
+}
+
+extension CaptureVC: UserInfoAlertDelegate {
+    func confirm(nickName: String?, gender: String?, averageSize: Int) {
+        debugPrint("api request click ")
+        guard let right = self.rightImgData else {
+            debugPrint("right data empty")
+            return
+        }
         
-//        contentVC.view.addSubview(nickName)
-//        NSLayoutConstraint.activate([
-//            nickName.topAnchor.constraint(equalTo: contentVC.view.topAnchor, constant: 4),
-//            nickName.leadingAnchor.constraint(equalTo: contentVC.view.leadingAnchor, constant: 4),
-//            nickName.bottomAnchor.constraint(equalTo: contentVC.view.bottomAnchor, constant: 4)
-//        ])
-//        let v = UIViewController()
-//        v.view.backgroundColor = UIColor.gray
-//        v.view.bounds.size = CGSize(width: 1000, height: 900)
+        guard let left = self.base64Data else {
+            debugPrint("left data empty")
+            return
+        }
         
-        //알림창에 뷰 컨트롤러를 등록
-        userInfoAlert.setValue(contentVC, forKey: "contentViewController")
-        //알림창 화면에 표시
-        let requestAPIBtn = UIAlertAction(title: "확인", style: .default, handler: {_ in
-            debugPrint("test")
-        })
+        let requestData = FootModel(leftImage: left, rightImage: right , sourceType: "\(APIConsts.SDK_VERSION)_\(UIDevice.current.name)_\(self.getOSInfo())", averageSize: averageSize, nickName: nickName, gender: gender)
         
-        userInfoAlert.addAction(requestAPIBtn)
-        self.present(userInfoAlert, animated: false)
-        
-        
-        // MARK : - Alert 확인 버튼을 눌렀을경우 API CALL을 진행 시킨다.
         APIController.init().reqeustFootData(requestData, "apikey", successHandler: { result in
+            debugPrint("api request success")
+            let userInfo: [AnyHashable: Any] = ["methodName": "callback('\(result ?? "")')"]
+            NotificationCenter.default.post(name: NSNotification.Name.init("PerfittPartners"), object: nil, userInfo: userInfo)
             DispatchQueue.main.async {
-                
-                PerfittPartners.instance.delegate?.confirm()
-//                self.indicator.stopAnimating()
-                
-//                Perfitt.instance.delegate?.onConfirm("callback('\(result ?? "")')")
-//                let userInfo: [AnyHashable: Any] = ["methodName": "callback('\(result ?? "")')"]
-//                NotificationCenter.default.post(name: NSNotification.Name.init("PerfittPartners"), object: nil, userInfo: userInfo)
-                self.navigationController?.popToRootViewController(animated: true)
+                self.navigationController?.dismiss(animated: true, completion: nil)
             }
         }, failedHandler: { errorResult in
-            debugPrint("!!!!ERROR :")
+            debugPrint("api request failed", errorResult.message)
+            
             DispatchQueue.main.async {
-//                self.indicator.stopAnimating()
-//                self.showAlert(title: "", message: errorResult.message, handler: nil)
+                self.showAlert(title: "", message: errorResult.message, handler: nil)
             }
-
         })
+        
+        
+    }
+    
+    private func showAlert(title: String, message: String, handler: ((UIAlertAction) -> ())?) {
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)
+        controller.addAction(okAction)
+        UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)
     }
 }

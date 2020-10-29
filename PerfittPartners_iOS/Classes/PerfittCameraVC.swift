@@ -8,14 +8,14 @@
 import UIKit
 import AVFoundation
 
-open class PerfittCameraVC: UIViewController {
+public class PerfittCameraVC: UIViewController {
     
     // 카메라 관련 컴포넌트
     private var session = AVCaptureSession()
     private var videoDeviceInput: AVCaptureDeviceInput!             // 사용될 카메라
     private var stillImageOutput: AVCapturePhotoOutput!             // 이미지를 캡쳐 데이터
     private var videoPreviewLayer: AVCaptureVideoPreviewLayer!      // 카메라 화면과 연결
-    private lazy var videoDataOutput = AVCaptureVideoDataOutput()   // 카메라 화면을 매 프레임마다 체크하기
+    private var videoDataOutput: AVCaptureVideoDataOutput!          // 카메라 화면을 매 프레임마다 체크하기
     // 카메라 컨트롤
     let sessionQueue = DispatchQueue(label: "session-queue")
     
@@ -58,20 +58,40 @@ open class PerfittCameraVC: UIViewController {
     private let edgeOffset: CGFloat = 2.0
     private let displayFont = UIFont.systemFont(ofSize: 14.0, weight: .medium)
     
-    open override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
-        debugPrint("perfitt camera vc view did load")
-        self.configCameraAndStartSession()
         motionView.delegate = self
-        modelDataHandler?.delegate = self
-        
+        if let isRight = self.rightImg, isRight {
+            self.title = "오른발 촬영하기"
+        }
+        else {
+            self.title = "왼발 촬영하기"
+        }
+
+//        self.title = self.rightImg ?? true ? "오른발 촬영하기" : "왼발 촬영하기"
         self.setButtonLayout()
     }
     
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+//    public override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        // carmera start
+//        self.configCameraAndStartSession()
+//    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // carmera start
+        self.configCameraAndStartSession()
+        modelDataHandler?.delegate = self
+        
+    }
+    
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // 카메라 종료
         if self.session.isRunning {
-            self.session.stopRunning()
+            self.cleanupCamera()
         }
     }
     
@@ -97,8 +117,10 @@ extension PerfittCameraVC {
         switch status {
         // 카메라 권한이 true인 경우
         case .authorized, .notDetermined:
+            
             self.setupSession()
             self.startSession()
+            
         // 카메라 권한을 설정하지 않은경우
         case .denied:
             self.showAlertTwoBtn(title: "알림", message: "사진 촬영을 할 수 있도록 허용하시겠습니까?", handler: { _ in
@@ -117,7 +139,8 @@ extension PerfittCameraVC {
     // 카메라 속성 설정
     private func setupSession() {
         self.session = AVCaptureSession()
-        self.session.sessionPreset = .hd1280x720                // photo 해상도 결정
+//        self.session.sessionPreset = .hd1280x720                // photo 해상도 결정
+        self.session.sessionPreset = .high
         self.session.beginConfiguration()                       // session 구성 시작
         
         // Add Video Input
@@ -139,6 +162,7 @@ extension PerfittCameraVC {
             
             // 화면의 정보를 매프레임마다 업데이트하는 컴포넌트 정의
             let sampleBufferQueue = DispatchQueue(label: "sampleBufferQueue")
+            videoDataOutput = AVCaptureVideoDataOutput()
             videoDataOutput.setSampleBufferDelegate(self, queue: sampleBufferQueue)
             videoDataOutput.alwaysDiscardsLateVideoFrames = true
             videoDataOutput.videoSettings = [ String(kCVPixelBufferPixelFormatTypeKey) : kCMPixelFormat_32BGRA]
@@ -153,10 +177,12 @@ extension PerfittCameraVC {
                 session.addOutput(videoDataOutput)
                 session.addOutput(stillImageOutput)
                 videoDataOutput.connection(with: .video)?.videoOrientation = .portrait
+                debugPrint("in session success")
                 self.setupCamera()
             }
             else {
                 // 세션 구성 종료
+                debugPrint("in session failed")
                 self.session.commitConfiguration()
             }
             
@@ -180,11 +206,30 @@ extension PerfittCameraVC {
         }
     }
     
+    // 세션 종료
+    func stopSession() {
+        if self.session.isRunning {
+            sessionQueue.async {
+                self.session.stopRunning()
+            }
+        }
+    }
+    
+    // 카메라 화면 레이어 삭제
+    func cleanupCamera() {
+        self.stopSession()
+        guard videoPreviewLayer != nil else {
+            debugPrint("videoPreviewLayer nil")
+            return;
+        }
+        videoPreviewLayer.removeFromSuperlayer()
+    }
+    
     private func setupCamera() {
-        
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
         videoPreviewLayer.frame = self.previewLayer.bounds
         self.previewLayer.layer.addSublayer(videoPreviewLayer)
+        self.previewLayer.layer.layoutIfNeeded()
         
         self.setGuideLine()
     }
@@ -201,8 +246,8 @@ extension PerfittCameraVC {
         self.maxY = guideLineYPos + baseRange
         
         NSLayoutConstraint.activate([
-            self.guideLine.leadingAnchor.constraint(equalTo: self.overlayView.leadingAnchor),
-            self.guideLine.trailingAnchor.constraint(equalTo: self.overlayView.trailingAnchor),
+            self.guideLine.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.guideLine.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.guideLine.heightAnchor.constraint(equalToConstant: 2),
             self.guideLine.topAnchor.constraint(equalTo: self.overlayView.topAnchor, constant: guideLineYPos)
         ])
@@ -256,11 +301,12 @@ extension PerfittCameraVC: AVCapturePhotoCaptureDelegate {
         let bundles = Bundle.main.loadNibNamed("CaptureVC", owner: self, options: nil)
         let captureVC = bundles?.filter({ $0 is CaptureVC }).first as? CaptureVC
         
-        debugPrint("send image data!!! \(imageData)")
+        
+        
         captureVC?.imageData = imageData
         captureVC?.previewFor = "Right"
         
-        if let _ = rightImg {
+        if let isRight = rightImg, !isRight {
             captureVC?.rightImgData = self.rightImgData
             captureVC?.previewFor = "Left"
         }
@@ -278,6 +324,7 @@ extension PerfittCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard let imagePixelBuffer = pixelBuffer else {
             return
         }
+        
 
         self.runModel(onPixelBuffer: imagePixelBuffer)
     }
@@ -289,13 +336,9 @@ extension PerfittCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
         previousInferenceTimeMs = currentTimeMs
         result = self.modelDataHandler?.runModel(onFrame: pixelBuffer)
         guard let displayResult = result else { return }
-        if let temp = result {
-            debugPrint("tensor flow model result \(temp)")
-        }
         
         let width = CVPixelBufferGetWidth(pixelBuffer)
         let height = CVPixelBufferGetHeight(pixelBuffer)
-        
         
         // overlayView에 라벨과 텍스트를 업데이트합니다.
         DispatchQueue.main.async {
