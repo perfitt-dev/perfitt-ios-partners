@@ -8,6 +8,10 @@
 import UIKit
 import Accelerate
 
+enum CamMode: String {
+    case KIT = "ml1"
+    case A4 = "ml2"
+}
 
 extension CVPixelBuffer {
   /// Returns thumbnail by cropping pixel buffer to biggest square and scaling the cropped image

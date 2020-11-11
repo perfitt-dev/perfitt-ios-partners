@@ -43,7 +43,7 @@ public class ModelDataHandler: NSObject {
     let threadCount: Int
     let threadCountLimit = 10
     
-    let threshold: Float = 0.95
+    var threshold: Float = 0.5
     
     // MARK: Model parameters
     let batchSize = 1
@@ -93,9 +93,9 @@ public class ModelDataHandler: NSObject {
     
     /// A failable initializer for `ModelDataHandler`. A new instance is created if the model and
     /// labels files are successfully loaded from the app's main bundle. Default `threadCount` is 1.
-    init?(modelFileInfo: FileInfo, labelsFileInfo: FileInfo, threadCount: Int = 1) {
+    init?(modelFileInfo: FileInfo, labelsFileInfo: FileInfo, threadCount: Int = 1, thres: Float) {
         let modelFilename = modelFileInfo.name
-
+        self.threshold = thres
         // 기존 코드
         guard let modelPath = Bundle.main.path(
             forResource: modelFilename,

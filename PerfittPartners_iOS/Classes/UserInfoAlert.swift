@@ -23,6 +23,7 @@ class UserInfoAlert: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.view.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
         self.userNickName.delegate = self
         self.createSizeRun()
         self.createPickerView()

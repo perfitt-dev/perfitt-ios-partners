@@ -37,12 +37,12 @@ open class APIController {
     }
     
     // 발정보 전송
-    public func reqeustFootData(_ footData: FootModel, _ APIKEY: String, successHandler: @escaping (String?) -> Void, failedHandler: @escaping(ErrorModel) -> Void) {
+    public func reqeustFootData(_ footData: FootModel, _ APIKEY: String, camMode: String, successHandler: @escaping (String?) -> Void, failedHandler: @escaping(ErrorModel) -> Void) {
         do {
             let jsonData = try  JSONEncoder().encode(footData)
             let params = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any]
-            
-            self.apiTypePost(url: APIConsts.FOOTDATA + "?apiKey=\(APIKEY)", params: params ?? [:], completionHander: { (data, response, error) in
+            let apiPath = "\(APIConsts.CORE)/\(camMode)/users"
+            self.apiTypePost(url: apiPath + "?apiKey=\(APIKEY)", params: params ?? [:], completionHander: { (data, response, error) in
                 guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
                     let errModel = ErrorModel(message: "서버에러입니다.", type: "")
                     failedHandler(errModel)

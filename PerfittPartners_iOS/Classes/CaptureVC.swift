@@ -18,6 +18,8 @@ class CaptureVC: UIViewController {
     var leftImgData: String?
     var base64Data: String!
     
+    var camMode: CamMode?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,19 +49,35 @@ class CaptureVC: UIViewController {
     
     @IBAction func confirm(_ sender: UIButton) {
         if previewFor == "Right" {
-            let bundles = Bundle.main.loadNibNamed("PerfittCameraVC", owner: self, options: nil)
-            let cameraVC = bundles?.filter({ $0 is PerfittCameraVC }).first as? PerfittCameraVC
+            switch camMode {
+            case .A4:
+                let bundles = Bundle.main.loadNibNamed("PerfittCameraVC", owner: self, options: nil)
+                let cameraVC = bundles?.filter({ $0 is PerfittCameraVC }).first as? PerfittCameraVC
+                
+                cameraVC?.rightImg = false
+                cameraVC?.rightImgData = base64Data
+                
+                self.navigationController?.pushViewController(cameraVC ?? self, animated: true)
+                
+            case .KIT:
+                let bundles = Bundle.main.loadNibNamed("PerfittKitCameraVC", owner: nil, options: nil)
+                let cameraVC = bundles?.filter( { $0 is PerfittKitCameraVC }).first as? PerfittKitCameraVC
+                
+                cameraVC?.rightImg = false
+                cameraVC?.rightImgData = base64Data
+                
+                self.navigationController?.pushViewController(cameraVC ?? self, animated: true)
+            case .none: return
+            }
             
-            cameraVC?.rightImg = false
-            cameraVC?.rightImgData = base64Data
             
-            self.navigationController?.pushViewController(cameraVC ?? self, animated: true)
         }
         else {
             let bundle = Bundle.main.loadNibNamed("UserInfoAlert", owner: self, options: nil)
             let userInfoAlert = bundle?.filter({ $0 is UserInfoAlert }).first as? UserInfoAlert
             userInfoAlert?.delegate = self
             userInfoAlert?.modalPresentationStyle = .fullScreen
+            userInfoAlert?.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25)
             
             self.present(userInfoAlert!, animated: true, completion: nil)
         }
@@ -97,9 +115,9 @@ extension CaptureVC: UserInfoAlertDelegate {
         
         let requestData = FootModel(leftImage: left, rightImage: right , sourceType: "\(APIConsts.SDK_VERSION)_\(UIDevice.current.name)_\(self.getOSInfo())", averageSize: averageSize, nickName: nickName, gender: gender)
         
-        APIController.init().reqeustFootData(requestData, "apikey", successHandler: { result in
+        APIController.init().reqeustFootData(requestData, "PARTNERS_TEST_KEY", camMode: self.camMode!.rawValue, successHandler: { result in
             debugPrint("api request success")
-            let userInfo: [AnyHashable: Any] = ["methodName": "callback('\(result ?? "")')"]
+            let userInfo: [AnyHashable: Any] = ["methodName": "PERFITT_CALLBACK('\(result ?? "")')"]
             NotificationCenter.default.post(name: NSNotification.Name.init("PerfittPartners"), object: nil, userInfo: userInfo)
             DispatchQueue.main.async {
                 self.navigationController?.dismiss(animated: true, completion: nil)

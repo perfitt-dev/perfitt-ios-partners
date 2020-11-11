@@ -1,14 +1,14 @@
 //
-//  PerfittCameraVC.swift
-//  PerfittPartners_iOS
+//  PerfittKitCameraVC.swift
+//  Pods
 //
-//  Created by nick on 2020/10/27.
+//  Created by nick on 2020/11/11.
 //
 
 import UIKit
 import AVFoundation
 
-public class PerfittCameraVC: UIViewController {
+public class PerfittKitCameraVC: UIViewController {
     
     // 카메라 관련 컴포넌트
     private var session = AVCaptureSession()
@@ -48,7 +48,7 @@ public class PerfittCameraVC: UIViewController {
     var minY: CGFloat = 0.0
     
     // tensorflow lite model handler init
-    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: MobileNetSSD.modelInfo, labelsFileInfo: MobileNetSSD.labelsInfo, thres: 0.95)
+    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: FileInfo(name: "model_kit", extension: "tflite"), labelsFileInfo: FileInfo(name: "dict_kit", extension: "txt"), thres: 0.5 )
     
     // run model
     private var previousInferenceTimeMs: TimeInterval = Date.distantPast.timeIntervalSince1970 * 1000
@@ -62,7 +62,7 @@ public class PerfittCameraVC: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         motionView.delegate = self
-       
+        // title setting
         if let _ = self.rightImgData {
             self.title = "왼발 촬영하기"
         }
@@ -72,12 +72,14 @@ public class PerfittCameraVC: UIViewController {
 
         self.setButtonLayout()
     }
+
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // carmera start
         self.configCameraAndStartSession()
-        modelDataHandler?.delegate = self
+        // object dectecting validation
+//        modelDataHandler?.delegate = self
         
     }
     
@@ -105,7 +107,7 @@ public class PerfittCameraVC: UIViewController {
 }
 
 //  카메라 관련 설정
-extension PerfittCameraVC {
+extension PerfittKitCameraVC {
     // 카메라 권한 확인및 설정
     private func configCameraAndStartSession() {
         let status = AVCaptureDevice.authorizationStatus(for: .video)
@@ -226,7 +228,8 @@ extension PerfittCameraVC {
         self.previewLayer.layer.addSublayer(videoPreviewLayer)
         self.previewLayer.layer.layoutIfNeeded()
         
-        self.setGuideLine()
+        // MARKT: - guide line remove
+//        self.setGuideLine()
     }
     
     private func setGuideLine() {
@@ -250,7 +253,7 @@ extension PerfittCameraVC {
 }
 
 // 자이로센서를 사용해서 수평을 맞춥니다.
-extension PerfittCameraVC: MotionDelegate {
+extension PerfittKitCameraVC: MotionDelegate {
     public func setCurrentStatus(status: Bool) {
         
         DispatchQueue.main.async {
@@ -280,7 +283,7 @@ extension PerfittCameraVC: MotionDelegate {
     }
 }
 
-extension PerfittCameraVC: AVCapturePhotoCaptureDelegate {
+extension PerfittKitCameraVC: AVCapturePhotoCaptureDelegate {
     public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard error == nil else {
             print("Fail to capture photo: \(String(describing: error))")
@@ -300,7 +303,8 @@ extension PerfittCameraVC: AVCapturePhotoCaptureDelegate {
         
         captureVC?.imageData = imageData
         captureVC?.previewFor = "Right"
-        captureVC?.camMode = .A4
+        captureVC?.camMode = .KIT
+        
         if let isRight = rightImg, !isRight {
             captureVC?.rightImgData = self.rightImgData
             captureVC?.previewFor = "Left"
@@ -310,7 +314,7 @@ extension PerfittCameraVC: AVCapturePhotoCaptureDelegate {
     }
 }
 
-extension PerfittCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
+extension PerfittKitCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
     /** This method delegates the CVPixelBuffer of the frame seen by the camera currently.
      */
     public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
@@ -396,37 +400,37 @@ extension PerfittCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
 }
 
-extension PerfittCameraVC: ModelDataHandlerDelegate {
-    func detectedFoot(status: Bool) {
-        DispatchQueue.main.async {
-            if status {
-                self.footDectionLabel.isHidden = true
-            }
-            else {
-                self.footDectionLabel.isHidden = false
-            }
-            
-        }
-        
-    }
-    
-    func detectedBase(rect: CGRect, imgSize: CGSize) {
-        
-        DispatchQueue.main.async {
-            let targetRect = rect.applying(CGAffineTransform(scaleX: self.overlayView.bounds.size.width / imgSize.width, y: self.overlayView.bounds.size.height / imgSize.height))
-            
-            if (self.minY...self.maxY).contains(targetRect.origin.y) {
-                self.baseDectetionLable.isHidden = true
-            }
-            else {
-                self.baseDectetionLable.isHidden = false
-            }
-        }
-    }
-}
+//extension PerfittKitCameraVC: ModelDataHandlerDelegate {
+//    func detectedFoot(status: Bool) {
+//        DispatchQueue.main.async {
+//            if status {
+//                self.footDectionLabel.isHidden = true
+//            }
+//            else {
+//                self.footDectionLabel.isHidden = false
+//            }
+//
+//        }
+//
+//    }
+//
+//    func detectedBase(rect: CGRect, imgSize: CGSize) {
+//
+//        DispatchQueue.main.async {
+//            let targetRect = rect.applying(CGAffineTransform(scaleX: self.overlayView.bounds.size.width / imgSize.width, y: self.overlayView.bounds.size.height / imgSize.height))
+//
+//            if (self.minY...self.maxY).contains(targetRect.origin.y) {
+//                self.baseDectetionLable.isHidden = true
+//            }
+//            else {
+//                self.baseDectetionLable.isHidden = false
+//            }
+//        }
+//    }
+//}
 
 // camera action
-extension PerfittCameraVC {
+extension PerfittKitCameraVC {
     
     // 화면 이미지 축소 ( - )
     @IBAction func onZoomOut(_ sender: UIButton) {
@@ -468,7 +472,7 @@ extension PerfittCameraVC {
     }
 }
 
-extension PerfittCameraVC {
+extension PerfittKitCameraVC {
     private func showAlert(title: String, message: String, handler: ((UIAlertAction) -> ())?) {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)
@@ -485,18 +489,4 @@ extension PerfittCameraVC {
         UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)
     }
     
-}
-
-
-
-
-extension String {
-
-  /**This method gets size of a string with a particular font.
-   */
-  func size(usingFont font: UIFont) -> CGSize {
-    let attributedString = NSAttributedString(string: self, attributes: [NSAttributedString.Key.font : font])
-    return attributedString.size()
-  }
-
 }

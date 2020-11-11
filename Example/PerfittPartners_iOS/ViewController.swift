@@ -16,19 +16,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-//        PerfittPartners.instance.initializeApiKey(APIKey: "apikey")
-        
         
         self.loadURL()
-        
-        //        Perfitt.instance.initializeApiKey(APIKey: "apikey")
-        //
-        //        Perfitt.instance.onConfirm({ value in
-        //
-        //        })
-        
         NotificationCenter.default.addObserver(self, selector: #selector(callJSMethod), name: NSNotification.Name(rawValue: "PerfittPartners"), object: nil)
         
         //        Perfitt.instance.onConfirm(completion: { methodName in
@@ -51,7 +40,8 @@ class ViewController: UIViewController {
         let request = URLRequest(url: url)
         self.webView.load(request)
         
-        self.webView.configuration.userContentController.add(self, name: PerfittPartners.instance.contentName)
+        self.webView.configuration.userContentController.add(self, name: PerfittPartners.instance.contentKit)
+        self.webView.configuration.userContentController.add(self, name: PerfittPartners.instance.contentA4)
 
     }
     
@@ -85,14 +75,17 @@ class ViewController: UIViewController {
 extension ViewController: WKScriptMessageHandler {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-
-        if (message.name == PerfittPartners.instance.contentName) {
-            let camera = PerfittPartners.instance.getCamera()
+        
+        // PERFITT_SDK ( KIT )
+        if (message.name == PerfittPartners.instance.contentKit) {
+            let camera = PerfittPartners.instance.getKitCamera()
             self.present(camera, animated: true, completion: nil)
-
         }
-        
-        
+        // PERFITT_SDK ( A4 )
+        else if (message.name == PerfittPartners.instance.contentA4) {
+            let camera = PerfittPartners.instance.getA4Camera()
+            self.present(camera, animated: true, completion: nil)
+        }
     }
 
 }

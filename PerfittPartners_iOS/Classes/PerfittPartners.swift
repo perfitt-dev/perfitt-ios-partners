@@ -7,15 +7,33 @@ open class PerfittPartners {
     private var apiKey: String?
     
     
-    public var contentName: String {
+    public var contentKit: String {
         get {
-            return "PERFITT_SDK"
+            return "PERFITT_SDK_KIT"
         }
     }
     
-    public func getCamera() -> UINavigationController {
+    public var contentA4: String {
+        get {
+            return "PERFITT_SDK_A4"
+        }
+    }
+    
+    // A4 용지
+    public func getA4Camera() -> UINavigationController {
         let bundles = Bundle.main.loadNibNamed("PerfittCameraVC", owner: nil, options: nil)
         let cameraVC = bundles?.filter({ $0 is PerfittCameraVC }).first as? PerfittCameraVC
+        cameraVC?.rightImg = true
+        let navigationController = UINavigationController(rootViewController: cameraVC!)
+        navigationController.navigationItem.backBarButtonItem?.title = ""
+        navigationController.modalPresentationStyle = .fullScreen
+        return navigationController
+    }
+    
+    // Kit
+    public func getKitCamera() -> UINavigationController {
+        let bundles = Bundle.main.loadNibNamed("PerfittKitCameraVC", owner: nil, options: nil)
+        let cameraVC = bundles?.filter( { $0 is PerfittKitCameraVC }).first as? PerfittKitCameraVC
         cameraVC?.rightImg = true
         let navigationController = UINavigationController(rootViewController: cameraVC!)
         navigationController.navigationItem.backBarButtonItem?.title = ""
