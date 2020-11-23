@@ -40,15 +40,16 @@ public class PerfittKitCameraVC: UIViewController {
     // 사용자 가이드라인
     var guideLine: UIView = UIView()
     @IBOutlet weak var balanceLabel: UILabel!
-    @IBOutlet weak var baseDectetionLable: UILabel!
     @IBOutlet weak var footDectionLabel: UILabel!
+    @IBOutlet weak var detectedTriangleLabel: UILabel!
+    
     
     // 가이드라인과 맞다아있는지 확인하는 변수
     var maxY: CGFloat = 0.0
     var minY: CGFloat = 0.0
     
     // tensorflow lite model handler init
-    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: FileInfo(name: "model_kit", extension: "tflite"), labelsFileInfo: FileInfo(name: "dict_kit", extension: "txt"), thres: 0.5 )
+    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: FileInfo(name: "model_kit", extension: "tflite"), labelsFileInfo: FileInfo(name: "dict_kit", extension: "txt"), thres: 0.86, baseThres: 0.9 )
     
     // run model
     private var previousInferenceTimeMs: TimeInterval = Date.distantPast.timeIntervalSince1970 * 1000
@@ -79,7 +80,7 @@ public class PerfittKitCameraVC: UIViewController {
         // carmera start
         self.configCameraAndStartSession()
         // object dectecting validation
-//        modelDataHandler?.delegate = self
+        modelDataHandler?.delegate = self
         
     }
     
@@ -397,6 +398,45 @@ extension PerfittKitCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         self.overlayView.objectOverlays = objectOverlays
         self.overlayView.setNeedsDisplay()
+    }
+}
+
+extension PerfittKitCameraVC: ModelDataHandlerDelegate {
+    func detectedFoot(status: Bool) {
+        DispatchQueue.main.async {
+            self.footDectionLabel.isHidden = status
+        }
+        
+    }
+    
+    func detectedTriangle(leftPos: CGRect, rightPos: CGRect, imageSize: CGSize) {
+        DispatchQueue.main.async {
+            let leftRect = leftPos.applying(CGAffineTransform(scaleX: self.overlayView.bounds.size.width / imageSize.width, y: self.overlayView.bounds.size.height / imageSize.height))
+            let rightRect = rightPos.applying(CGAffineTransform(scaleX: self.overlayView.bounds.size.width / imageSize.width, y: self.overlayView.bounds.size.height / imageSize.height))
+            
+            let bottomSize = rightRect.maxX - leftRect.minX
+            let heightSize = rightRect.maxY - leftRect.maxY
+            
+            let angleResult = atan2(heightSize, bottomSize)
+            let degree = (angleResult * 180 / .pi)
+            
+            if ((-8.0)...(-3.0)).contains(degree) {
+                self.detectedTriangleLabel.isHidden = false
+                self.detectedTriangleLabel.text = "발판이 오른쪽으로 기울어졌습니다.\n수평으로 맞춰 촬영해 주세요"
+            }
+            else if ((4.0)...(8.0)).contains(degree) {
+                self.detectedTriangleLabel.isHidden = false
+                self.detectedTriangleLabel.text = "발판이 왼쪽으로 기울어졌습니다.\n수평으로 맞춰 촬영해 주세요"
+            }
+            else {
+                self.detectedTriangleLabel.isHidden = true
+            }
+            
+            
+            
+            
+            debugPrint("triangle result : \(degree)")
+        }
     }
 }
 

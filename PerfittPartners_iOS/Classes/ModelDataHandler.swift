@@ -45,6 +45,8 @@ public class ModelDataHandler: NSObject {
     
     var threshold: Float = 0.5
     
+    var baseThreshold: Float?
+    
     // MARK: Model parameters
     let batchSize = 1
     let inputChannels = 3
@@ -93,9 +95,10 @@ public class ModelDataHandler: NSObject {
     
     /// A failable initializer for `ModelDataHandler`. A new instance is created if the model and
     /// labels files are successfully loaded from the app's main bundle. Default `threadCount` is 1.
-    init?(modelFileInfo: FileInfo, labelsFileInfo: FileInfo, threadCount: Int = 1, thres: Float) {
+    init?(modelFileInfo: FileInfo, labelsFileInfo: FileInfo, threadCount: Int = 1, thres: Float, baseThres: Float? = nil) {
         let modelFilename = modelFileInfo.name
         self.threshold = thres
+        self.baseThreshold = baseThres
         // 기존 코드
         guard let modelPath = Bundle.main.path(
             forResource: modelFilename,
@@ -197,6 +200,8 @@ public class ModelDataHandler: NSObject {
         
         // Returns the inference time and inferences
         let result = Result(inferenceTime: interval, inferences: resultArray)
+        
+        // send detected foot
         if result.inferences.filter( { $0.className == "b'foot'" }).count > 0 {
             self.delegate?.detectedFoot(status: true)
         }
@@ -204,15 +209,28 @@ public class ModelDataHandler: NSObject {
             
             self.delegate?.detectedFoot(status: false)
         }
-        if let index = result.inferences.firstIndex(where: {$0.className == "b'base'"}) as? Int {
-            let size = CGSize(width: CGFloat(imageWidth), height: CGFloat(imageHeight))
-            self.delegate?.detectedBase(rect: result.inferences[index].rect, imgSize: size)
-//            let posY = result.inferences[index].rect.
-//            self.delegate?.detectedBase(posY: posY)
+        let imageSize = CGSize(width: CGFloat(imageWidth), height: CGFloat(imageHeight))
+        
+        // send base object detecting data
+        if let index = result.inferences.firstIndex(where: {$0.className == "b'base'"}) {
+            
+            if let base = self.delegate {
+                base.detectedBase?(rect: result.inferences[index].rect, imgSize: imageSize)
+            }
         }
-//        if let rect = result.inferences.filter({ $0.className == "b'base'"}).first(where: {$0.rect}) {
-//
-//        }
+        
+        // send triangle object detecting data
+        if let leftIndex = result.inferences.firstIndex(where: { $0.className == "b'left_triangle'"}),
+           let rightIndex = result.inferences.firstIndex(where: { $0.className == "b'right_triangle'"}) {
+            let left = result.inferences[leftIndex].rect
+            let right = result.inferences[rightIndex].rect
+            
+            if let triangle = self.delegate {
+                debugPrint("send pos data \(left) | \(right)")
+                triangle.detectedTriangle?(leftPos: left, rightPos: right, imageSize: imageSize)
+            }
+        }
+        
         return result
     }
     
@@ -229,15 +247,25 @@ public class ModelDataHandler: NSObject {
         for i in 0...outputCount - 1 {
             
             let score = outputScores[i]
-            
-            // Filters results with confidence < threshold.
-            guard score >= threshold else {
-                continue
-            }
-            
             // Gets the output class names for detected classes from labels list.
             let outputClassIndex = Int(outputClasses[i])
             let outputClass = labels[outputClassIndex + 1]
+            
+            // Filters results with confidence < threshold.
+            
+            
+            if outputClass == "b'base'" {
+                // kit 영역 일치값 기준
+                guard score >= (self.baseThreshold ?? 0.0) else {
+                    continue
+                }
+            }
+            else {
+                // 그외의 오브젝트의 일치값 기준
+                guard score >= self.threshold else {
+                    continue
+                }
+            }
             
             
             var rect: CGRect = CGRect.zero
@@ -413,7 +441,8 @@ extension Array {
         #endif  // swift(>=5.0)
     }
 }
-protocol ModelDataHandlerDelegate {
+@objc protocol ModelDataHandlerDelegate {
     func detectedFoot(status: Bool)
-    func detectedBase(rect: CGRect, imgSize: CGSize)
+    @objc optional func detectedBase(rect: CGRect, imgSize: CGSize)
+    @objc optional func detectedTriangle(leftPos: CGRect ,rightPos: CGRect, imageSize: CGSize)
 }

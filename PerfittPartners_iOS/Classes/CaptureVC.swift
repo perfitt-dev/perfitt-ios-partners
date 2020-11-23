@@ -116,7 +116,7 @@ extension CaptureVC: UserInfoAlertDelegate {
         let requestData = FootModel(leftImage: left, rightImage: right , sourceType: "\(APIConsts.SDK_VERSION)_\(UIDevice.current.name)_\(self.getOSInfo())", averageSize: averageSize, nickName: nickName, gender: gender)
         
         APIController.init().reqeustFootData(requestData, "PARTNERS_TEST_KEY", camMode: self.camMode!.rawValue, successHandler: { result in
-            debugPrint("api request success")
+            debugPrint("api request success", result)
             let userInfo: [AnyHashable: Any] = ["methodName": "PERFITT_CALLBACK('\(result ?? "")')"]
             NotificationCenter.default.post(name: NSNotification.Name.init("PerfittPartners"), object: nil, userInfo: userInfo)
             DispatchQueue.main.async {

@@ -1,5 +1,5 @@
 background
-triagle_left
-base
-triangle_right
-foot
+b'foot'
+b'base'
+b'left_triangle'
+b'right_triangle'
