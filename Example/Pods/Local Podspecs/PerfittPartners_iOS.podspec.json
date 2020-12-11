@@ -16,7 +16,7 @@
     "tag": "1.0.0-alpha5"
   },
   "platforms": {
-    "ios": "12.4"
+    "ios": "12.0"
   },
   "source_files": "PerfittPartners_iOS/Classes/**/*",
   "swift_versions": "4.2",

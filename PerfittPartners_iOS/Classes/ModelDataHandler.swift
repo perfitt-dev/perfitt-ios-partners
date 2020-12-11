@@ -47,6 +47,8 @@ public class ModelDataHandler: NSObject {
     
     var baseThreshold: Float?
     
+    var triangleThreshold: Float?
+    
     // MARK: Model parameters
     let batchSize = 1
     let inputChannels = 3
@@ -95,10 +97,11 @@ public class ModelDataHandler: NSObject {
     
     /// A failable initializer for `ModelDataHandler`. A new instance is created if the model and
     /// labels files are successfully loaded from the app's main bundle. Default `threadCount` is 1.
-    init?(modelFileInfo: FileInfo, labelsFileInfo: FileInfo, threadCount: Int = 1, thres: Float, baseThres: Float? = nil) {
+    init?(modelFileInfo: FileInfo, labelsFileInfo: FileInfo, threadCount: Int = 1, thres: Float, baseThres: Float? = nil, triangleThres: Float? = nil) {
         let modelFilename = modelFileInfo.name
         self.threshold = thres
         self.baseThreshold = baseThres
+        self.triangleThreshold = triangleThres
         // 기존 코드
         guard let modelPath = Bundle.main.path(
             forResource: modelFilename,
@@ -230,6 +233,15 @@ public class ModelDataHandler: NSObject {
                 triangle.detectedTriangle?(leftPos: left, rightPos: right, imageSize: imageSize)
             }
         }
+        if let triangle = self.delegate {
+            let left = result.inferences.filter( { $0.className == "b'left_triangle'" } ).count > 0
+            let right = result.inferences.filter( { $0.className == "b'right_triangle'" } ).count > 0
+            
+            triangle.isDetectedTriangle?(leftStatus: left, rightStatus: right)
+            
+            let status = result.inferences.filter( { $0.className == "b'base'" }).count > 0
+            triangle.isKit?(status: status)
+        }
         
         return result
     }
@@ -252,11 +264,14 @@ public class ModelDataHandler: NSObject {
             let outputClass = labels[outputClassIndex + 1]
             
             // Filters results with confidence < threshold.
-            
-            
             if outputClass == "b'base'" {
                 // kit 영역 일치값 기준
                 guard score >= (self.baseThreshold ?? 0.0) else {
+                    continue
+                }
+            }
+            else if outputClass == "b'left_triangle'" || outputClass == "b'right_triangle'" {
+                guard score >= (self.triangleThreshold ?? 0.0) else {
                     continue
                 }
             }
@@ -445,4 +460,6 @@ extension Array {
     func detectedFoot(status: Bool)
     @objc optional func detectedBase(rect: CGRect, imgSize: CGSize)
     @objc optional func detectedTriangle(leftPos: CGRect ,rightPos: CGRect, imageSize: CGSize)
+    @objc optional func isDetectedTriangle(leftStatus: Bool, rightStatus: Bool)
+    @objc optional func isKit(status: Bool)
 }

@@ -40,6 +40,7 @@ public class PerfittKitCameraVC: UIViewController {
     // 사용자 가이드라인
     var guideLine: UIView = UIView()
     @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var detectedKitLabel: UILabel!
     @IBOutlet weak var footDectionLabel: UILabel!
     @IBOutlet weak var detectedTriangleLabel: UILabel!
     
@@ -49,7 +50,7 @@ public class PerfittKitCameraVC: UIViewController {
     var minY: CGFloat = 0.0
     
     // tensorflow lite model handler init
-    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: FileInfo(name: "model_kit", extension: "tflite"), labelsFileInfo: FileInfo(name: "dict_kit", extension: "txt"), thres: 0.86, baseThres: 0.9 )
+    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: FileInfo(name: "model_kit", extension: "tflite"), labelsFileInfo: FileInfo(name: "dict_kit", extension: "txt"), thres: 0.9, baseThres: 0.8, triangleThres: 0.86 )
     
     // run model
     private var previousInferenceTimeMs: TimeInterval = Date.distantPast.timeIntervalSince1970 * 1000
@@ -62,16 +63,6 @@ public class PerfittKitCameraVC: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        motionView.delegate = self
-        // title setting
-        if let _ = self.rightImgData {
-            self.title = "왼발 촬영하기"
-        }
-        else {
-            self.title = "오른발 촬영하기"
-        }
-
-        self.setButtonLayout()
     }
 
     
@@ -81,9 +72,32 @@ public class PerfittKitCameraVC: UIViewController {
         self.configCameraAndStartSession()
         // object dectecting validation
         modelDataHandler?.delegate = self
-        
+        self.setupNavi()
+        self.setupUI()
     }
     
+    private func setupUI() {
+        motionView.delegate = self
+        
+        if self.rightImgData == nil && self.leftImgData == nil {
+            self.title = "오른발 촬영하기"
+        }
+        else {
+            self.title = "왼발 촬영하기"
+        }
+
+        self.setButtonLayout()
+    }
+    
+    private func setupNavi() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.done))
+    }
+    
+    @objc func done() {
+        DispatchQueue.main.async {
+            self.navigationController?.dismiss(animated: true, completion: nil)
+        }
+    }
     
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -296,11 +310,8 @@ extension PerfittKitCameraVC: AVCapturePhotoCaptureDelegate {
             return
         }
 
-        
         let bundles = Bundle.main.loadNibNamed("CaptureVC", owner: self, options: nil)
         let captureVC = bundles?.filter({ $0 is CaptureVC }).first as? CaptureVC
-        
-        
         
         captureVC?.imageData = imageData
         captureVC?.previewFor = "Right"
@@ -335,15 +346,15 @@ extension PerfittKitCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard  (currentTimeMs - previousInferenceTimeMs) >= delayBetweenInferencesMs else { return }
         previousInferenceTimeMs = currentTimeMs
         result = self.modelDataHandler?.runModel(onFrame: pixelBuffer)
-        guard let displayResult = result else { return }
-        
-        let width = CVPixelBufferGetWidth(pixelBuffer)
-        let height = CVPixelBufferGetHeight(pixelBuffer)
+//        guard let displayResult = result else { return }
+//
+//        let width = CVPixelBufferGetWidth(pixelBuffer)
+//        let height = CVPixelBufferGetHeight(pixelBuffer)
         
         // overlayView에 라벨과 텍스트를 업데이트합니다.
-        DispatchQueue.main.async {
-            self.drawAfterPerformingCalculations(onInferences: displayResult.inferences, withImageSize: CGSize(width: CGFloat(width), height: CGFloat(height)))
-        }
+//        DispatchQueue.main.async {
+//            self.drawAfterPerformingCalculations(onInferences: displayResult.inferences, withImageSize: CGSize(width: CGFloat(width), height: CGFloat(height)))
+//        }
         
     }
     
@@ -416,28 +427,69 @@ extension PerfittKitCameraVC: ModelDataHandlerDelegate {
             
             let bottomSize = rightRect.maxX - leftRect.minX
             let heightSize = rightRect.maxY - leftRect.maxY
+            debugPrint("triangle height : \(heightSize) | width: \(bottomSize)")
             
             let angleResult = atan2(heightSize, bottomSize)
             let degree = (angleResult * 180 / .pi)
             
-            if ((-8.0)...(-3.0)).contains(degree) {
-                self.detectedTriangleLabel.isHidden = false
-                self.detectedTriangleLabel.text = "발판이 오른쪽으로 기울어졌습니다.\n수평으로 맞춰 촬영해 주세요"
-            }
-            else if ((4.0)...(8.0)).contains(degree) {
-                self.detectedTriangleLabel.isHidden = false
-                self.detectedTriangleLabel.text = "발판이 왼쪽으로 기울어졌습니다.\n수평으로 맞춰 촬영해 주세요"
-            }
-            else {
+            if ((-4.0)...(4.0)).contains(degree) {
                 self.detectedTriangleLabel.isHidden = true
             }
-            
-            
-            
+            else {
+                self.detectedTriangleLabel.isHidden = false
+                if degree < 0 {
+                    self.detectedTriangleLabel.text = "발판이 오른쪽으로 기울어졌습니다.\n수평으로 맞춰 촬영해 주세요"
+                }
+                else {
+                    self.detectedTriangleLabel.text = "발판이 왼쪽으로 기울어졌습니다.\n수평으로 맞춰 촬영해 주세요"
+                }
+            }
             
             debugPrint("triangle result : \(degree)")
         }
     }
+    
+    
+    func isDetectedTriangle(leftStatus: Bool, rightStatus: Bool) {
+        var message = ""
+        
+        DispatchQueue.main.async {
+            if leftStatus && rightStatus {
+                self.detectedTriangleLabel.isHidden = true
+            }
+            else {
+                self.detectedTriangleLabel.isHidden = false
+                if !leftStatus && rightStatus {
+                    self.detectedTriangleLabel.text = "왼쪽 삼각형을 인식시켜주세요."
+                }
+                else if leftStatus && !rightStatus {
+                    self.detectedTriangleLabel.text = "오른쪽 삼각형을 인식시켜주세요."
+                }
+                else {
+                    self.detectedTriangleLabel.text = "삼각형을 인식시켜주세요."
+                }
+            }
+        }
+    }
+    
+    func isKit(status: Bool) {
+        DispatchQueue.main.async {
+            self.detectedKitLabel.isHidden = status
+        }
+    }
+//    func isDetectedTriangle(status: Bool) {
+//        DispatchQueue.main.async {
+//            if status {
+//                self.detectedTriangleLabel.isHidden = true
+//            }
+//            else {
+//                self.detectedTriangleLabel.isHidden = false
+//                self.detectedTriangleLabel.text = "삼각형이 감지되도록\n카메라를 조정해 주세요."
+//            }
+//        }
+//
+//
+//    }
 }
 
 //extension PerfittKitCameraVC: ModelDataHandlerDelegate {

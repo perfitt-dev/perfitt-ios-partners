@@ -97,9 +97,11 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/AverageSizeAlert.nib"
   install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/CaptureVC.nib"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict.txt"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict_kit.txt"
+  install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/FeetResultVC.nib"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model.tflite"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model_kit.tflite"
   install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/PerfittCameraVC.nib"
@@ -108,8 +110,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIConsts.swift"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIController.swift"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIModel.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/AverageSizeAlert.swift"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/CaptureVC.swift"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/Extension.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/FeetResultVC.swift"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/ModelDataHandler.swift"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/Motion.swift"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/OverlayView.swift"
@@ -125,9 +129,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/AverageSizeAlert.nib"
   install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/CaptureVC.nib"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict.txt"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict_kit.txt"
+  install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/FeetResultVC.nib"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model.tflite"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model_kit.tflite"
   install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/PerfittCameraVC.nib"
@@ -136,8 +142,10 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIConsts.swift"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIController.swift"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIModel.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/AverageSizeAlert.swift"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/CaptureVC.swift"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/Extension.swift"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/FeetResultVC.swift"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/ModelDataHandler.swift"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/Motion.swift"
   install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Classes/OverlayView.swift"

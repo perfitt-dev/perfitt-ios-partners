@@ -1,30 +1,25 @@
 //
-//  UserInfoAlert.swift
+//  AverageSizeAlert.swift
 //  PerfittPartners_iOS
 //
-//  Created by nick on 2020/10/28.
+//  Created by nick on 2020/12/11.
 //
 
 import UIKit
 
-class UserInfoAlert: UIViewController {
-    
-    @IBOutlet weak var userNickName: UITextField!
-    @IBOutlet weak var maleButton: UIButton!
-    @IBOutlet weak var femaleButton: UIButton!
+class AverageSizeAlert: UIViewController {
     @IBOutlet weak var averageSize: UITextField!
-    
+    @IBOutlet weak var containerView: UIView!
     var pickerView: UIPickerView!
     
-    var delegate: UserInfoAlertDelegate?
+    var delegate: AverageSizeDelegate?
     var gender: String?
     var sizeRun: [String] = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25)
-        self.userNickName.delegate = self
+        self.containerView.layer.cornerRadius = 8
         self.createSizeRun()
         self.createPickerView()
         self.dismissPickerView()
@@ -68,47 +63,20 @@ class UserInfoAlert: UIViewController {
         self.averageSize.text = self.sizeRun[row]
         self.averageSize.resignFirstResponder()
     }
-    
-    @IBAction func onGenderSelect(_ sender: UIButton) {
-        switch sender {
-        case maleButton:
-            maleButton.isSelected = true
-            femaleButton.isSelected = false
-            self.gender = "M"
-        case femaleButton:
-            maleButton.isSelected = false
-            femaleButton.isSelected = true
-            self.gender = "F"
-        default:
-            return
-        }
-    }
-    
-    @IBAction func onCancel( _ sender: UIButton ) {
-//        debugPrint("select on cancel")
-        self.dismiss(animated: true, completion: nil)
-    }
-    
+
     @IBAction func onConfirm( _ sender: UIButton ) {
-        debugPrint("api request size: ", self.averageSize.text)
-        guard let size = self.averageSize.text else {
-            // TODO : alert
-            debugPrint("api request size empty")
-            return
-        }
-        debugPrint("api request size not empty")
-        guard let sizeInt = Int(size) else {
-            debugPrint("api request size casting failed")
-            return
-        }
-        self.dismiss(animated: true, completion: { [self] in
-            delegate?.confirm(nickName: self.userNickName.text, gender: self.gender, averageSize: sizeInt)
-        })
+        guard let size = self.averageSize.text else { return }
+        guard let sizeInt = Int(size) else { return }
+        
+        PerfittPartners.instance.setAverageSize(to: sizeInt)
+        self.delegate?.confirm()
+        self.dismiss(animated: true, completion: nil)
         
     }
 
 }
-extension UserInfoAlert: UIPickerViewDelegate, UIPickerViewDataSource {
+
+extension AverageSizeAlert: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -127,14 +95,6 @@ extension UserInfoAlert: UIPickerViewDelegate, UIPickerViewDataSource {
     
 }
 
-extension UserInfoAlert: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return true
-    }
-}
-
-
-protocol UserInfoAlertDelegate {
-    func confirm(nickName: String?, gender: String?, averageSize: Int)
+protocol AverageSizeDelegate {
+    func confirm()
 }

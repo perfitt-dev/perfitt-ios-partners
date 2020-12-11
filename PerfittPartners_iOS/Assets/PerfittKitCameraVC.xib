@@ -65,35 +65,44 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수평을 맞춰 주세요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVb-Ok-WtY">
-                                <rect key="frame" x="18" y="18" width="370" height="24"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수평을 맞춰 주세요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVb-Ok-WtY">
+                                <rect key="frame" x="18" y="18" width="370" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발판이 화면에 잘 나오도록 해주세요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duL-eI-fMR">
+                                <rect key="frame" x="18" y="45.5" width="370" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발이 탐지되지 않았습니다." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WR3-Gs-TJY">
-                                <rect key="frame" x="18" y="50" width="370" height="24"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <rect key="frame" x="18" y="73" width="370" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수평으로 맞춰 촬영해 주세요." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rP3-OQ-gIn">
-                                <rect key="frame" x="18" y="82" width="370" height="24"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <rect key="frame" x="18" y="100.5" width="370" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="duL-eI-fMR" firstAttribute="top" secondItem="CVb-Ok-WtY" secondAttribute="bottom" constant="8" id="CCM-rt-Li8"/>
                             <constraint firstItem="rP3-OQ-gIn" firstAttribute="top" secondItem="WR3-Gs-TJY" secondAttribute="bottom" constant="8" id="CMl-s0-icN"/>
+                            <constraint firstItem="duL-eI-fMR" firstAttribute="trailing" secondItem="CVb-Ok-WtY" secondAttribute="trailing" id="Cmv-9H-V4V"/>
+                            <constraint firstItem="duL-eI-fMR" firstAttribute="leading" secondItem="CVb-Ok-WtY" secondAttribute="leading" id="KrP-jl-59y"/>
                             <constraint firstItem="rP3-OQ-gIn" firstAttribute="leading" secondItem="WR3-Gs-TJY" secondAttribute="leading" id="S9J-gI-cwl"/>
                             <constraint firstItem="WR3-Gs-TJY" firstAttribute="leading" secondItem="CVb-Ok-WtY" secondAttribute="leading" id="bmo-VB-FY7"/>
                             <constraint firstItem="nb8-6N-Zlh" firstAttribute="centerX" secondItem="b2s-3a-UTQ" secondAttribute="centerX" id="c4e-xh-3eZ"/>
-                            <constraint firstItem="WR3-Gs-TJY" firstAttribute="top" secondItem="CVb-Ok-WtY" secondAttribute="bottom" constant="8" id="eX3-o6-9C5"/>
                             <constraint firstItem="WR3-Gs-TJY" firstAttribute="trailing" secondItem="CVb-Ok-WtY" secondAttribute="trailing" id="em7-6H-d3u"/>
                             <constraint firstAttribute="trailing" secondItem="CVb-Ok-WtY" secondAttribute="trailing" constant="18" id="feS-Rc-SSO"/>
                             <constraint firstItem="CVb-Ok-WtY" firstAttribute="top" secondItem="b2s-3a-UTQ" secondAttribute="top" constant="18" id="hTO-uQ-YoT"/>
+                            <constraint firstItem="WR3-Gs-TJY" firstAttribute="top" secondItem="duL-eI-fMR" secondAttribute="bottom" constant="8" id="lfX-H0-9Kl"/>
                             <constraint firstAttribute="bottom" secondItem="nb8-6N-Zlh" secondAttribute="bottom" constant="20" id="odV-jw-dZl"/>
                             <constraint firstItem="rP3-OQ-gIn" firstAttribute="trailing" secondItem="WR3-Gs-TJY" secondAttribute="trailing" id="vOF-BQ-syA"/>
                             <constraint firstItem="CVb-Ok-WtY" firstAttribute="leading" secondItem="b2s-3a-UTQ" secondAttribute="leading" constant="18" id="w5a-dv-U2z"/>
@@ -125,6 +134,7 @@
             </view>
             <connections>
                 <outlet property="balanceLabel" destination="CVb-Ok-WtY" id="xCV-uh-T8J"/>
+                <outlet property="detectedKitLabel" destination="duL-eI-fMR" id="KGq-oM-Bvm"/>
                 <outlet property="detectedTriangleLabel" destination="rP3-OQ-gIn" id="yFB-0y-HQB"/>
                 <outlet property="footDectionLabel" destination="WR3-Gs-TJY" id="j92-GN-mqj"/>
                 <outlet property="motionView" destination="dgY-7K-Fzz" id="8se-QV-tLU"/>

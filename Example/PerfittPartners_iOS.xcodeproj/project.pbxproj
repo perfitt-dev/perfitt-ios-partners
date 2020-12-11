@@ -274,9 +274,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PerfittPartners_iOS_Example/Pods-PerfittPartners_iOS_Example-resources.sh",
+				"${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/AverageSizeAlert.nib",
 				"${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/CaptureVC.nib",
 				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict.txt",
 				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict_kit.txt",
+				"${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/FeetResultVC.nib",
 				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model.tflite",
 				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model_kit.tflite",
 				"${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/PerfittCameraVC.nib",
@@ -285,8 +287,10 @@
 				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIConsts.swift",
 				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIController.swift",
 				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIModel.swift",
+				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/AverageSizeAlert.swift",
 				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/CaptureVC.swift",
 				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/Extension.swift",
+				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/FeetResultVC.swift",
 				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/ModelDataHandler.swift",
 				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/Motion.swift",
 				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/OverlayView.swift",
@@ -303,9 +307,11 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AverageSizeAlert.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CaptureVC.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/dict.txt",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/dict_kit.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FeetResultVC.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/model.tflite",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/model_kit.tflite",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PerfittCameraVC.nib",
@@ -314,8 +320,10 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/APIConsts.swift",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/APIController.swift",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/APIModel.swift",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AverageSizeAlert.swift",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CaptureVC.swift",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Extension.swift",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FeetResultVC.swift",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ModelDataHandler.swift",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Motion.swift",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/OverlayView.swift",
@@ -482,7 +490,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -531,7 +539,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

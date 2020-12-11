@@ -108,12 +108,12 @@ open class Motion: UIView {
                         if abs(self.roll) > 5 || abs(self.pitch) > 5 {
                             self.isMotionStatusReady = false
                             self.bgImageView.layer.borderColor = UIColor.gray.cgColor
-                            self.bringSubviewToFront(self.movingImageView)
+//                            self.bringSubviewToFront(self.movingImageView)
                             self.delegate?.setCurrentStatus(status: false)
                         } else {
                             self.isMotionStatusReady = true
                             self.bgImageView.layer.borderColor = UIColor.init(red: 237 / 255, green: 0, blue: 30 / 255, alpha: 1).cgColor
-                            self.bringSubviewToFront(self.bgImageView)
+//                            self.bringSubviewToFront(self.bgImageView)
                             self.delegate?.setCurrentStatus(status: true)
                         }
 

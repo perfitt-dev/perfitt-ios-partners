@@ -48,7 +48,8 @@ public class PerfittCameraVC: UIViewController {
     var minY: CGFloat = 0.0
     
     // tensorflow lite model handler init
-    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: MobileNetSSD.modelInfo, labelsFileInfo: MobileNetSSD.labelsInfo, thres: 0.95)
+    
+    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: FileInfo(name: "model", extension: "tflite"), labelsFileInfo: FileInfo(name: "dict", extension: "txt"), thres: 0.95, baseThres: 0.8, triangleThres: 0.86 )
     
     // run model
     private var previousInferenceTimeMs: TimeInterval = Date.distantPast.timeIntervalSince1970 * 1000
@@ -71,6 +72,17 @@ public class PerfittCameraVC: UIViewController {
         }
 
         self.setButtonLayout()
+        self.setupNavi()
+    }
+    
+    private func setupNavi() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.done))
+    }
+    
+    @objc func done() {
+        DispatchQueue.main.async {
+            self.navigationController?.dismiss(animated: true, completion: nil)
+        }
     }
     
     public override func viewDidAppear(_ animated: Bool) {

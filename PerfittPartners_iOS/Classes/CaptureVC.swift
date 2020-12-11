@@ -9,8 +9,6 @@ import UIKit
 
 class CaptureVC: UIViewController {
     @IBOutlet weak var previewImageView: UIImageView!
-    
-    
     var imageData: Data!
     var previewFor: String?
     var postProcessedImage: String?
@@ -20,14 +18,35 @@ class CaptureVC: UIViewController {
     
     var camMode: CamMode?
     
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        
+        indicator.color = .red
+        indicator.backgroundColor = .white
+        
+        return indicator
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.init(white: 0, alpha: 0.28)    }
+        self.view.backgroundColor = UIColor.init(white: 0, alpha: 0.28)
+        self.setNavi()
+    }
+    
+    private func setNavi() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.done))
+    }
+    
+    @objc private func done() {
+        DispatchQueue.main.async {
+            self.navigationController?.dismiss(animated: true, completion: nil)
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.previewImageView.image = UIImage(data: imageData)
+        
         // 사이즈 조정
         guard let jpeg = resizeImage(image: UIImage.init(data: imageData)!.rotate(radians: (.pi / 2)), targetSize: CGSize.init(width: 1280, height: 720)).jpegData(compressionQuality: 1.0) else {
             return
@@ -73,18 +92,57 @@ class CaptureVC: UIViewController {
             
         }
         else {
-            let bundle = Bundle.main.loadNibNamed("UserInfoAlert", owner: self, options: nil)
-            let userInfoAlert = bundle?.filter({ $0 is UserInfoAlert }).first as? UserInfoAlert
-            userInfoAlert?.delegate = self
-            userInfoAlert?.modalPresentationStyle = .fullScreen
-            userInfoAlert?.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25)
-            
-            self.present(userInfoAlert!, animated: true, completion: nil)
+            self.fetchFeetData()
         }
     }
     
 }
 extension CaptureVC {
+    private func fetchFeetData() {
+        guard let right = self.rightImgData else { return }
+        guard let left = self.base64Data else { return }
+        let sourceType = "\(APIConsts.SDK_VERSION)_\(UIDevice.current.name)_\(self.getOSInfo())"
+        
+        let body = FeetBody(leftImage: left, rightImage: right, sourceType: sourceType, averageSize: PerfittPartners.instance.getAverageSize())
+        
+        
+        self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.activityIndicator)
+        
+        NSLayoutConstraint.activate([
+            self.activityIndicator.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
+            self.activityIndicator.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor),
+            self.activityIndicator.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.activityIndicator.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        
+        self.activityIndicator.startAnimating()
+        
+        APIController.init().reqeustFeetData(body, PerfittPartners.instance.getAPIKey() ?? "", camMode: self.camMode!.rawValue, successHandler: { response in
+            debugPrint("success response :\(response)")
+            
+            
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.removeFromSuperview()
+                let bundle = Bundle.main.loadNibNamed("FeetResultVC", owner: self, options: nil)
+                let feetRsultVC = bundle?.filter({ $0 is FeetResultVC }).first as? FeetResultVC
+                feetRsultVC?.model = response
+                self.navigationController?.pushViewController(feetRsultVC!, animated: true)
+            }
+            
+        }, failedHandler: { requestError in
+            
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.removeFromSuperview()
+                self.navigationController?.dismiss(animated: true, completion: nil)
+                
+                self.showAlert(title: "", message: requestError.message, handler: nil)
+            }
+            
+        })
+    }
     private func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: targetSize.width, height: targetSize.height)
         UIGraphicsBeginImageContextWithOptions(targetSize, false, 1.0)
@@ -100,43 +158,32 @@ extension CaptureVC {
     }
 }
 
-extension CaptureVC: UserInfoAlertDelegate {
-    func confirm(nickName: String?, gender: String?, averageSize: Int) {
-        debugPrint("api request click ")
-        guard let right = self.rightImgData else {
-            debugPrint("right data empty")
-            return
-        }
-        
-        guard let left = self.base64Data else {
-            debugPrint("left data empty")
-            return
-        }
-        
-        let requestData = FootModel(leftImage: left, rightImage: right , sourceType: "\(APIConsts.SDK_VERSION)_\(UIDevice.current.name)_\(self.getOSInfo())", averageSize: averageSize, nickName: nickName, gender: gender)
-        
-        APIController.init().reqeustFootData(requestData, "PARTNERS_TEST_KEY", camMode: self.camMode!.rawValue, successHandler: { result in
-            debugPrint("api request success", result)
-            let userInfo: [AnyHashable: Any] = ["methodName": "PERFITT_CALLBACK('\(result ?? "")')"]
-            NotificationCenter.default.post(name: NSNotification.Name.init("PerfittPartners"), object: nil, userInfo: userInfo)
-            DispatchQueue.main.async {
-                self.navigationController?.dismiss(animated: true, completion: nil)
-            }
-        }, failedHandler: { errorResult in
-            debugPrint("api request failed", errorResult.message)
-            
-            DispatchQueue.main.async {
-                self.showAlert(title: "", message: errorResult.message, handler: nil)
-            }
-        })
-        
-        
-    }
+extension CaptureVC {
+//    func confirm(nickName: String?, gender: String?, averageSize: Int) {
+//        debugPrint("api request click ")
+//        guard let right = self.rightImgData else {
+//            debugPrint("right data empty")
+//            return
+//        }
+//
+//        guard let left = self.base64Data else {
+//            debugPrint("left data empty")
+//            return
+//        }
+//
+//
+//
+//
+//
+//
+//    }
     
     private func showAlert(title: String, message: String, handler: ((UIAlertAction) -> ())?) {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)
         controller.addAction(okAction)
-        UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)
+        
+        self.present(controller, animated: true, completion: nil)
+//        UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)
     }
 }

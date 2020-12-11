@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
     s.source           = { :git => 'https://github.com/perfitt-dev/perfitt-ios-partners.git', :tag => s.version.to_s }
     # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
     
-    s.ios.deployment_target = '12.4'
+    s.ios.deployment_target = '12.0'
     
     s.source_files = 'PerfittPartners_iOS/Classes/**/*'
     s.swift_version = '4.2'
