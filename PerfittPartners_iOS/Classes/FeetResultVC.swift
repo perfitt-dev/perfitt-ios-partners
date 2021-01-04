@@ -32,8 +32,12 @@ class FeetResultVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUI()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setupUI()
     }
     
     private func setupUI() {
@@ -55,7 +59,7 @@ class FeetResultVC: UIViewController {
         let gender = self.inputGender.selectedSegmentIndex == 0 ? "M" : "F"
         
 //        let body = FootModel(averageSize: PerfittPartners.instance.getAverageSize(), nickName: nickName, gender: gender, customerId: nil)
-        let body = FootModel(footId: model?.id, averageSize: PerfittPartners.instance.getAverageSize(), nickName: nickName, gender: gender, customerId: nil)
+        let body = FootModel(feetId: model?.id, averageSize: PerfittPartners.instance.getAverageSize(), nickName: nickName, gender: gender, customerId: nil)
         
         self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.activityIndicator)
@@ -70,10 +74,11 @@ class FeetResultVC: UIViewController {
         self.activityIndicator.startAnimating()
         
         APIController.init().reqeustFootData(body, PerfittPartners.instance.getAPIKey() ?? "", successHandler: { result in
-            let callBackResult = "PERFITT_CALLBACK('\(result ?? "")')"
-            PerfittPartners.instance.callbackName = callBackResult
+            
             
             DispatchQueue.main.async {
+                let callBackResult = "PERFITT_CALLBACK('\(result ?? "")')"
+                PerfittPartners.instance.callbackName = callBackResult
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.removeFromSuperview()
                 self.navigationController?.dismiss(animated: true, completion: nil)
@@ -85,9 +90,9 @@ class FeetResultVC: UIViewController {
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.removeFromSuperview()
-                self.navigationController?.dismiss(animated: true, completion: nil)
-                
-                self.showAlert(title: "", message: errorResult.message, handler: nil)
+                self.showAlert(title: "", message: errorResult.message, handler: { _ in
+                    self.navigationController?.dismiss(animated: true, completion: nil)
+                })
             }
             
         })

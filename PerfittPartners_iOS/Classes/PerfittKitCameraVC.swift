@@ -44,13 +44,33 @@ public class PerfittKitCameraVC: UIViewController {
     @IBOutlet weak var footDectionLabel: UILabel!
     @IBOutlet weak var detectedTriangleLabel: UILabel!
     
+    @IBOutlet weak var countLabel: UILabel!
+    
     
     // 가이드라인과 맞다아있는지 확인하는 변수
     var maxY: CGFloat = 0.0
     var minY: CGFloat = 0.0
     
+    // 모든 조건이 부합한 횟수
+    var successCount: Int!
+    var baseRect: [Double]!
+    var leftTriangle: CGRect!
+    var rightTriangle: CGRect!
+    
+    // request body 값
+    var captureData = FeetBody()
+    
+    // recive capture data
+    var reciveCaptureData: FeetBody?
+    
+    // 가이드 박스
+    @IBOutlet weak var guideBox: UIView!
+    @IBOutlet weak var leftCollision: UIView!
+    @IBOutlet weak var rightCollision: UIView!
+    
+    
     // tensorflow lite model handler init
-    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: FileInfo(name: "model_kit", extension: "tflite"), labelsFileInfo: FileInfo(name: "dict_kit", extension: "txt"), thres: 0.9, baseThres: 0.8, triangleThres: 0.86 )
+    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: FileInfo(name: "model_kit", extension: "tflite"), labelsFileInfo: FileInfo(name: "dict_kit", extension: "txt"), thres: 0.9, baseThres: 0.8, triangleThres: 0.8 )
     
     // run model
     private var previousInferenceTimeMs: TimeInterval = Date.distantPast.timeIntervalSince1970 * 1000
@@ -63,6 +83,8 @@ public class PerfittKitCameraVC: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        self.successCount = 0
+        UserDefaults.standard.set(true, forKey: "perfittKitStart")
     }
 
     
@@ -72,6 +94,9 @@ public class PerfittKitCameraVC: UIViewController {
         self.configCameraAndStartSession()
         // object dectecting validation
         modelDataHandler?.delegate = self
+        if let data = self.reciveCaptureData {
+            self.captureData = data
+        }
         self.setupNavi()
         self.setupUI()
     }
@@ -85,6 +110,9 @@ public class PerfittKitCameraVC: UIViewController {
         else {
             self.title = "왼발 촬영하기"
         }
+        
+        self.guideBox.layer.borderWidth = 4
+        self.guideBox.layer.borderColor = UIColor.red.cgColor
 
         self.setButtonLayout()
     }
@@ -270,7 +298,6 @@ extension PerfittKitCameraVC {
 // 자이로센서를 사용해서 수평을 맞춥니다.
 extension PerfittKitCameraVC: MotionDelegate {
     public func setCurrentStatus(status: Bool) {
-        
         DispatchQueue.main.async {
             if status {
                 self.balanceLabel.isHidden = true
@@ -290,10 +317,11 @@ extension PerfittKitCameraVC: MotionDelegate {
         photoSettings.isAutoStillImageStabilizationEnabled = true
         
         // 화면을 저장합니다.
-//        if self.baseDectetionLable.isHidden && self.footDectionLabel.isHidden {
-//            stillImageOutput.capturePhoto(with: photoSettings, delegate: self)
-//        }
-        stillImageOutput.capturePhoto(with: photoSettings, delegate: self)
+        if self.detectedKitLabel.isHidden && self.footDectionLabel.isHidden && self.detectedTriangleLabel.isHidden {
+
+            stillImageOutput.capturePhoto(with: photoSettings, delegate: self)
+        }
+        
         
     }
 }
@@ -313,13 +341,19 @@ extension PerfittKitCameraVC: AVCapturePhotoCaptureDelegate {
         let bundles = Bundle.main.loadNibNamed("CaptureVC", owner: self, options: nil)
         let captureVC = bundles?.filter({ $0 is CaptureVC }).first as? CaptureVC
         
+        self.captureData.right?.base = self.baseRect
+        
         captureVC?.imageData = imageData
         captureVC?.previewFor = "Right"
         captureVC?.camMode = .KIT
+        captureVC?.captureData = self.captureData
         
+        debugPrint(captureData)
         if let isRight = rightImg, !isRight {
+            self.captureData.left?.base = self.baseRect
             captureVC?.rightImgData = self.rightImgData
             captureVC?.previewFor = "Left"
+            captureVC?.captureData = self.captureData
         }
         
         self.navigationController?.pushViewController(captureVC ?? self, animated: true)
@@ -346,16 +380,26 @@ extension PerfittKitCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard  (currentTimeMs - previousInferenceTimeMs) >= delayBetweenInferencesMs else { return }
         previousInferenceTimeMs = currentTimeMs
         result = self.modelDataHandler?.runModel(onFrame: pixelBuffer)
-//        guard let displayResult = result else { return }
-//
-//        let width = CVPixelBufferGetWidth(pixelBuffer)
-//        let height = CVPixelBufferGetHeight(pixelBuffer)
-        
+        guard let displayResult = result else { return }
+
+        let width = CVPixelBufferGetWidth(pixelBuffer)
+        let height = CVPixelBufferGetHeight(pixelBuffer)
+
         // overlayView에 라벨과 텍스트를 업데이트합니다.
-//        DispatchQueue.main.async {
-//            self.drawAfterPerformingCalculations(onInferences: displayResult.inferences, withImageSize: CGSize(width: CGFloat(width), height: CGFloat(height)))
-//        }
-        
+        DispatchQueue.main.async {
+            self.drawAfterPerformingCalculations(onInferences: displayResult.inferences, withImageSize: CGSize(width: CGFloat(width), height: CGFloat(height)))
+            
+            if self.detectedKitLabel.isHidden && self.detectedTriangleLabel.isHidden && self.footDectionLabel.isHidden {
+                self.successCount += 1
+                self.countLabel.text = "\(self.successCount ?? 0)"
+            }
+            else {
+                self.successCount = 0
+                self.countLabel.text = "\(self.successCount ?? 0)"
+            }
+            
+            
+        }
     }
     
     func drawAfterPerformingCalculations(onInferences inferences: [Inference], withImageSize imageSize:CGSize) {
@@ -365,38 +409,54 @@ extension PerfittKitCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard !inferences.isEmpty else { return }
         
         var objectOverlays: [ObjectOverlay] = []
+        self.leftCollision.backgroundColor = .white
+        self.rightCollision.backgroundColor = .white
         
         for inference in inferences {
             // Translates bounding box rect to current view.
-            
+
+            if inference.className != "b'base'" { continue }
             
             var convertedRect = inference.rect.applying(CGAffineTransform(scaleX: self.overlayView.bounds.size.width / imageSize.width, y: self.overlayView.bounds.size.height / imageSize.height))
-            debugPrint("tf model rect : \(inference.rect)\nconverted rect : \(convertedRect)" )
+            
             if convertedRect.origin.x < 0 {
                 convertedRect.origin.x = self.edgeOffset
             }
             if convertedRect.origin.y < 0 {
                 convertedRect.origin.y = self.edgeOffset
             }
-            
+
             if convertedRect.maxY > self.overlayView.bounds.maxY {
                 convertedRect.size.height = self.overlayView.bounds.maxY - convertedRect.origin.y - self.edgeOffset
             }
             if convertedRect.maxX > self.overlayView.bounds.maxX {
                 convertedRect.size.width = self.overlayView.bounds.maxX - convertedRect.origin.x - self.edgeOffset
             }
-            
+
             let confidenceValue = Int(inference.confidence * 100.0)
             let string = "\(inference.className)  (\(confidenceValue)%)"
+
+            if self.leftCollision.frame.intersects(convertedRect) && self.rightCollision.frame.intersects(convertedRect){
+                self.leftCollision.backgroundColor = .blue
+                self.rightCollision.backgroundColor = .blue
+            }
             
-            
-            
+//            if self.leftCollision.bounds.intersects(convertedRect) && self.rightCollision.bounds.intersects(convertedRect) {
+//                self.leftCollision.backgroundColor = .blue
+//                self.rightCollision.backgroundColor = .blue
+//            }
+//            else {
+//                self.leftCollision.backgroundColor = .white
+//                self.rightCollision.backgroundColor = .white
+//            }
+
             let size = string.size(usingFont: self.displayFont)
 //            let size = CGSize(width: 100, height: 20)
             let objectOverlay = ObjectOverlay(name: string, borderRect: convertedRect, nameStringSize: size, color: inference.displayColor, font: self.displayFont)
-    
+                
+//            debugPrint(<#T##items: Any...##Any#>)
+
             objectOverlays.append(objectOverlay)
-            debugPrint("object name:", string)
         }
         
         // Hands off drawing to the OverlayView
@@ -419,39 +479,30 @@ extension PerfittKitCameraVC: ModelDataHandlerDelegate {
         }
         
     }
-    
     func detectedTriangle(leftPos: CGRect, rightPos: CGRect, imageSize: CGSize) {
         DispatchQueue.main.async {
-            let leftRect = leftPos.applying(CGAffineTransform(scaleX: self.overlayView.bounds.size.width / imageSize.width, y: self.overlayView.bounds.size.height / imageSize.height))
-            let rightRect = rightPos.applying(CGAffineTransform(scaleX: self.overlayView.bounds.size.width / imageSize.width, y: self.overlayView.bounds.size.height / imageSize.height))
-            
-            let bottomSize = rightRect.maxX - leftRect.minX
-            let heightSize = rightRect.maxY - leftRect.maxY
-            debugPrint("triangle height : \(heightSize) | width: \(bottomSize)")
-            
-            let angleResult = atan2(heightSize, bottomSize)
-            let degree = (angleResult * 180 / .pi)
-            
-            if ((-4.0)...(4.0)).contains(degree) {
-                self.detectedTriangleLabel.isHidden = true
+            if let isRight = self.rightImg, isRight {
+                // right
+                var foot = FeetBody.FootModel()
+                foot.leftRect = [Double(leftPos.minY), Double(leftPos.minX), Double(leftPos.maxY), Double(leftPos.maxX)]
+                foot.rightRect = [Double(rightPos.minY), Double(rightPos.minX), Double(rightPos.maxY), Double(rightPos.maxX)]
+                self.captureData.right = foot
+//                self.captureData.right?.leftRect =
+//                self.captureData.right?.rightRect = [Double(rightPos.minY), Double(rightPos.minX), Double(rightPos.maxY), Double(rightPos.maxX)]
             }
             else {
-                self.detectedTriangleLabel.isHidden = false
-                if degree < 0 {
-                    self.detectedTriangleLabel.text = "발판이 오른쪽으로 기울어졌습니다.\n수평으로 맞춰 촬영해 주세요"
-                }
-                else {
-                    self.detectedTriangleLabel.text = "발판이 왼쪽으로 기울어졌습니다.\n수평으로 맞춰 촬영해 주세요"
-                }
+                // left
+                var foot = FeetBody.FootModel()
+                foot.leftRect = [Double(leftPos.minY), Double(leftPos.minX), Double(leftPos.maxY), Double(leftPos.maxX)]
+                foot.rightRect = [Double(rightPos.minY), Double(rightPos.minX), Double(rightPos.maxY), Double(rightPos.maxX)]
+                self.captureData.left = foot
+//                self.captureData.left?.leftRect = [Double(leftPos.minY), Double(leftPos.minX), Double(leftPos.maxY), Double(leftPos.maxX)]
+//                self.captureData.right?.rightRect = [Double(rightPos.minY), Double(rightPos.minX), Double(rightPos.maxY), Double(rightPos.maxX)]
             }
-            
-            debugPrint("triangle result : \(degree)")
         }
     }
     
-    
     func isDetectedTriangle(leftStatus: Bool, rightStatus: Bool) {
-        var message = ""
         
         DispatchQueue.main.async {
             if leftStatus && rightStatus {
@@ -459,17 +510,21 @@ extension PerfittKitCameraVC: ModelDataHandlerDelegate {
             }
             else {
                 self.detectedTriangleLabel.isHidden = false
-                if !leftStatus && rightStatus {
-                    self.detectedTriangleLabel.text = "왼쪽 삼각형을 인식시켜주세요."
-                }
-                else if leftStatus && !rightStatus {
-                    self.detectedTriangleLabel.text = "오른쪽 삼각형을 인식시켜주세요."
-                }
-                else {
-                    self.detectedTriangleLabel.text = "삼각형을 인식시켜주세요."
-                }
+                self.detectedTriangleLabel.text = "삼각형이 탐지되지 않았습니다. 조금더 밝은곳에서 촬영해 주세요."
             }
         }
+    }
+    
+    func detectedBase(rect: CGRect, imgSize: CGSize) {
+        DispatchQueue.main.async {
+            if let isRight = self.rightImg, isRight {
+                self.baseRect = [Double(rect.minY), Double(rect.minX), Double(rect.maxY), Double(rect.maxX)]
+            }
+            else {
+                self.baseRect = [Double(rect.minY), Double(rect.minX), Double(rect.maxY), Double(rect.maxX)]
+            }
+        }
+        
     }
     
     func isKit(status: Bool) {
@@ -477,49 +532,7 @@ extension PerfittKitCameraVC: ModelDataHandlerDelegate {
             self.detectedKitLabel.isHidden = status
         }
     }
-//    func isDetectedTriangle(status: Bool) {
-//        DispatchQueue.main.async {
-//            if status {
-//                self.detectedTriangleLabel.isHidden = true
-//            }
-//            else {
-//                self.detectedTriangleLabel.isHidden = false
-//                self.detectedTriangleLabel.text = "삼각형이 감지되도록\n카메라를 조정해 주세요."
-//            }
-//        }
-//
-//
-//    }
 }
-
-//extension PerfittKitCameraVC: ModelDataHandlerDelegate {
-//    func detectedFoot(status: Bool) {
-//        DispatchQueue.main.async {
-//            if status {
-//                self.footDectionLabel.isHidden = true
-//            }
-//            else {
-//                self.footDectionLabel.isHidden = false
-//            }
-//
-//        }
-//
-//    }
-//
-//    func detectedBase(rect: CGRect, imgSize: CGSize) {
-//
-//        DispatchQueue.main.async {
-//            let targetRect = rect.applying(CGAffineTransform(scaleX: self.overlayView.bounds.size.width / imgSize.width, y: self.overlayView.bounds.size.height / imgSize.height))
-//
-//            if (self.minY...self.maxY).contains(targetRect.origin.y) {
-//                self.baseDectetionLable.isHidden = true
-//            }
-//            else {
-//                self.baseDectetionLable.isHidden = false
-//            }
-//        }
-//    }
-//}
 
 // camera action
 extension PerfittKitCameraVC {

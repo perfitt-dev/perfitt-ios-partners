@@ -28,6 +28,7 @@ open class APIController {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+            debugPrint("request body", request.httpBodyStream)
         }
         catch {
             debugPrint("params error")
@@ -54,8 +55,18 @@ open class APIController {
                     print("~~> status code : \(statusCode)")
                     guard let responseData = data else { return }
                     let decoder = JSONDecoder()
-                    let errModel = try! decoder.decode(ErrorModel.self, from: responseData)
-                    failedHandler(errModel)
+                    do {
+                        let errModel = try decoder.decode(ErrorModel.self, from: responseData)
+                        failedHandler(errModel)
+                        return
+                    }
+                    catch {
+                        if statusCode > 500 {
+                            let errModel = ErrorModel(message: "time out", type: "time out")
+                            failedHandler(errModel)
+                            
+                        }
+                    }
                     return
                 }
                 
@@ -82,7 +93,7 @@ open class APIController {
     }
     
     
-    func reqeustFeetData (_ feetData: FeetBody, _ APIKEY: String, camMode: String, successHandler: @escaping (FeetModel) -> Void, failedHandler: @escaping(ErrorModel) -> Void) {
+    func reqeustFeetData (_ feetData: FeetBody?, _ APIKEY: String, camMode: String, successHandler: @escaping (FeetModel) -> Void, failedHandler: @escaping(ErrorModel) -> Void) {
         do {
             let jsonData = try  JSONEncoder().encode(feetData)
             let params = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any]

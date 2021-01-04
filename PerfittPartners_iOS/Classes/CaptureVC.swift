@@ -16,7 +16,15 @@ class CaptureVC: UIViewController {
     var leftImgData: String?
     var base64Data: String!
     
+    var rightRect: CGRect?
+    var leftRect: CGRect?
+    
+    var rightTriangle: CGRect?
+    var leftTriangle: CGRect?
+    
     var camMode: CamMode?
+    
+    var captureData: FeetBody?
     
     lazy var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
@@ -30,6 +38,7 @@ class CaptureVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.init(white: 0, alpha: 0.28)
+                
         self.setNavi()
     }
     
@@ -48,7 +57,7 @@ class CaptureVC: UIViewController {
         self.previewImageView.image = UIImage(data: imageData)
         
         // 사이즈 조정
-        guard let jpeg = resizeImage(image: UIImage.init(data: imageData)!.rotate(radians: (.pi / 2)), targetSize: CGSize.init(width: 1280, height: 720)).jpegData(compressionQuality: 1.0) else {
+        guard let jpeg = resizeImage(image: UIImage.init(data: imageData)!, targetSize: CGSize.init(width: 720, height: 1280)).jpegData(compressionQuality: 1.0) else {
             return
         }
         
@@ -76,6 +85,7 @@ class CaptureVC: UIViewController {
                 cameraVC?.rightImg = false
                 cameraVC?.rightImgData = base64Data
                 
+                
                 self.navigationController?.pushViewController(cameraVC ?? self, animated: true)
                 
             case .KIT:
@@ -84,6 +94,8 @@ class CaptureVC: UIViewController {
                 
                 cameraVC?.rightImg = false
                 cameraVC?.rightImgData = base64Data
+                
+                cameraVC?.reciveCaptureData = self.captureData
                 
                 self.navigationController?.pushViewController(cameraVC ?? self, animated: true)
             case .none: return
@@ -101,27 +113,28 @@ extension CaptureVC {
     private func fetchFeetData() {
         guard let right = self.rightImgData else { return }
         guard let left = self.base64Data else { return }
+        
         let sourceType = "\(APIConsts.SDK_VERSION)_\(UIDevice.current.name)_\(self.getOSInfo())"
         
-        let body = FeetBody(leftImage: left, rightImage: right, sourceType: sourceType, averageSize: PerfittPartners.instance.getAverageSize())
-        
+        self.captureData?.averageSize = PerfittPartners.init().getAverageSize()
+        self.captureData?.sourceType = sourceType
+        self.captureData?.left?.image = left
+        self.captureData?.right?.image = right
         
         self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.activityIndicator)
-        
+
         NSLayoutConstraint.activate([
             self.activityIndicator.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
             self.activityIndicator.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor),
             self.activityIndicator.topAnchor.constraint(equalTo: self.view.topAnchor),
             self.activityIndicator.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        
+
         self.activityIndicator.startAnimating()
-        
-        APIController.init().reqeustFeetData(body, PerfittPartners.instance.getAPIKey() ?? "", camMode: self.camMode!.rawValue, successHandler: { response in
-            debugPrint("success response :\(response)")
-            
-            
+
+        APIController.init().reqeustFeetData(self.captureData, PerfittPartners.instance.getAPIKey() ?? "", camMode: self.camMode!.rawValue, successHandler: { response in
+
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.removeFromSuperview()
@@ -130,17 +143,16 @@ extension CaptureVC {
                 feetRsultVC?.model = response
                 self.navigationController?.pushViewController(feetRsultVC!, animated: true)
             }
-            
+
         }, failedHandler: { requestError in
-            
+
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.removeFromSuperview()
-                self.navigationController?.dismiss(animated: true, completion: nil)
-                
+
                 self.showAlert(title: "", message: requestError.message, handler: nil)
             }
-            
+
         })
     }
     private func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {

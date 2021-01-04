@@ -22,6 +22,7 @@ struct Inference {
     let className: String
     let rect: CGRect
     let displayColor: UIColor
+    let originRect: CGRect
 }
 
 /// Information about a model file or labels file.
@@ -218,7 +219,7 @@ public class ModelDataHandler: NSObject {
         if let index = result.inferences.firstIndex(where: {$0.className == "b'base'"}) {
             
             if let base = self.delegate {
-                base.detectedBase?(rect: result.inferences[index].rect, imgSize: imageSize)
+                base.detectedBase?(rect: result.inferences[index].originRect, imgSize: imageSize)
             }
         }
         
@@ -229,7 +230,7 @@ public class ModelDataHandler: NSObject {
             let right = result.inferences[rightIndex].rect
             
             if let triangle = self.delegate {
-                debugPrint("send pos data \(left) | \(right)")
+                
                 triangle.detectedTriangle?(leftPos: left, rightPos: right, imageSize: imageSize)
             }
         }
@@ -254,7 +255,6 @@ public class ModelDataHandler: NSObject {
             
             return resultsArray
         }
-        
         
         for i in 0...outputCount - 1 {
             
@@ -282,7 +282,6 @@ public class ModelDataHandler: NSObject {
                 }
             }
             
-            
             var rect: CGRect = CGRect.zero
             
             // Translates the detected bounding box to CGRect.
@@ -290,7 +289,6 @@ public class ModelDataHandler: NSObject {
             rect.origin.x = CGFloat(boundingBox[4*i+1])
             rect.size.height = CGFloat(boundingBox[4*i+2]) - rect.origin.y
             rect.size.width = CGFloat(boundingBox[4*i+3]) - rect.origin.x
-            
             
             // The detected corners are for model dimensions. So we scale the rect with respect to the
             // actual image dimensions.
@@ -302,7 +300,9 @@ public class ModelDataHandler: NSObject {
             let inference = Inference(confidence: score,
                                       className: outputClass,
                                       rect: newRect,
-                                      displayColor: colorToAssign)
+                                      displayColor: colorToAssign,
+                                      originRect: rect)
+            
             resultsArray.append(inference)
         }
         

@@ -73,10 +73,24 @@ open class PerfittPartners {
         }
     }
     
+    private func getKitTutorial() {
+        let bundles = Bundle.main.loadNibNamed("PerfittKitTutorialVC", owner: nil, options: nil)
+        let tutorialVC = bundles?.filter({ $0 is PerfittKitTutorialVC }).first as? PerfittKitTutorialVC
+        
+        let navigationController = UINavigationController(rootViewController: tutorialVC!)
+        navigationController.navigationItem.backBarButtonItem?.title = ""
+        navigationController.modalPresentationStyle = .fullScreen
+        
+        let time = DispatchTime.now() + .milliseconds(300)
+        DispatchQueue.main.asyncAfter(deadline: time) {
+            self.ownerViewController!.present(navigationController, animated: true, completion: nil)
+        }
+    }
+    
     //
     private func getAverageSizeAlert() -> UIViewController {
-        let bundles = Bundle.main.loadNibNamed("AverageSizeAlert", owner: nil, options: nil)
-        guard let averagePopup = bundles?.filter( { $0 is AverageSizeAlert }).first as? AverageSizeAlert else {
+        let bundles = Bundle.main.loadNibNamed("SizePicker", owner: nil, options: nil)
+        guard let averagePopup = bundles?.filter( { $0 is SizePicker }).first as? SizePicker else {
             return UIViewController()
         }
         averagePopup.delegate = AverageSizeController()
@@ -90,7 +104,9 @@ open class PerfittPartners {
     }
     
     public func onConfirm(completion: @escaping((String) -> Void) ) {
-        self.result = completion
+        DispatchQueue.main.async {
+            self.result = completion
+        }
     }
     
     public func initializeApiKey(APIKey: String, vc: UIViewController) {
@@ -136,21 +152,26 @@ open class PerfittPartners {
         }
     }
     
-    public class AverageSizeController: NSObject, AverageSizeDelegate {
-        func confirm() {
+    public class AverageSizeController: NSObject, SizePickerDelegate {
+        func onConfirm() {
             // move to camera
             switch PerfittPartners.instance.status {
             case .A4:
                 PerfittPartners.instance.getA4Camera()
             case .Kit:
-                PerfittPartners.instance.getKitCamera()
+                
+                if UserDefaults.standard.bool(forKey: "perfittKitStart") {
+                    PerfittPartners.instance.getKitCamera()
+                }
+                else {
+                    PerfittPartners.instance.getKitTutorial()
+                }
+                
             case .none:
                 debugPrint("error!!!!!")
             }
         }
     }
-
-    
 }
 
 

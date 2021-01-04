@@ -136,3 +136,22 @@ extension DateFormatter {
         return formatter
     }()
 }
+
+
+class CustomPickerView: UIPickerView {
+    @IBInspectable var selectorColor: UIColor? = nil
+    @IBInspectable var selectorWidth: CGFloat = 1
+
+    override func didAddSubview(_ subview: UIView) {
+        super.didAddSubview(subview)
+        if let color = selectorColor {
+            if subview.bounds.height <= 1.0 {
+                subview.backgroundColor = color
+            }
+        }
+        if subview.bounds.height <= 1.0 {
+            subview.bounds.size.height = selectorWidth
+            subview.bounds.size.width = 100
+        }
+    }
+}

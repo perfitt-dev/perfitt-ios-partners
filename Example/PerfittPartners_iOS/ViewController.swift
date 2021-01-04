@@ -34,6 +34,7 @@ class ViewController: UIViewController {
         
         // partner사가 작성하는 곳 ( call back 데이터 )
         PerfittPartners.instance.onConfirm(completion: { callback in
+//            DispatchQueue.main.async {
             self.webView.evaluateJavaScript(callback, completionHandler: { (any, err) in
                 if let callBackError = err {
                     debugPrint("callback error: \(callBackError.localizedDescription)")
@@ -41,6 +42,8 @@ class ViewController: UIViewController {
                 }
                 // TODO: any 데이터를 활용해서
             })
+//            }
+            
         })
 
     }

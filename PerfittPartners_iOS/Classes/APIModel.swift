@@ -8,7 +8,7 @@
 import Foundation
 
 public struct FootModel: Codable {
-    var footId: String?
+    var feetId: String?
     var averageSize: Int
     var nickName: String?
     var gender: String?
@@ -21,10 +21,17 @@ public struct ErrorModel: Codable {
 }
 
 struct FeetBody: Codable {
-    var leftImage: String
-    var rightImage: String
+    var left: FootModel?
+    var right: FootModel?
     var sourceType: String?
     var averageSize: Int?
+    
+    struct FootModel: Codable {
+        var image: String?
+        var base: [Double]?
+        var leftRect: [Double]?
+        var rightRect: [Double]?
+    }
 }
 
 struct FeetModel: Codable {
