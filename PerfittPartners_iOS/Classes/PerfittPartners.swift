@@ -104,9 +104,10 @@ open class PerfittPartners {
     }
     
     public func onConfirm(completion: @escaping((String) -> Void) ) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.result = completion
         }
+        
     }
     
     public func initializeApiKey(APIKey: String, vc: UIViewController) {
