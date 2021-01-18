@@ -59,7 +59,7 @@ class FeetResultVC: UIViewController {
         let gender = self.inputGender.selectedSegmentIndex == 0 ? "M" : "F"
         
 //        let body = FootModel(averageSize: PerfittPartners.instance.getAverageSize(), nickName: nickName, gender: gender, customerId: nil)
-        let body = FootModel(feetId: model?.id, averageSize: PerfittPartners.instance.getAverageSize(), nickName: nickName, gender: gender, customerId: nil)
+        let body = FootModel(feetId: model?.id, averageSize: PerfittPartners.instance.getAverageSize(), nickName: nickName, gender: gender, customerId: PerfittPartners.instance.getCustomerId())
         
         self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.activityIndicator)
