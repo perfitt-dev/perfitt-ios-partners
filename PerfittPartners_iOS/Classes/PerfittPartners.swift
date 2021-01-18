@@ -35,6 +35,13 @@ open class PerfittPartners {
         }
     }
     
+    public var nativeResult: ((String) -> Void)?
+    public var nativeCallbackName: String? {
+        didSet {
+            self.nativeResult!(nativeCallbackName ?? "")
+        }
+    }
+    
     public func setAverageSize(to size: Int) {
         self.averageSize = size
     }
@@ -107,18 +114,21 @@ open class PerfittPartners {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.result = completion
         }
-        
+    }
+    
+    public func onNativeConfirm(completion: @escaping( (String) -> Void)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.nativeResult = completion
+        }
+    }
+    
+    public func runSDK() {
+        PerfittPartners.instance.showAverageSizeAlert()
+        PerfittPartners.instance.status = .Kit
     }
     
     public func initializeApiKey(APIKey: String, vc: UIViewController) {
         // TODO: - APIKey 인증 방식 설정
-        /**
-         * APIController.ini().authAPIKey() {
-         *      successHandler( nil),
-         *      failedHandler( { _ in
-         *        failedError("failed auth api key ") } )
-         * }
-         */
         
         // 인증에 성공하면 apikey를 저장합니다!
         self.apiKey = APIKey
@@ -140,8 +150,10 @@ open class PerfittPartners {
     
     public class BridgeJavaScript: NSObject, WKScriptMessageHandler {
         public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+            debugPrint("test message: \(message.name)")
             // PERFITT_SDK ( KIT )
             if (message.name == PerfittPartners.instance.contentKit) {
+                
                 PerfittPartners.instance.showAverageSizeAlert()
                 PerfittPartners.instance.status = .Kit
             }
