@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'PerfittPartners_iOS'
-    s.version          = '1.0.0-alpha10'
+    s.version          = '1.0.0-alpha11'
     s.summary          = 'PerfittPartners_iOS is camera lib'
     
     # This description is used to generate tags and improve search results.
