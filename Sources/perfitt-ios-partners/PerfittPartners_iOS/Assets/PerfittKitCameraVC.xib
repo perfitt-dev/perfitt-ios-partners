@@ -132,18 +132,8 @@
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgY-7K-Fzz" customClass="Motion" customModule="PerfittPartners_iOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="766" width="414" height="96"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOu-Vf-mCl">
-                                <rect key="frame" x="16" y="38" width="10.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="KOu-Vf-mCl" firstAttribute="centerY" secondItem="dgY-7K-Fzz" secondAttribute="centerY" id="4wn-Jc-ZvF"/>
-                            <constraint firstItem="KOu-Vf-mCl" firstAttribute="leading" secondItem="dgY-7K-Fzz" secondAttribute="leading" constant="16" id="CSb-RC-z0E"/>
                             <constraint firstAttribute="height" constant="96" id="T5T-tX-zeH"/>
                         </constraints>
                     </view>
@@ -168,7 +158,6 @@
             </view>
             <connections>
                 <outlet property="balanceLabel" destination="CVb-Ok-WtY" id="xCV-uh-T8J"/>
-                <outlet property="countLabel" destination="KOu-Vf-mCl" id="l8X-d9-npG"/>
                 <outlet property="detectedKitLabel" destination="duL-eI-fMR" id="KGq-oM-Bvm"/>
                 <outlet property="detectedTriangleLabel" destination="rP3-OQ-gIn" id="yFB-0y-HQB"/>
                 <outlet property="footDectionLabel" destination="WR3-Gs-TJY" id="j92-GN-mqj"/>
@@ -181,7 +170,7 @@
                 <outlet property="zoomInButton" destination="lya-c5-baL" id="TjU-oR-M1K"/>
                 <outlet property="zoomOutButton" destination="T0Z-qX-z7T" id="uch-43-Q2T"/>
             </connections>
-            <point key="canvasLocation" x="255" y="81"/>
+            <point key="canvasLocation" x="253.62318840579712" y="80.357142857142847"/>
         </viewController>
     </objects>
     <resources>

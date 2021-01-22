@@ -44,8 +44,6 @@ public class PerfittKitCameraVC: UIViewController {
     @IBOutlet weak var footDectionLabel: UILabel!
     @IBOutlet weak var detectedTriangleLabel: UILabel!
     
-    @IBOutlet weak var countLabel: UILabel!
-    
     
     // 가이드라인과 맞다아있는지 확인하는 변수
     var maxY: CGFloat = 0.0
@@ -388,15 +386,6 @@ extension PerfittKitCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
         // overlayView에 라벨과 텍스트를 업데이트합니다.
         DispatchQueue.main.async {
             self.drawAfterPerformingCalculations(onInferences: displayResult.inferences, withImageSize: CGSize(width: CGFloat(width), height: CGFloat(height)))
-            
-            if self.detectedKitLabel.isHidden && self.detectedTriangleLabel.isHidden && self.footDectionLabel.isHidden {
-                self.successCount += 1
-                self.countLabel.text = "\(self.successCount ?? 0)"
-            }
-            else {
-                self.successCount = 0
-                self.countLabel.text = "\(self.successCount ?? 0)"
-            }
             
             
         }
