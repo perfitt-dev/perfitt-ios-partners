@@ -78,9 +78,13 @@ class FeetResultVC: UIViewController {
             
             
             DispatchQueue.main.async {
-                let callBackResult = "PERFITT_CALLBACK('\(result ?? "")')"
-                PerfittPartners.instance.callbackName = callBackResult
-//                PerfittPartners.instance.nativeCallbackName = result ?? ""
+                if let _ = PerfittPartners.instance.getCustomerId() {
+                    PerfittPartners.instance.nativeCallbackName = result ?? ""
+                }
+                else {
+                    let callBackResult = "PERFITT_CALLBACK('\(result ?? "")')"
+                    PerfittPartners.instance.callbackName = callBackResult
+                }
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.removeFromSuperview()
                 self.navigationController?.dismiss(animated: true, completion: nil)
