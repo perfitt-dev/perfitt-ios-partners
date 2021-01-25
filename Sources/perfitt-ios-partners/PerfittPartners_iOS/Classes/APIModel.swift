@@ -10,7 +10,7 @@ import Foundation
 public struct FootModel: Codable {
     var feetId: String?
     var averageSize: Int
-    var nickName: String?
+    var nickname: String?
     var gender: String?
     var customerId: String?
 }

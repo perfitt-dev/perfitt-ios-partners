@@ -56,11 +56,11 @@ class FeetResultVC: UIViewController {
     }
     
     @IBAction func onConfirm(_ sender: UIButton) {
-        guard let nickName = self.name.text else { return }
+        guard let nickname = self.name.text else { return }
         let gender = self.inputGender.selectedSegmentIndex == 0 ? "M" : "F"
         
 //        let body = FootModel(averageSize: PerfittPartners.instance.getAverageSize(), nickName: nickName, gender: gender, customerId: nil)
-        let body = FootModel(feetId: model?.id, averageSize: PerfittPartners.instance.getAverageSize(), nickName: nickName, gender: gender, customerId: nil)
+        let body = FootModel(feetId: model?.id, averageSize: PerfittPartners.instance.getAverageSize(), nickname: nickname, gender: gender, customerId: PerfittPartners.instance.getCustomerId())
         
         self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.activityIndicator)
@@ -80,7 +80,7 @@ class FeetResultVC: UIViewController {
             DispatchQueue.main.async {
                 let callBackResult = "PERFITT_CALLBACK('\(result ?? "")')"
                 PerfittPartners.instance.callbackName = callBackResult
-                PerfittPartners.instance.nativeCallbackName = result ?? ""
+//                PerfittPartners.instance.nativeCallbackName = result ?? ""
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.removeFromSuperview()
                 self.navigationController?.dismiss(animated: true, completion: nil)

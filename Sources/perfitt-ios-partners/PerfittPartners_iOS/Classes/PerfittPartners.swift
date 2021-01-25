@@ -10,7 +10,7 @@ open class PerfittPartners {
     public static var instance = PerfittPartners()
     
     private var apiKey: String?
-    private var customerID: String?
+    private var customerId: String?
     private var averageSize: Int?
     private var ownerViewController: UIViewController?
     
@@ -27,6 +27,7 @@ open class PerfittPartners {
             return "PERFITT_SDK_A4"
         }
     }
+    
     
     public var result: ((String) -> Void)?
     public var callbackName: String? {
@@ -129,7 +130,8 @@ open class PerfittPartners {
         }
     }
     
-    public func runSDK() {
+    public func runSDK(_ customerId: String) {
+        self.setCustomId(to: customerId)
         PerfittPartners.instance.showAverageSizeAlert()
         PerfittPartners.instance.status = .Kit
     }
@@ -148,11 +150,11 @@ open class PerfittPartners {
     }
     
     public func setCustomId(to customId: String) {
-        self.customerID = customId
+        self.customerId = customId
     }
     
     public func getCustomerId() -> String? {
-        return self.customerID
+        return self.customerId
     }
     
     public class BridgeJavaScript: NSObject, WKScriptMessageHandler {

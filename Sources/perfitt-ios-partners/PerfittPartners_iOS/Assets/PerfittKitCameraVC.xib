@@ -257,7 +257,7 @@
                 <outlet property="zoomInButton" destination="lya-c5-baL" id="TjU-oR-M1K"/>
                 <outlet property="zoomOutButton" destination="T0Z-qX-z7T" id="uch-43-Q2T"/>
             </connections>
-            <point key="canvasLocation" x="255" y="81"/>
+            <point key="canvasLocation" x="253.62318840579712" y="80.357142857142847"/>
         </viewController>
     </objects>
     <resources>
