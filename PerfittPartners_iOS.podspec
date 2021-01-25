@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'PerfittPartners_iOS'
-    s.version          = '1.0.0-alpha8'
+    s.version          = '1.0.0-alpha10'
     s.summary          = 'PerfittPartners_iOS is camera lib'
     
     # This description is used to generate tags and improve search results.
@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
 
     s.frameworks = 'UIKit', 'AVFoundation'
     
-    s.static_framework = true
+    s.static_framework = truegit
     s.dependency 'TensorFlowLiteSwift', '~> 2.2.0'
     
     s.pod_target_xcconfig = {
@@ -47,10 +47,11 @@ Pod::Spec.new do |s|
         'CFBundleIdentifier' => 'org.cocoapods.PerfittPartners-iOS'
     }
     
-    s.resources = 'Sources/PerfittPartners_iOS/**/*'
+    # s.resources = 'Sources/PerfittPartners_iOS/**/*'
+    s.resources = 'PerfittPartners_iOS/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}'
     
-    s.resource_bundles = {
-        'PerfittPartners_iOS' => ['PerfittPartners_iOS/Assets/**/*']
-    }
+#    s.resource_bundles = {
+#        'PerfittPartners_iOS' => ['PerfittPartners_iOS/Assets/**/*']
+#    }
     
 end

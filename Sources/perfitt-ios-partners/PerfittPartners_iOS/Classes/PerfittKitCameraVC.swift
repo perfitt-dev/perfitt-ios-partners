@@ -39,18 +39,16 @@ public class PerfittKitCameraVC: UIViewController {
     
     // 사용자 가이드라인
     var guideLine: UIView = UIView()
-    @IBOutlet weak var balanceLabel: UILabel!
-    @IBOutlet weak var detectedKitLabel: UILabel!
-    @IBOutlet weak var footDectionLabel: UILabel!
-    @IBOutlet weak var detectedTriangleLabel: UILabel!
-    
+    @IBOutlet weak var guideBKView: UIView!
+    @IBOutlet weak var balanceImage: UIImageView!
+    @IBOutlet weak var detectedKitImage: UIImageView!
+    @IBOutlet weak var footDectionImage: UIImageView!
+    @IBOutlet weak var detectedTrianglImage: UIImageView!
     
     // 가이드라인과 맞다아있는지 확인하는 변수
     var maxY: CGFloat = 0.0
     var minY: CGFloat = 0.0
     
-    // 모든 조건이 부합한 횟수
-    var successCount: Int!
     var baseRect: [Double]!
     var leftTriangle: CGRect!
     var rightTriangle: CGRect!
@@ -81,8 +79,7 @@ public class PerfittKitCameraVC: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.successCount = 0
-        UserDefaults.standard.set(true, forKey: "perfittKitStart")
+//        UserDefaults.standard.set(true, forKey: "perfittKitStart")
     }
 
     
@@ -136,13 +133,15 @@ public class PerfittKitCameraVC: UIViewController {
     private func setButtonLayout() {
         self.zoomInButton.layer.cornerRadius = 8
         self.zoomInButton.layer.borderWidth = 1
-        self.zoomInButton.layer.borderColor = UIColor.white.cgColor
+        self.zoomInButton.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.6).cgColor
         self.zoomInButton.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         
         self.zoomOutButton.layer.cornerRadius = 8
         self.zoomOutButton.layer.borderWidth = 1
-        self.zoomOutButton.layer.borderColor = UIColor.white.cgColor
+        self.zoomOutButton.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.6).cgColor
         self.zoomOutButton.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        
+        self.guideBKView.layer.cornerRadius = 4
     }
     
 }
@@ -297,12 +296,7 @@ extension PerfittKitCameraVC {
 extension PerfittKitCameraVC: MotionDelegate {
     public func setCurrentStatus(status: Bool) {
         DispatchQueue.main.async {
-            if status {
-                self.balanceLabel.isHidden = true
-            }
-            else {
-                self.balanceLabel.isHidden = false
-            }
+            self.balanceImage.isHighlighted = status
         }
         
     }
@@ -315,8 +309,7 @@ extension PerfittKitCameraVC: MotionDelegate {
         photoSettings.isAutoStillImageStabilizationEnabled = true
         
         // 화면을 저장합니다.
-        if self.detectedKitLabel.isHidden && self.footDectionLabel.isHidden && self.detectedTriangleLabel.isHidden {
-
+        if self.balanceImage.isHighlighted && self.footDectionImage.isHighlighted && self.detectedTrianglImage.isHighlighted && self.detectedKitImage.isHighlighted {
             stillImageOutput.capturePhoto(with: photoSettings, delegate: self)
         }
         
@@ -378,17 +371,15 @@ extension PerfittKitCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard  (currentTimeMs - previousInferenceTimeMs) >= delayBetweenInferencesMs else { return }
         previousInferenceTimeMs = currentTimeMs
         result = self.modelDataHandler?.runModel(onFrame: pixelBuffer)
-        guard let displayResult = result else { return }
-
-        let width = CVPixelBufferGetWidth(pixelBuffer)
-        let height = CVPixelBufferGetHeight(pixelBuffer)
+//        guard let displayResult = result else { return }
+//
+//        let width = CVPixelBufferGetWidth(pixelBuffer)
+//        let height = CVPixelBufferGetHeight(pixelBuffer)
 
         // overlayView에 라벨과 텍스트를 업데이트합니다.
-        DispatchQueue.main.async {
-            self.drawAfterPerformingCalculations(onInferences: displayResult.inferences, withImageSize: CGSize(width: CGFloat(width), height: CGFloat(height)))
-            
-            
-        }
+//        DispatchQueue.main.async {
+//            self.drawAfterPerformingCalculations(onInferences: displayResult.inferences, withImageSize: CGSize(width: CGFloat(width), height: CGFloat(height)))
+//        }
     }
     
     func drawAfterPerformingCalculations(onInferences inferences: [Inference], withImageSize imageSize:CGSize) {
@@ -398,8 +389,7 @@ extension PerfittKitCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard !inferences.isEmpty else { return }
         
         var objectOverlays: [ObjectOverlay] = []
-        self.leftCollision.backgroundColor = .white
-        self.rightCollision.backgroundColor = .white
+        
         
         for inference in inferences {
             // Translates bounding box rect to current view.
@@ -424,11 +414,6 @@ extension PerfittKitCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
 
             let confidenceValue = Int(inference.confidence * 100.0)
             let string = "\(inference.className)  (\(confidenceValue)%)"
-
-            if self.leftCollision.frame.intersects(convertedRect) && self.rightCollision.frame.intersects(convertedRect){
-                self.leftCollision.backgroundColor = .blue
-                self.rightCollision.backgroundColor = .blue
-            }
             
 //            if self.leftCollision.bounds.intersects(convertedRect) && self.rightCollision.bounds.intersects(convertedRect) {
 //                self.leftCollision.backgroundColor = .blue
@@ -464,7 +449,9 @@ extension PerfittKitCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
 extension PerfittKitCameraVC: ModelDataHandlerDelegate {
     func detectedFoot(status: Bool) {
         DispatchQueue.main.async {
-            self.footDectionLabel.isHidden = status
+            
+            self.footDectionImage.isHighlighted = status
+//            self.footDectionLabel.isHidden = status
         }
         
     }
@@ -495,11 +482,10 @@ extension PerfittKitCameraVC: ModelDataHandlerDelegate {
         
         DispatchQueue.main.async {
             if leftStatus && rightStatus {
-                self.detectedTriangleLabel.isHidden = true
+                self.detectedTrianglImage.isHighlighted = true
             }
             else {
-                self.detectedTriangleLabel.isHidden = false
-                self.detectedTriangleLabel.text = "삼각형이 탐지되지 않았습니다. 조금더 밝은곳에서 촬영해 주세요."
+                self.detectedTrianglImage.isHighlighted = false
             }
         }
     }
@@ -518,7 +504,7 @@ extension PerfittKitCameraVC: ModelDataHandlerDelegate {
     
     func isKit(status: Bool) {
         DispatchQueue.main.async {
-            self.detectedKitLabel.isHidden = status
+            self.detectedKitImage.isHighlighted = status
         }
     }
 }
