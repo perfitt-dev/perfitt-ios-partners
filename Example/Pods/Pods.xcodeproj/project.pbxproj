@@ -9,212 +9,210 @@
 /* Begin PBXAggregateTarget section */
 		AC559E53E13B6FBEF4F5CC310A73AFE6 /* TensorFlowLiteC */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 720A43EB755350D09DD39700C819D30F /* Build configuration list for PBXAggregateTarget "TensorFlowLiteC" */;
+			buildConfigurationList = 0E4BC850FE6C0F02CCAFC5A607ADC7EE /* Build configuration list for PBXAggregateTarget "TensorFlowLiteC" */;
 			buildPhases = (
 			);
 			dependencies = (
 			);
 			name = TensorFlowLiteC;
-			productName = TensorFlowLiteC;
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		01411777DCD722D3CE92324103E3D898 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF5A8A2A6E468BA02EE7F5C0810E207 /* Extension.swift */; };
-		0239664E3F791F071068592E73B40D06 /* PerfittKitCameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3F03407B9C6BC2F9F6951435FBFF43 /* PerfittKitCameraVC.swift */; };
-		07BD34711CBBCD09946DC99B82EBA1CB /* QuantizationParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E54EA83E3D741A1C97008B191DEDCB /* QuantizationParameters.swift */; };
-		0825757CF7DF76677A3EF556784F5C5A /* SizePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61D27326D3B07E2903C0B9F8BEC2B24C /* SizePicker.xib */; };
-		1435B976E47F30D7983973FE00D6B204 /* TensorFlowLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5749A71B8B9BE3A1796E2F4C7F81F2B /* TensorFlowLite.swift */; };
-		16AB953F9DBE7C5BABAACC3EFD9D32EF /* PerfittKitCameraVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11E903F2A4A2B3BDDDB27B700CE82A2A /* PerfittKitCameraVC.xib */; };
-		1BD609FDC7D190E90815140D2DD91A99 /* ModelDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BE2BCEADDC1FAADB8BC53AF706DF33 /* ModelDataHandler.swift */; };
-		277F869008F986378F3D9E3027D7BEFD /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B32194130A2988297268351556CED2 /* APIModel.swift */; };
+		008A066D671341A014463890264F8525 /* model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 8F9850764466011036F5219696015EA0 /* model.tflite */; };
+		01411777DCD722D3CE92324103E3D898 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C11A0372F6D6B2ABF32082CA24ED2 /* Extension.swift */; };
+		0239664E3F791F071068592E73B40D06 /* PerfittKitCameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD863C30518ABFFA482F9ECCC2615BA /* PerfittKitCameraVC.swift */; };
+		12803D3988D87C7B2A84ECC634F0A0DA /* FeetResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85CD7E7156517A26891971FBF7662C47 /* FeetResultVC.xib */; };
+		1BD609FDC7D190E90815140D2DD91A99 /* ModelDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B8304917F57A0B9DD4487F1870913B /* ModelDataHandler.swift */; };
+		212DA9F8689AD4FC33FB9EAFD7C6A18D /* CaptureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FABFEDA2B500D4FED142B476EA1ED47 /* CaptureVC.xib */; };
+		277F869008F986378F3D9E3027D7BEFD /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671FD7AD8DAFCB1119413B9CC22BD67F /* APIModel.swift */; };
 		28A3B884751F22D2741AD5B2D1CC1CCC /* Pods-PerfittPartners_iOS_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FB514986FD926E5A91844F79720B78EF /* Pods-PerfittPartners_iOS_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2FA6FB80582FD908D92E785E62F7E56E /* dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5BA36459609E76D2F7EC3D3560EADA5B /* dict.txt */; };
-		330FC104617211F88F32E4C6FFC131A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		37ECD7D2BDA54C63D15D1F22D22EE074 /* PerfittKitTutorialVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD76DC2AA326464F2C85B929E9BA08A /* PerfittKitTutorialVC.xib */; };
-		3D92C935A639E972D4CFAF30E175A151 /* PerfittCameraVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A0100BE4AD830911DA981AFEF69D1A /* PerfittCameraVC.xib */; };
-		3E379224506BD0AC557560FEF41D2081 /* CaptureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B872BD969965E6F5028AD8BFC2E0EE /* CaptureVC.xib */; };
-		49570C37209D4A7F22DC876F25246D11 /* CaptureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B872BD969965E6F5028AD8BFC2E0EE /* CaptureVC.xib */; };
-		4D61A9E06018865793DAA92BA953184C /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8710CD5738DE2620B953A2171C51AA7B /* APIController.swift */; };
-		4EC6AAC9B48DFFD44FBCBB8F8D38B624 /* SizePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362617D48D4416E247F546882E31BB76 /* SizePicker.swift */; };
+		36D054AB1FDD428EBFAFD91EEAACC3C0 /* PerfittKitTutorialVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 817FDA709A6C5F9F5CC3AA30B9B74157 /* PerfittKitTutorialVC.xib */; };
+		3BD49C742CA6E63CFE831BF35113F56D /* dict_kit.txt in Resources */ = {isa = PBXBuildFile; fileRef = DF169C903EF70780F5C2E4262CB45C5A /* dict_kit.txt */; };
+		3C44D7F585460146D1DEAE8CF8B0A8D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		3C7C2A4D8C53160FC3012EFC6EEFAF8E /* model_kit.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 33C6AB037119B950A5E478E87264F7C6 /* model_kit.tflite */; };
+		4A1156352FEC430054F0F7A1029809F6 /* PerfittKitTutorialVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 817FDA709A6C5F9F5CC3AA30B9B74157 /* PerfittKitTutorialVC.xib */; };
+		4D21CCC3F2FD1958C8FAC29717973B08 /* PerfittCameraVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F21CCCFCE20E5CFFF1AAA65B8BCD6CB2 /* PerfittCameraVC.xib */; };
+		4D61A9E06018865793DAA92BA953184C /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6ED5450866CD4A038A109DBB67CA80 /* APIController.swift */; };
+		4EC6AAC9B48DFFD44FBCBB8F8D38B624 /* SizePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72E62921E3E9728DBF018929762BDB4 /* SizePicker.swift */; };
 		562EACAEA1A8E6EB50691E6B95B9195C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		5F2E079378847D314F03E28DE5228534 /* PerfittPartners_iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C5D324335902340684F0CCE1687879 /* PerfittPartners_iOS-dummy.m */; };
-		6030CBFF593E68BB2800C29D7B752C04 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8ECC1FC6EE0DA5AD043C75F1FC2992 /* VideoView.swift */; };
+		5F2E079378847D314F03E28DE5228534 /* PerfittPartners_iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AFCE2020510487D6BAAC258EB6F9B971 /* PerfittPartners_iOS-dummy.m */; };
+		6030CBFF593E68BB2800C29D7B752C04 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0678157892AE32F0A67C9A4AD22B44A2 /* VideoView.swift */; };
+		65F6B806690DCDBD378262AB6C1798B6 /* SizePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D4D21A1F8148AC68B8B736E558468B7 /* SizePicker.xib */; };
 		6764BC751C100E1314053F2928F50C9B /* Pods-PerfittPartners_iOS_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0013AD9F5456FBA897526BCEA4307F67 /* Pods-PerfittPartners_iOS_Tests-dummy.m */; };
-		69D5A23BDAB7BA5D686218404F6F15AC /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D3E0C292E1D54842B1F3631561924 /* OverlayView.swift */; };
-		6AB73DE22E6D002AFAC9BCFD93A0DCDF /* PerfittPartners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28908382AFD382DFC922ACC562E7D000 /* PerfittPartners.swift */; };
-		6AC9768D935D2925556253D7AF79B9AC /* Tensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B0658433A1DA500B01381C2A29CA55 /* Tensor.swift */; };
-		6EAEB8A910097507F023041F4AF7DE95 /* PerfittKitTutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A7707668F20B1B5DD4A353FF8FE25B /* PerfittKitTutorialVC.swift */; };
-		7516FF4BBA4BA2BDCB0C2130DB56FEF5 /* SizePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61D27326D3B07E2903C0B9F8BEC2B24C /* SizePicker.xib */; };
-		75E9441ECC4550B0FBDBA204BF6F7B23 /* model_kit.tflite in Resources */ = {isa = PBXBuildFile; fileRef = A3F8E9557CB2B7E8CB6E3B10D39F2398 /* model_kit.tflite */; };
-		7742FB6CBA920528E999636DD0DAAD11 /* PerfittCameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B77793C8D117B81B5C0A8317924740 /* PerfittCameraVC.swift */; };
-		7A990B4197F881EB2DC8547E17FE8728 /* InterpreterError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF18535EFDC612966854044FD570764 /* InterpreterError.swift */; };
-		7C351B60A3C322C90ADF6BB593248E99 /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC331E5479F8E7F9C46E8846D7B710B /* Motion.swift */; };
-		7C516C17736D97B9ED053C55783495F0 /* PerfittCameraVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A0100BE4AD830911DA981AFEF69D1A /* PerfittCameraVC.xib */; };
-		94818D802F0D0BECD6DAD8D96A73666C /* FeetResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CEFD9C5C2913485444256BC514426EE /* FeetResultVC.xib */; };
-		9590D8D6051AB79BCC3EF8D9D87FCA72 /* PerfittKitTutorialVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD76DC2AA326464F2C85B929E9BA08A /* PerfittKitTutorialVC.xib */; };
-		9613D6A8ECA1BA7D0DA65C2113191762 /* CaptureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF37EB3B3BCB85D91D4D832B88D15EC /* CaptureVC.swift */; };
+		69D5A23BDAB7BA5D686218404F6F15AC /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63575E0476C37CC46B8E327A64B7DA5E /* OverlayView.swift */; };
+		6AB73DE22E6D002AFAC9BCFD93A0DCDF /* PerfittPartners.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73F42A0E732E1E4CF579C1E2AA1FDFC /* PerfittPartners.swift */; };
+		6C584BCB201DAF32F27581DED001725A /* Tensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B0658433A1DA500B01381C2A29CA55 /* Tensor.swift */; };
+		6EAEB8A910097507F023041F4AF7DE95 /* PerfittKitTutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E8F8EC5B9461D3CEAB89BB08F6CDAB /* PerfittKitTutorialVC.swift */; };
+		7742FB6CBA920528E999636DD0DAAD11 /* PerfittCameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036145A71604F7474625CA53B2FAFB2C /* PerfittCameraVC.swift */; };
+		7C351B60A3C322C90ADF6BB593248E99 /* Motion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46DCE40A804B6ABF2DFF61B6B44D28F /* Motion.swift */; };
+		801A468B33A6E60A0DBC379B10934D43 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DEEE5839289BAF4A77F053163A252B /* Model.swift */; };
+		8125DE312DD85E576DF3EFC43AEB0F01 /* InterpreterError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF18535EFDC612966854044FD570764 /* InterpreterError.swift */; };
+		9613D6A8ECA1BA7D0DA65C2113191762 /* CaptureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709602B1DF03BA2A38B6E282A92E3497 /* CaptureVC.swift */; };
+		968135A035E6ED5BF11846926DE74104 /* TensorFlowLiteSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C4BC578385EDC42291BE039C542771 /* TensorFlowLiteSwift-dummy.m */; };
 		9D6C3803BAD8970584EEC76BCA15D46F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		A63820663A10FC4C1AFDFF7DE4729CC9 /* MetalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA18C519BBA17643801F0059C8ABD2F /* MetalDelegate.swift */; };
+		9E4CD7F9EC9352233D2C8B6C3DEDF5A6 /* SizePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D4D21A1F8148AC68B8B736E558468B7 /* SizePicker.xib */; };
+		9EC254EB9A7B5E57AD486E73B20E0C07 /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D196D2D02DB0243857616CFBC828D0 /* Delegate.swift */; };
+		A8E1BA65070A975F61C175D1850AD06D /* FeetResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85CD7E7156517A26891971FBF7662C47 /* FeetResultVC.xib */; };
+		AE3884F4937E3DEE9D2BB6C129F3D6DB /* MetalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA18C519BBA17643801F0059C8ABD2F /* MetalDelegate.swift */; };
 		AF6BA305023731605047B7CA4FB4D901 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		B4F5E166CE5FF040C94F8D46E1DF5D31 /* TensorFlowLiteSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FD879A3B7FBF0BD96966E3C9AB12B97F /* TensorFlowLiteSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C2A0DDF0B85732D26CBE12CB7C9F8C24 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DEEE5839289BAF4A77F053163A252B /* Model.swift */; };
-		C356E33043F968C3B7D272E3A14AE1E8 /* dict_kit.txt in Resources */ = {isa = PBXBuildFile; fileRef = 46B2AAA43424026F6617F66BEE156C33 /* dict_kit.txt */; };
-		C3D490192516C917600299C5508BAA57 /* PerfittKitCameraVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11E903F2A4A2B3BDDDB27B700CE82A2A /* PerfittKitCameraVC.xib */; };
+		C0FCE6852BBDF3D039D4B22917073F26 /* PerfittCameraVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F21CCCFCE20E5CFFF1AAA65B8BCD6CB2 /* PerfittCameraVC.xib */; };
 		CB16AAFAA34C03E7C09049A14CCCB7BB /* Pods-PerfittPartners_iOS_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ADC0D7BAF11C8A7AA0659D0B51BFF443 /* Pods-PerfittPartners_iOS_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CDD05041101216FEBCF21168130EA2D0 /* model.tflite in Resources */ = {isa = PBXBuildFile; fileRef = 8D67C8D61DE5E91BA51574EC2DEBF8A4 /* model.tflite */; };
+		CDDC7B50D20A1A2D9D94D66EDF877B4B /* CaptureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FABFEDA2B500D4FED142B476EA1ED47 /* CaptureVC.xib */; };
 		D79EBDB0248ECD672D942EE9601DDED4 /* Pods-PerfittPartners_iOS_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 898A9333F60B5ADD534E4BC8F38C43F1 /* Pods-PerfittPartners_iOS_Example-dummy.m */; };
-		DFA4D6590DEFD32591D23B03D2FEB143 /* TensorFlowLiteSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C4BC578385EDC42291BE039C542771 /* TensorFlowLiteSwift-dummy.m */; };
-		E231D93112E370B45C1DC06BA57C75E4 /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D196D2D02DB0243857616CFBC828D0 /* Delegate.swift */; };
-		E83CB14458AC58C917035AF8FDEA1E9B /* PerfittPartners_iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E04148D176719860E38D640B55094C /* PerfittPartners_iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EB4C9B9CFC05B198CCA05D1D887FF8B4 /* Interpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F14F8FDFC382CFC76EF3DF9AE89174 /* Interpreter.swift */; };
-		EB58536897626BC5F2DC34DCD21F995D /* PartnersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CC30728816F285082C244F808D30F5 /* PartnersVC.swift */; };
-		EF2D677583AA5B5D544AF0D47BD0592C /* FeetResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C87BE9A1254BB765C0FB51680BA16B /* FeetResultVC.swift */; };
-		F0738F2C310E1F6C89094A080095332D /* FeetResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CEFD9C5C2913485444256BC514426EE /* FeetResultVC.xib */; };
-		F19E12033DEFAE215A4BC1A6863C7D6B /* APIConsts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0920B6AA26146492A40A6A93746ABF /* APIConsts.swift */; };
+		DBB940FA083E5E2E4C6B486A5404F96B /* PerfittKitCameraVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D9E9C2F1AB3410412121DB4F1561C3A /* PerfittKitCameraVC.xib */; };
+		E1DD7D5BCD49617A67C478332985DD75 /* TensorFlowLiteSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FD879A3B7FBF0BD96966E3C9AB12B97F /* TensorFlowLiteSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E39BE7EC9B1F3EDA54AA43FF8AC9709B /* dict.txt in Resources */ = {isa = PBXBuildFile; fileRef = 30B2060C2BA03D5D95B7E75DE47661CE /* dict.txt */; };
+		E67A073E03760A88BED6158953324D17 /* Interpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F14F8FDFC382CFC76EF3DF9AE89174 /* Interpreter.swift */; };
+		E70AF28E6AD9B64D98CF4087B8D6D2E5 /* QuantizationParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E54EA83E3D741A1C97008B191DEDCB /* QuantizationParameters.swift */; };
+		E83CB14458AC58C917035AF8FDEA1E9B /* PerfittPartners_iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B21BC67670F5C7F0228C9FBA817A307 /* PerfittPartners_iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EB58536897626BC5F2DC34DCD21F995D /* PartnersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4113139C7B14686B0B026241CDE9138 /* PartnersVC.swift */; };
+		EF2D677583AA5B5D544AF0D47BD0592C /* FeetResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0286E89BCA1337A72DA7FDA4433DA6 /* FeetResultVC.swift */; };
+		EF72483C563D5188AD618E15C0BDC3C7 /* PerfittKitCameraVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D9E9C2F1AB3410412121DB4F1561C3A /* PerfittKitCameraVC.xib */; };
+		F19E12033DEFAE215A4BC1A6863C7D6B /* APIConsts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA252EC0DEA34AE3A321DA650F9B133 /* APIConsts.swift */; };
+		F7D8377F01DA70F418EA33938BB0B6AB /* TensorFlowLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5749A71B8B9BE3A1796E2F4C7F81F2B /* TensorFlowLite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2C4EFD8E29AAF559A2EC826ECDB88787 /* PBXContainerItemProxy */ = {
+		33DAA62745E0BA8E0306CA34093A7C71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AC559E53E13B6FBEF4F5CC310A73AFE6;
+			remoteInfo = TensorFlowLiteC;
+		};
+		4282CE770B79A326847CDD630968F973 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B2CE9C8448581EF177F68CFD65CF238B;
 			remoteInfo = "Pods-PerfittPartners_iOS_Example";
 		};
-		6264A6AC67DDF92AC95C68EA29C9760D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AC559E53E13B6FBEF4F5CC310A73AFE6;
-			remoteInfo = TensorFlowLiteC;
-		};
-		735286925DDC207EA447D051FAFC65A0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AC559E53E13B6FBEF4F5CC310A73AFE6;
-			remoteInfo = TensorFlowLiteC;
-		};
-		785AB3F7DF63AC15793D7CE55EAB4411 /* PBXContainerItemProxy */ = {
+		5620C8DBD4C259112185FBAF08272695 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 10418167F619D6DA72BADAD10F9EC02B;
 			remoteInfo = TensorFlowLiteSwift;
 		};
-		AC964883E8D83F49F3753EB679393ADD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0BC8CC5EA43DC75631B33904BA6B8E97;
-			remoteInfo = PerfittPartners_iOS;
-		};
-		C2004CBE6E1B66D44DDE2354D27D615A /* PBXContainerItemProxy */ = {
+		5BBA929138C0AB80D4DDD2CFB8656B2D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 46559E07E5CA88CC5CD07A08415992A8;
 			remoteInfo = "PerfittPartners_iOS-PerfittPartners_iOS";
 		};
-		F30BE360DBA9AC01D7F518F3CC8A821C /* PBXContainerItemProxy */ = {
+		C42920721723571382C826FBFC658341 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0BC8CC5EA43DC75631B33904BA6B8E97;
+			remoteInfo = PerfittPartners_iOS;
+		};
+		C9B4B37DDD2F2E769DC004AD4D4CB2D4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 10418167F619D6DA72BADAD10F9EC02B;
 			remoteInfo = TensorFlowLiteSwift;
 		};
+		DDF8883BD6DEBE62C4FBC60847142311 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AC559E53E13B6FBEF4F5CC310A73AFE6;
+			remoteInfo = TensorFlowLiteC;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0013AD9F5456FBA897526BCEA4307F67 /* Pods-PerfittPartners_iOS_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PerfittPartners_iOS_Tests-dummy.m"; sourceTree = "<group>"; };
-		03EED86568A8B13F0971E214D582BD95 /* ResourceBundle-PerfittPartners_iOS-PerfittPartners_iOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-PerfittPartners_iOS-PerfittPartners_iOS-Info.plist"; sourceTree = "<group>"; };
+		036145A71604F7474625CA53B2FAFB2C /* PerfittCameraVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PerfittCameraVC.swift; path = PerfittPartners_iOS/Classes/PerfittCameraVC.swift; sourceTree = "<group>"; };
 		05A8B0DD658BA222059BB7D019E2C845 /* Pods-PerfittPartners_iOS_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PerfittPartners_iOS_Tests-Info.plist"; sourceTree = "<group>"; };
-		0B5C3A326AB38E3D598105CDB217BE11 /* PerfittPartners_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PerfittPartners_iOS.debug.xcconfig; sourceTree = "<group>"; };
-		11E903F2A4A2B3BDDDB27B700CE82A2A /* PerfittKitCameraVC.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PerfittKitCameraVC.xib; sourceTree = "<group>"; };
-		15B872BD969965E6F5028AD8BFC2E0EE /* CaptureVC.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = CaptureVC.xib; sourceTree = "<group>"; };
+		0678157892AE32F0A67C9A4AD22B44A2 /* VideoView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VideoView.swift; path = PerfittPartners_iOS/Classes/VideoView.swift; sourceTree = "<group>"; };
+		0CC68C0BDD9CFC5E9482C1B87DFAB19B /* ResourceBundle-PerfittPartners_iOS-PerfittPartners_iOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-PerfittPartners_iOS-PerfittPartners_iOS-Info.plist"; sourceTree = "<group>"; };
+		0D4D21A1F8148AC68B8B736E558468B7 /* SizePicker.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = SizePicker.xib; path = PerfittPartners_iOS/Assets/SizePicker.xib; sourceTree = "<group>"; };
+		1573B2D1C9232DA1767BC88D75D114CB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		195023F1232F59DC7609EC8B27ABF4CC /* TensorFlowLiteC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TensorFlowLiteC.debug.xcconfig; sourceTree = "<group>"; };
-		19BE2BCEADDC1FAADB8BC53AF706DF33 /* ModelDataHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ModelDataHandler.swift; path = PerfittPartners_iOS/Classes/ModelDataHandler.swift; sourceTree = "<group>"; };
 		1AA18C519BBA17643801F0059C8ABD2F /* MetalDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MetalDelegate.swift; path = tensorflow/lite/experimental/swift/Sources/MetalDelegate.swift; sourceTree = "<group>"; };
 		1CD4C4486D07871E971C4C0191DBF419 /* Pods-PerfittPartners_iOS_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PerfittPartners_iOS_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		256C11A0372F6D6B2ABF32082CA24ED2 /* Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = PerfittPartners_iOS/Classes/Extension.swift; sourceTree = "<group>"; };
 		25E1663DC2EADFFA6C8B04A20662A1F4 /* Pods-PerfittPartners_iOS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PerfittPartners_iOS_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		26C4BC578385EDC42291BE039C542771 /* TensorFlowLiteSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TensorFlowLiteSwift-dummy.m"; sourceTree = "<group>"; };
-		282A7B36CF79F5C26DCEAC35115193CD /* PerfittPartners_iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = PerfittPartners_iOS.modulemap; sourceTree = "<group>"; };
-		28908382AFD382DFC922ACC562E7D000 /* PerfittPartners.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PerfittPartners.swift; path = PerfittPartners_iOS/Classes/PerfittPartners.swift; sourceTree = "<group>"; };
-		29A7707668F20B1B5DD4A353FF8FE25B /* PerfittKitTutorialVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PerfittKitTutorialVC.swift; path = PerfittPartners_iOS/Classes/PerfittKitTutorialVC.swift; sourceTree = "<group>"; };
+		28B8304917F57A0B9DD4487F1870913B /* ModelDataHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ModelDataHandler.swift; path = PerfittPartners_iOS/Classes/ModelDataHandler.swift; sourceTree = "<group>"; };
+		2ED792B78F503B44263948D40824FF45 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		30B2060C2BA03D5D95B7E75DE47661CE /* dict.txt */ = {isa = PBXFileReference; includeInIndex = 1; name = dict.txt; path = PerfittPartners_iOS/Assets/dict.txt; sourceTree = "<group>"; };
+		30BB2FE4F361B7FA003A74A5C96AADF7 /* PerfittPartners_iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PerfittPartners_iOS-prefix.pch"; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		362617D48D4416E247F546882E31BB76 /* SizePicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SizePicker.swift; path = PerfittPartners_iOS/Classes/SizePicker.swift; sourceTree = "<group>"; };
-		3D0920B6AA26146492A40A6A93746ABF /* APIConsts.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIConsts.swift; path = PerfittPartners_iOS/Classes/APIConsts.swift; sourceTree = "<group>"; };
-		3E8D3E0C292E1D54842B1F3631561924 /* OverlayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OverlayView.swift; path = PerfittPartners_iOS/Classes/OverlayView.swift; sourceTree = "<group>"; };
-		3F8ECC1FC6EE0DA5AD043C75F1FC2992 /* VideoView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VideoView.swift; path = PerfittPartners_iOS/Classes/VideoView.swift; sourceTree = "<group>"; };
+		33C6AB037119B950A5E478E87264F7C6 /* model_kit.tflite */ = {isa = PBXFileReference; includeInIndex = 1; name = model_kit.tflite; path = PerfittPartners_iOS/Assets/model_kit.tflite; sourceTree = "<group>"; };
+		3B6ED5450866CD4A038A109DBB67CA80 /* APIController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIController.swift; path = PerfittPartners_iOS/Classes/APIController.swift; sourceTree = "<group>"; };
 		44A59D45E1BE4745D90D630D75391594 /* Pods-PerfittPartners_iOS_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PerfittPartners_iOS_Example-resources.sh"; sourceTree = "<group>"; };
 		46003A739E69558B2E14665BB651CF9F /* Pods-PerfittPartners_iOS_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PerfittPartners_iOS_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		46B2AAA43424026F6617F66BEE156C33 /* dict_kit.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = dict_kit.txt; sourceTree = "<group>"; };
-		492B5329E74E95ECAB1481FF4F573DE3 /* Classes */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = Classes; path = PerfittPartners_iOS/Classes; sourceTree = "<group>"; };
-		49E04148D176719860E38D640B55094C /* PerfittPartners_iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PerfittPartners_iOS-umbrella.h"; sourceTree = "<group>"; };
-		4CEFD9C5C2913485444256BC514426EE /* FeetResultVC.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = FeetResultVC.xib; sourceTree = "<group>"; };
+		492907CDE832AEB2A022438039683AE4 /* PerfittPartners_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PerfittPartners_iOS.debug.xcconfig; sourceTree = "<group>"; };
 		4DEF9604B3A10391246BB01C3B360192 /* TensorFlowLiteSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TensorFlowLiteSwift.release.xcconfig; sourceTree = "<group>"; };
+		4FD863C30518ABFFA482F9ECCC2615BA /* PerfittKitCameraVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PerfittKitCameraVC.swift; path = PerfittPartners_iOS/Classes/PerfittKitCameraVC.swift; sourceTree = "<group>"; };
 		548B48E00FF2C684ED6E121F1D72404E /* Pods-PerfittPartners_iOS_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PerfittPartners_iOS_Example-Info.plist"; sourceTree = "<group>"; };
 		54C2A4572BAC0129136EABBE69317429 /* Pods-PerfittPartners_iOS_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PerfittPartners_iOS_Example.modulemap"; sourceTree = "<group>"; };
 		552B5132346D992F2C71A1175D5F1161 /* Pods-PerfittPartners_iOS_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PerfittPartners_iOS_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		5BA36459609E76D2F7EC3D3560EADA5B /* dict.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = dict.txt; sourceTree = "<group>"; };
-		5BD76DC2AA326464F2C85B929E9BA08A /* PerfittKitTutorialVC.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PerfittKitTutorialVC.xib; sourceTree = "<group>"; };
-		61D27326D3B07E2903C0B9F8BEC2B24C /* SizePicker.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = SizePicker.xib; sourceTree = "<group>"; };
 		62B0658433A1DA500B01381C2A29CA55 /* Tensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Tensor.swift; path = tensorflow/lite/experimental/swift/Sources/Tensor.swift; sourceTree = "<group>"; };
-		66734C14247895E4C150F3936526B0D8 /* PerfittPartners_iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PerfittPartners_iOS-prefix.pch"; sourceTree = "<group>"; };
+		63575E0476C37CC46B8E327A64B7DA5E /* OverlayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OverlayView.swift; path = PerfittPartners_iOS/Classes/OverlayView.swift; sourceTree = "<group>"; };
+		671FD7AD8DAFCB1119413B9CC22BD67F /* APIModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIModel.swift; path = PerfittPartners_iOS/Classes/APIModel.swift; sourceTree = "<group>"; };
 		68D196D2D02DB0243857616CFBC828D0 /* Delegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Delegate.swift; path = tensorflow/lite/experimental/swift/Sources/Delegate.swift; sourceTree = "<group>"; };
-		69F8EF619EEAF03E6A922FA68D94F322 /* PerfittPartners_iOS.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerfittPartners_iOS.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		69F8EF619EEAF03E6A922FA68D94F322 /* PerfittPartners_iOS.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = PerfittPartners_iOS.bundle; path = "PerfittPartners_iOS-PerfittPartners_iOS.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AF18535EFDC612966854044FD570764 /* InterpreterError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InterpreterError.swift; path = tensorflow/lite/experimental/swift/Sources/InterpreterError.swift; sourceTree = "<group>"; };
-		70C5D324335902340684F0CCE1687879 /* PerfittPartners_iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PerfittPartners_iOS-dummy.m"; sourceTree = "<group>"; };
-		75B32194130A2988297268351556CED2 /* APIModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIModel.swift; path = PerfittPartners_iOS/Classes/APIModel.swift; sourceTree = "<group>"; };
-		7AF37EB3B3BCB85D91D4D832B88D15EC /* CaptureVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CaptureVC.swift; path = PerfittPartners_iOS/Classes/CaptureVC.swift; sourceTree = "<group>"; };
+		709602B1DF03BA2A38B6E282A92E3497 /* CaptureVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CaptureVC.swift; path = PerfittPartners_iOS/Classes/CaptureVC.swift; sourceTree = "<group>"; };
+		7B21BC67670F5C7F0228C9FBA817A307 /* PerfittPartners_iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PerfittPartners_iOS-umbrella.h"; sourceTree = "<group>"; };
+		7D9E9C2F1AB3410412121DB4F1561C3A /* PerfittKitCameraVC.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = PerfittKitCameraVC.xib; path = PerfittPartners_iOS/Assets/PerfittKitCameraVC.xib; sourceTree = "<group>"; };
 		7DC911E4735E7FF695F58024B3BA19FC /* TensorFlowLiteC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TensorFlowLiteC.release.xcconfig; sourceTree = "<group>"; };
+		7FABFEDA2B500D4FED142B476EA1ED47 /* CaptureVC.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = CaptureVC.xib; path = PerfittPartners_iOS/Assets/CaptureVC.xib; sourceTree = "<group>"; };
+		817FDA709A6C5F9F5CC3AA30B9B74157 /* PerfittKitTutorialVC.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = PerfittKitTutorialVC.xib; path = PerfittPartners_iOS/Assets/PerfittKitTutorialVC.xib; sourceTree = "<group>"; };
+		85CD7E7156517A26891971FBF7662C47 /* FeetResultVC.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = FeetResultVC.xib; path = PerfittPartners_iOS/Assets/FeetResultVC.xib; sourceTree = "<group>"; };
 		85E54EA83E3D741A1C97008B191DEDCB /* QuantizationParameters.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuantizationParameters.swift; path = tensorflow/lite/experimental/swift/Sources/QuantizationParameters.swift; sourceTree = "<group>"; };
-		8710CD5738DE2620B953A2171C51AA7B /* APIController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIController.swift; path = PerfittPartners_iOS/Classes/APIController.swift; sourceTree = "<group>"; };
-		87A0100BE4AD830911DA981AFEF69D1A /* PerfittCameraVC.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = PerfittCameraVC.xib; sourceTree = "<group>"; };
 		898A9333F60B5ADD534E4BC8F38C43F1 /* Pods-PerfittPartners_iOS_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PerfittPartners_iOS_Example-dummy.m"; sourceTree = "<group>"; };
 		89DEEE5839289BAF4A77F053163A252B /* Model.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Model.swift; path = tensorflow/lite/experimental/swift/Sources/Model.swift; sourceTree = "<group>"; };
-		8AC331E5479F8E7F9C46E8846D7B710B /* Motion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Motion.swift; path = PerfittPartners_iOS/Classes/Motion.swift; sourceTree = "<group>"; };
-		8C8759238E1C46C469C2142A07FDCBD8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		8D67C8D61DE5E91BA51574EC2DEBF8A4 /* model.tflite */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; path = model.tflite; sourceTree = "<group>"; };
-		95D16A66EFA624DD08B2E5693F42B9FA /* Pods_PerfittPartners_iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerfittPartners_iOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F9850764466011036F5219696015EA0 /* model.tflite */ = {isa = PBXFileReference; includeInIndex = 1; name = model.tflite; path = PerfittPartners_iOS/Assets/model.tflite; sourceTree = "<group>"; };
+		95D16A66EFA624DD08B2E5693F42B9FA /* Pods_PerfittPartners_iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PerfittPartners_iOS_Example.framework; path = "Pods-PerfittPartners_iOS_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		963262264F33EB99FFBDECD72CFD5231 /* Pods-PerfittPartners_iOS_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PerfittPartners_iOS_Tests.modulemap"; sourceTree = "<group>"; };
-		9767081273C15E5DF42BE43D75AB645F /* PerfittPartners_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PerfittPartners_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9BCEE419D886ADDC5314F3753A4950BE /* PerfittPartners_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PerfittPartners_iOS.release.xcconfig; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A3C87BE9A1254BB765C0FB51680BA16B /* FeetResultVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FeetResultVC.swift; path = PerfittPartners_iOS/Classes/FeetResultVC.swift; sourceTree = "<group>"; };
-		A3F8E9557CB2B7E8CB6E3B10D39F2398 /* model_kit.tflite */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; path = model_kit.tflite; sourceTree = "<group>"; };
+		9767081273C15E5DF42BE43D75AB645F /* PerfittPartners_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PerfittPartners_iOS.framework; path = PerfittPartners_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9DA252EC0DEA34AE3A321DA650F9B133 /* APIConsts.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIConsts.swift; path = PerfittPartners_iOS/Classes/APIConsts.swift; sourceTree = "<group>"; };
+		9E0C5FB594A6A5F62D8EC00D4FE003E5 /* PerfittPartners_iOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "PerfittPartners_iOS-Info.plist"; sourceTree = "<group>"; };
+		9FA433443FB4D7A62E2A23DA04586AF4 /* PerfittPartners_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PerfittPartners_iOS.release.xcconfig; sourceTree = "<group>"; };
 		A5060FDF49BFDF183010E92441345498 /* TensorFlowLiteC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TensorFlowLiteC.framework; path = Frameworks/TensorFlowLiteC.framework; sourceTree = "<group>"; };
 		A5749A71B8B9BE3A1796E2F4C7F81F2B /* TensorFlowLite.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TensorFlowLite.swift; path = tensorflow/lite/experimental/swift/Sources/TensorFlowLite.swift; sourceTree = "<group>"; };
 		ADC0D7BAF11C8A7AA0659D0B51BFF443 /* Pods-PerfittPartners_iOS_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PerfittPartners_iOS_Tests-umbrella.h"; sourceTree = "<group>"; };
-		B2CC30728816F285082C244F808D30F5 /* PartnersVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PartnersVC.swift; path = PerfittPartners_iOS/Classes/PartnersVC.swift; sourceTree = "<group>"; };
-		B8AB75C5490EBF2848C9D9B4E4F1C164 /* PerfittPartners_iOS.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = PerfittPartners_iOS.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		AFCE2020510487D6BAAC258EB6F9B971 /* PerfittPartners_iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PerfittPartners_iOS-dummy.m"; sourceTree = "<group>"; };
+		B72E62921E3E9728DBF018929762BDB4 /* SizePicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SizePicker.swift; path = PerfittPartners_iOS/Classes/SizePicker.swift; sourceTree = "<group>"; };
 		B9F14F8FDFC382CFC76EF3DF9AE89174 /* Interpreter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Interpreter.swift; path = tensorflow/lite/experimental/swift/Sources/Interpreter.swift; sourceTree = "<group>"; };
 		BE006A1273F8AB1A760841C70B8ECC17 /* TensorFlowLiteSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TensorFlowLiteSwift-prefix.pch"; sourceTree = "<group>"; };
-		CD66C4EF0A400DC528A53E161F233B6B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		C4113139C7B14686B0B026241CDE9138 /* PartnersVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PartnersVC.swift; path = PerfittPartners_iOS/Classes/PartnersVC.swift; sourceTree = "<group>"; };
+		C9E8F8EC5B9461D3CEAB89BB08F6CDAB /* PerfittKitTutorialVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PerfittKitTutorialVC.swift; path = PerfittPartners_iOS/Classes/PerfittKitTutorialVC.swift; sourceTree = "<group>"; };
+		CD0286E89BCA1337A72DA7FDA4433DA6 /* FeetResultVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FeetResultVC.swift; path = PerfittPartners_iOS/Classes/FeetResultVC.swift; sourceTree = "<group>"; };
 		CF82B8C58A0FD821537E3660EAB99FAB /* TensorFlowLiteSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TensorFlowLiteSwift.debug.xcconfig; sourceTree = "<group>"; };
 		D29144AE1F6AA506E13FF560B52A8209 /* Pods-PerfittPartners_iOS_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PerfittPartners_iOS_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		D46DCE40A804B6ABF2DFF61B6B44D28F /* Motion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Motion.swift; path = PerfittPartners_iOS/Classes/Motion.swift; sourceTree = "<group>"; };
 		D4EA1A3291A0B8D9D9C7B318BC8AB050 /* Pods-PerfittPartners_iOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PerfittPartners_iOS_Example.release.xcconfig"; sourceTree = "<group>"; };
-		D7B77793C8D117B81B5C0A8317924740 /* PerfittCameraVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PerfittCameraVC.swift; path = PerfittPartners_iOS/Classes/PerfittCameraVC.swift; sourceTree = "<group>"; };
+		D73F42A0E732E1E4CF579C1E2AA1FDFC /* PerfittPartners.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PerfittPartners.swift; path = PerfittPartners_iOS/Classes/PerfittPartners.swift; sourceTree = "<group>"; };
 		DADD9C83FCF7E2F0C4969D06D0E88B94 /* TensorFlowLiteSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TensorFlowLiteSwift.modulemap; sourceTree = "<group>"; };
-		DB3A97C2B90A8D8473A8D6C6CCD00692 /* Pods_PerfittPartners_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerfittPartners_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC3F03407B9C6BC2F9F6951435FBFF43 /* PerfittKitCameraVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PerfittKitCameraVC.swift; path = PerfittPartners_iOS/Classes/PerfittKitCameraVC.swift; sourceTree = "<group>"; };
-		E0B71FE13AA6B05010059EB4B8D87919 /* TensorFlowLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TensorFlowLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB3A97C2B90A8D8473A8D6C6CCD00692 /* Pods_PerfittPartners_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PerfittPartners_iOS_Tests.framework; path = "Pods-PerfittPartners_iOS_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF169C903EF70780F5C2E4262CB45C5A /* dict_kit.txt */ = {isa = PBXFileReference; includeInIndex = 1; name = dict_kit.txt; path = PerfittPartners_iOS/Assets/dict_kit.txt; sourceTree = "<group>"; };
+		E0B71FE13AA6B05010059EB4B8D87919 /* TensorFlowLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TensorFlowLite.framework; path = TensorFlowLiteSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4EEE4038E7A669620B485A8C87E940B /* TensorFlowLiteSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "TensorFlowLiteSwift-Info.plist"; sourceTree = "<group>"; };
-		E9756F2F505F68FE5A0E81D8979E542C /* Assets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = Assets; path = PerfittPartners_iOS/Assets; sourceTree = "<group>"; };
-		EBF5A8A2A6E468BA02EE7F5C0810E207 /* Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = PerfittPartners_iOS/Classes/Extension.swift; sourceTree = "<group>"; };
-		EFBF4629820C664DBA78A96E71EC0803 /* PerfittPartners_iOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "PerfittPartners_iOS-Info.plist"; sourceTree = "<group>"; };
+		EF7FFAFC13698292B6DABCAF14F7DE14 /* PerfittPartners_iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = PerfittPartners_iOS.modulemap; sourceTree = "<group>"; };
+		F21CCCFCE20E5CFFF1AAA65B8BCD6CB2 /* PerfittCameraVC.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = PerfittCameraVC.xib; path = PerfittPartners_iOS/Assets/PerfittCameraVC.xib; sourceTree = "<group>"; };
 		F44F7104D976D039CD83365C216C3AD2 /* Pods-PerfittPartners_iOS_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PerfittPartners_iOS_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		F6EB184C09BD90A2370A0D26A3BECB8B /* Pods-PerfittPartners_iOS_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PerfittPartners_iOS_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F91FE5EEE5A73D1D031639DC1A85253B /* PerfittPartners_iOS.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = PerfittPartners_iOS.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		FB514986FD926E5A91844F79720B78EF /* Pods-PerfittPartners_iOS_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PerfittPartners_iOS_Example-umbrella.h"; sourceTree = "<group>"; };
 		FD879A3B7FBF0BD96966E3C9AB12B97F /* TensorFlowLiteSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TensorFlowLiteSwift-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		42754BC69CA09494B42AC243EBBB0DAA /* Frameworks */ = {
+		11F7CDFD468DB65B82F0DB9D46666309 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C44D7F585460146D1DEAE8CF8B0A8D5 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,19 +224,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6D1E199C672505ED5847E876F4B57E7F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				330FC104617211F88F32E4C6FFC131A6 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		910225E405ACA4ADEDFD1A1A2934456E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				562EACAEA1A8E6EB50691E6B95B9195C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7DE70CEB1082BCEB7D0687B59D97BFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +275,22 @@
 			path = "Target Support Files/Pods-PerfittPartners_iOS_Tests";
 			sourceTree = "<group>";
 		};
+		3AA73F253A3FAE5B669FBD6A96641FBF /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EF7FFAFC13698292B6DABCAF14F7DE14 /* PerfittPartners_iOS.modulemap */,
+				AFCE2020510487D6BAAC258EB6F9B971 /* PerfittPartners_iOS-dummy.m */,
+				9E0C5FB594A6A5F62D8EC00D4FE003E5 /* PerfittPartners_iOS-Info.plist */,
+				30BB2FE4F361B7FA003A74A5C96AADF7 /* PerfittPartners_iOS-prefix.pch */,
+				7B21BC67670F5C7F0228C9FBA817A307 /* PerfittPartners_iOS-umbrella.h */,
+				492907CDE832AEB2A022438039683AE4 /* PerfittPartners_iOS.debug.xcconfig */,
+				9FA433443FB4D7A62E2A23DA04586AF4 /* PerfittPartners_iOS.release.xcconfig */,
+				0CC68C0BDD9CFC5E9482C1B87DFAB19B /* ResourceBundle-PerfittPartners_iOS-PerfittPartners_iOS-Info.plist */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/PerfittPartners_iOS";
+			sourceTree = "<group>";
+		};
 		56FDD2F0EC6001AEBBCE1A2B224A3117 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +319,7 @@
 				FE52148DC6DE55C0D03EB75D362940B6 /* Frameworks */,
 				56FDD2F0EC6001AEBBCE1A2B224A3117 /* Support Files */,
 			);
+			name = TensorFlowLiteC;
 			path = TensorFlowLiteC;
 			sourceTree = "<group>";
 		};
@@ -333,6 +347,14 @@
 			path = "../Target Support Files/TensorFlowLiteSwift";
 			sourceTree = "<group>";
 		};
+		9B9710E48BC216C1092AC105626A7523 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A928D946DC49F87CD3484167F1B4B519 /* PerfittPartners_iOS */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
 		A60D71B0C504F0801CA7AF415D647168 /* TensorFlowLiteSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,36 +368,54 @@
 				A5749A71B8B9BE3A1796E2F4C7F81F2B /* TensorFlowLite.swift */,
 				91D362ED26DBFCB0F7D03D165E0B9F45 /* Support Files */,
 			);
+			name = TensorFlowLiteSwift;
 			path = TensorFlowLiteSwift;
 			sourceTree = "<group>";
 		};
-		B0D9D2588CC1EF0929BE894C6B676AD8 /* PerfittPartners_iOS */ = {
+		A928D946DC49F87CD3484167F1B4B519 /* PerfittPartners_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3D0920B6AA26146492A40A6A93746ABF /* APIConsts.swift */,
-				8710CD5738DE2620B953A2171C51AA7B /* APIController.swift */,
-				75B32194130A2988297268351556CED2 /* APIModel.swift */,
-				E9756F2F505F68FE5A0E81D8979E542C /* Assets */,
-				7AF37EB3B3BCB85D91D4D832B88D15EC /* CaptureVC.swift */,
-				492B5329E74E95ECAB1481FF4F573DE3 /* Classes */,
-				EBF5A8A2A6E468BA02EE7F5C0810E207 /* Extension.swift */,
-				A3C87BE9A1254BB765C0FB51680BA16B /* FeetResultVC.swift */,
-				19BE2BCEADDC1FAADB8BC53AF706DF33 /* ModelDataHandler.swift */,
-				8AC331E5479F8E7F9C46E8846D7B710B /* Motion.swift */,
-				3E8D3E0C292E1D54842B1F3631561924 /* OverlayView.swift */,
-				B2CC30728816F285082C244F808D30F5 /* PartnersVC.swift */,
-				D7B77793C8D117B81B5C0A8317924740 /* PerfittCameraVC.swift */,
-				DC3F03407B9C6BC2F9F6951435FBFF43 /* PerfittKitCameraVC.swift */,
-				29A7707668F20B1B5DD4A353FF8FE25B /* PerfittKitTutorialVC.swift */,
-				28908382AFD382DFC922ACC562E7D000 /* PerfittPartners.swift */,
-				362617D48D4416E247F546882E31BB76 /* SizePicker.swift */,
-				3F8ECC1FC6EE0DA5AD043C75F1FC2992 /* VideoView.swift */,
-				E8EA23B18487CBF1CDD29472F6899E35 /* Assets */,
-				CC0F80931950F18F82E918B8EF8F6222 /* Pod */,
-				CE78325DBF1A6BE36792408CD5EE79D1 /* Support Files */,
+				9DA252EC0DEA34AE3A321DA650F9B133 /* APIConsts.swift */,
+				3B6ED5450866CD4A038A109DBB67CA80 /* APIController.swift */,
+				671FD7AD8DAFCB1119413B9CC22BD67F /* APIModel.swift */,
+				709602B1DF03BA2A38B6E282A92E3497 /* CaptureVC.swift */,
+				7FABFEDA2B500D4FED142B476EA1ED47 /* CaptureVC.xib */,
+				30B2060C2BA03D5D95B7E75DE47661CE /* dict.txt */,
+				DF169C903EF70780F5C2E4262CB45C5A /* dict_kit.txt */,
+				256C11A0372F6D6B2ABF32082CA24ED2 /* Extension.swift */,
+				CD0286E89BCA1337A72DA7FDA4433DA6 /* FeetResultVC.swift */,
+				85CD7E7156517A26891971FBF7662C47 /* FeetResultVC.xib */,
+				8F9850764466011036F5219696015EA0 /* model.tflite */,
+				33C6AB037119B950A5E478E87264F7C6 /* model_kit.tflite */,
+				28B8304917F57A0B9DD4487F1870913B /* ModelDataHandler.swift */,
+				D46DCE40A804B6ABF2DFF61B6B44D28F /* Motion.swift */,
+				63575E0476C37CC46B8E327A64B7DA5E /* OverlayView.swift */,
+				C4113139C7B14686B0B026241CDE9138 /* PartnersVC.swift */,
+				036145A71604F7474625CA53B2FAFB2C /* PerfittCameraVC.swift */,
+				F21CCCFCE20E5CFFF1AAA65B8BCD6CB2 /* PerfittCameraVC.xib */,
+				4FD863C30518ABFFA482F9ECCC2615BA /* PerfittKitCameraVC.swift */,
+				7D9E9C2F1AB3410412121DB4F1561C3A /* PerfittKitCameraVC.xib */,
+				C9E8F8EC5B9461D3CEAB89BB08F6CDAB /* PerfittKitTutorialVC.swift */,
+				817FDA709A6C5F9F5CC3AA30B9B74157 /* PerfittKitTutorialVC.xib */,
+				D73F42A0E732E1E4CF579C1E2AA1FDFC /* PerfittPartners.swift */,
+				B72E62921E3E9728DBF018929762BDB4 /* SizePicker.swift */,
+				0D4D21A1F8148AC68B8B736E558468B7 /* SizePicker.xib */,
+				0678157892AE32F0A67C9A4AD22B44A2 /* VideoView.swift */,
+				AE9BF5F64C5AAD63FA003E8E7E016400 /* Pod */,
+				3AA73F253A3FAE5B669FBD6A96641FBF /* Support Files */,
 			);
 			name = PerfittPartners_iOS;
 			path = ../..;
+			sourceTree = "<group>";
+		};
+		AE9BF5F64C5AAD63FA003E8E7E016400 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				2ED792B78F503B44263948D40824FF45 /* LICENSE */,
+				F91FE5EEE5A73D1D031639DC1A85253B /* PerfittPartners_iOS.podspec */,
+				1573B2D1C9232DA1767BC88D75D114CB /* README.md */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
@@ -384,32 +424,6 @@
 				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		CC0F80931950F18F82E918B8EF8F6222 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				CD66C4EF0A400DC528A53E161F233B6B /* LICENSE */,
-				B8AB75C5490EBF2848C9D9B4E4F1C164 /* PerfittPartners_iOS.podspec */,
-				8C8759238E1C46C469C2142A07FDCBD8 /* README.md */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		CE78325DBF1A6BE36792408CD5EE79D1 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				282A7B36CF79F5C26DCEAC35115193CD /* PerfittPartners_iOS.modulemap */,
-				70C5D324335902340684F0CCE1687879 /* PerfittPartners_iOS-dummy.m */,
-				EFBF4629820C664DBA78A96E71EC0803 /* PerfittPartners_iOS-Info.plist */,
-				66734C14247895E4C150F3936526B0D8 /* PerfittPartners_iOS-prefix.pch */,
-				49E04148D176719860E38D640B55094C /* PerfittPartners_iOS-umbrella.h */,
-				0B5C3A326AB38E3D598105CDB217BE11 /* PerfittPartners_iOS.debug.xcconfig */,
-				9BCEE419D886ADDC5314F3753A4950BE /* PerfittPartners_iOS.release.xcconfig */,
-				03EED86568A8B13F0971E214D582BD95 /* ResourceBundle-PerfittPartners_iOS-PerfittPartners_iOS-Info.plist */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/PerfittPartners_iOS";
 			sourceTree = "<group>";
 		};
 		CED3102368E40F49A65E1A36E7F96AD8 /* Pods-PerfittPartners_iOS_Example */ = {
@@ -433,20 +447,12 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				D122196E92FC12841F36966604A35850 /* Development Pods */,
+				9B9710E48BC216C1092AC105626A7523 /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				1CAE4DFA30976CB39FF45A59917E2812 /* Pods */,
 				5934AB09178BABEF1722CB1629FB0E8F /* Products */,
 				890C4DE7AE21F4B3CA0F15BDE9048CBE /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		D122196E92FC12841F36966604A35850 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B0D9D2588CC1EF0929BE894C6B676AD8 /* PerfittPartners_iOS */,
-			);
-			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
@@ -455,24 +461,6 @@
 				C0834CEBB1379A84116EF29F93051C60 /* iOS */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E8EA23B18487CBF1CDD29472F6899E35 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				15B872BD969965E6F5028AD8BFC2E0EE /* CaptureVC.xib */,
-				5BA36459609E76D2F7EC3D3560EADA5B /* dict.txt */,
-				46B2AAA43424026F6617F66BEE156C33 /* dict_kit.txt */,
-				4CEFD9C5C2913485444256BC514426EE /* FeetResultVC.xib */,
-				8D67C8D61DE5E91BA51574EC2DEBF8A4 /* model.tflite */,
-				A3F8E9557CB2B7E8CB6E3B10D39F2398 /* model_kit.tflite */,
-				87A0100BE4AD830911DA981AFEF69D1A /* PerfittCameraVC.xib */,
-				11E903F2A4A2B3BDDDB27B700CE82A2A /* PerfittKitCameraVC.xib */,
-				5BD76DC2AA326464F2C85B929E9BA08A /* PerfittKitTutorialVC.xib */,
-				61D27326D3B07E2903C0B9F8BEC2B24C /* SizePicker.xib */,
-			);
-			name = Assets;
-			path = PerfittPartners_iOS/Assets;
 			sourceTree = "<group>";
 		};
 		FE52148DC6DE55C0D03EB75D362940B6 /* Frameworks */ = {
@@ -486,6 +474,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		776DFAE7E5ECC5289D641A970801B10D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1DD7D5BCD49617A67C478332985DD75 /* TensorFlowLiteSwift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		801F713B5D930AAD82DB1787A51A522F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -510,14 +506,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABD5304AAF64E5866291370CE5BFFAF3 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B4F5E166CE5FF040C94F8D46E1DF5D31 /* TensorFlowLiteSwift-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -528,13 +516,13 @@
 				A2BF45CC191329EB59B9FB8AE1103E71 /* Headers */,
 				93EE218F4FBDC4FCFB8C839D267ED4ED /* Sources */,
 				AD43220FF9EB0AE78E61C4FE6722196A /* Frameworks */,
-				9CA7C76B6B609322D2EF5F97E791DE72 /* Resources */,
+				3EF5909F8A362C2271FA785D5F636D10 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				EC8CF0F8C8DAC04EF18D8EF7E396BABE /* PBXTargetDependency */,
-				6CFA05FD339043955263AA3C7851DE6B /* PBXTargetDependency */,
+				553E56E7DD8617C4991EC79610BD169A /* PBXTargetDependency */,
+				715E76B1EF4E92B6DC8078DACEFB833E /* PBXTargetDependency */,
 			);
 			name = PerfittPartners_iOS;
 			productName = PerfittPartners_iOS;
@@ -543,17 +531,17 @@
 		};
 		10418167F619D6DA72BADAD10F9EC02B /* TensorFlowLiteSwift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0EFBB45E2B833D7E5604C7FCAEF3327A /* Build configuration list for PBXNativeTarget "TensorFlowLiteSwift" */;
+			buildConfigurationList = 391BFC05CF240692A0088351977F84FA /* Build configuration list for PBXNativeTarget "TensorFlowLiteSwift" */;
 			buildPhases = (
-				ABD5304AAF64E5866291370CE5BFFAF3 /* Headers */,
-				C6F7531BCA7923285FD663FDFB80B205 /* Sources */,
-				6D1E199C672505ED5847E876F4B57E7F /* Frameworks */,
-				F3A19D2A17D5707D6E1CF19531CD01EB /* Resources */,
+				776DFAE7E5ECC5289D641A970801B10D /* Headers */,
+				CB849A3127D27DF2BF06B27672FF42BA /* Sources */,
+				11F7CDFD468DB65B82F0DB9D46666309 /* Frameworks */,
+				C70A92A9DF29CF7BE5D7210F91E2899C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				004409410B74F83233B822DCE90986A8 /* PBXTargetDependency */,
+				4F0D27CD93E8E1095A485F39B7E66766 /* PBXTargetDependency */,
 			);
 			name = TensorFlowLiteSwift;
 			productName = TensorFlowLiteSwift;
@@ -572,7 +560,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				6BB519326D62FD07C17E7AA6307274D5 /* PBXTargetDependency */,
+				2059D1EC39725AD5FA3AFC75084A101C /* PBXTargetDependency */,
 			);
 			name = "Pods-PerfittPartners_iOS_Tests";
 			productName = "Pods-PerfittPartners_iOS_Tests";
@@ -581,11 +569,11 @@
 		};
 		46559E07E5CA88CC5CD07A08415992A8 /* PerfittPartners_iOS-PerfittPartners_iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD4495ECBA4471EE665408110671B7EA /* Build configuration list for PBXNativeTarget "PerfittPartners_iOS-PerfittPartners_iOS" */;
+			buildConfigurationList = 1349719A0553AF43151F3F4A7132B209 /* Build configuration list for PBXNativeTarget "PerfittPartners_iOS-PerfittPartners_iOS" */;
 			buildPhases = (
-				B34FD42DB95834048686A6BDF1327FEF /* Sources */,
-				42754BC69CA09494B42AC243EBBB0DAA /* Frameworks */,
-				835841C8CCB3783F0E1A18B85CCDDC1D /* Resources */,
+				4C1B285C2D2BEB4E2CECEBF1AB6349C5 /* Sources */,
+				A7DE70CEB1082BCEB7D0687B59D97BFA /* Frameworks */,
+				615946658318755D5737F5E47337861B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -608,9 +596,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				22602FD6F9AB76CC9AE7440912E2DC5C /* PBXTargetDependency */,
-				A97B680D842EDC672AF273262A813754 /* PBXTargetDependency */,
-				C49F55AF8E6D2C02734B63B47E6CCD5B /* PBXTargetDependency */,
+				90246628F4233CFAE87CE63EC34BF23A /* PBXTargetDependency */,
+				DF5C7DDB3BE65648B6F110BD41EE3862 /* PBXTargetDependency */,
+				E5943F4D508B19C423CB170A0A98752B /* PBXTargetDependency */,
 			);
 			name = "Pods-PerfittPartners_iOS_Example";
 			productName = "Pods-PerfittPartners_iOS_Example";
@@ -657,6 +645,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3EF5909F8A362C2271FA785D5F636D10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDDC7B50D20A1A2D9D94D66EDF877B4B /* CaptureVC.xib in Resources */,
+				12803D3988D87C7B2A84ECC634F0A0DA /* FeetResultVC.xib in Resources */,
+				C0FCE6852BBDF3D039D4B22917073F26 /* PerfittCameraVC.xib in Resources */,
+				EF72483C563D5188AD618E15C0BDC3C7 /* PerfittKitCameraVC.xib in Resources */,
+				36D054AB1FDD428EBFAFD91EEAACC3C0 /* PerfittKitTutorialVC.xib in Resources */,
+				65F6B806690DCDBD378262AB6C1798B6 /* SizePicker.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		54E4D4AC12E3EF43088125D1E4A961BD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -664,37 +665,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		835841C8CCB3783F0E1A18B85CCDDC1D /* Resources */ = {
+		615946658318755D5737F5E47337861B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E379224506BD0AC557560FEF41D2081 /* CaptureVC.xib in Resources */,
-				2FA6FB80582FD908D92E785E62F7E56E /* dict.txt in Resources */,
-				C356E33043F968C3B7D272E3A14AE1E8 /* dict_kit.txt in Resources */,
-				94818D802F0D0BECD6DAD8D96A73666C /* FeetResultVC.xib in Resources */,
-				CDD05041101216FEBCF21168130EA2D0 /* model.tflite in Resources */,
-				75E9441ECC4550B0FBDBA204BF6F7B23 /* model_kit.tflite in Resources */,
-				3D92C935A639E972D4CFAF30E175A151 /* PerfittCameraVC.xib in Resources */,
-				C3D490192516C917600299C5508BAA57 /* PerfittKitCameraVC.xib in Resources */,
-				9590D8D6051AB79BCC3EF8D9D87FCA72 /* PerfittKitTutorialVC.xib in Resources */,
-				7516FF4BBA4BA2BDCB0C2130DB56FEF5 /* SizePicker.xib in Resources */,
+				212DA9F8689AD4FC33FB9EAFD7C6A18D /* CaptureVC.xib in Resources */,
+				E39BE7EC9B1F3EDA54AA43FF8AC9709B /* dict.txt in Resources */,
+				3BD49C742CA6E63CFE831BF35113F56D /* dict_kit.txt in Resources */,
+				A8E1BA65070A975F61C175D1850AD06D /* FeetResultVC.xib in Resources */,
+				008A066D671341A014463890264F8525 /* model.tflite in Resources */,
+				3C7C2A4D8C53160FC3012EFC6EEFAF8E /* model_kit.tflite in Resources */,
+				4D21CCC3F2FD1958C8FAC29717973B08 /* PerfittCameraVC.xib in Resources */,
+				DBB940FA083E5E2E4C6B486A5404F96B /* PerfittKitCameraVC.xib in Resources */,
+				4A1156352FEC430054F0F7A1029809F6 /* PerfittKitTutorialVC.xib in Resources */,
+				9E4CD7F9EC9352233D2C8B6C3DEDF5A6 /* SizePicker.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9CA7C76B6B609322D2EF5F97E791DE72 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				49570C37209D4A7F22DC876F25246D11 /* CaptureVC.xib in Resources */,
-				F0738F2C310E1F6C89094A080095332D /* FeetResultVC.xib in Resources */,
-				7C516C17736D97B9ED053C55783495F0 /* PerfittCameraVC.xib in Resources */,
-				16AB953F9DBE7C5BABAACC3EFD9D32EF /* PerfittKitCameraVC.xib in Resources */,
-				37ECD7D2BDA54C63D15D1F22D22EE074 /* PerfittKitTutorialVC.xib in Resources */,
-				0825757CF7DF76677A3EF556784F5C5A /* SizePicker.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F3A19D2A17D5707D6E1CF19531CD01EB /* Resources */ = {
+		C70A92A9DF29CF7BE5D7210F91E2899C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -704,6 +692,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4C1B285C2D2BEB4E2CECEBF1AB6349C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6B73591DA2F1CDD3AF728ED67BC0F330 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -744,96 +739,77 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B34FD42DB95834048686A6BDF1327FEF /* Sources */ = {
+		CB849A3127D27DF2BF06B27672FF42BA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C6F7531BCA7923285FD663FDFB80B205 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E231D93112E370B45C1DC06BA57C75E4 /* Delegate.swift in Sources */,
-				EB4C9B9CFC05B198CCA05D1D887FF8B4 /* Interpreter.swift in Sources */,
-				7A990B4197F881EB2DC8547E17FE8728 /* InterpreterError.swift in Sources */,
-				A63820663A10FC4C1AFDFF7DE4729CC9 /* MetalDelegate.swift in Sources */,
-				C2A0DDF0B85732D26CBE12CB7C9F8C24 /* Model.swift in Sources */,
-				07BD34711CBBCD09946DC99B82EBA1CB /* QuantizationParameters.swift in Sources */,
-				6AC9768D935D2925556253D7AF79B9AC /* Tensor.swift in Sources */,
-				1435B976E47F30D7983973FE00D6B204 /* TensorFlowLite.swift in Sources */,
-				DFA4D6590DEFD32591D23B03D2FEB143 /* TensorFlowLiteSwift-dummy.m in Sources */,
+				9EC254EB9A7B5E57AD486E73B20E0C07 /* Delegate.swift in Sources */,
+				E67A073E03760A88BED6158953324D17 /* Interpreter.swift in Sources */,
+				8125DE312DD85E576DF3EFC43AEB0F01 /* InterpreterError.swift in Sources */,
+				AE3884F4937E3DEE9D2BB6C129F3D6DB /* MetalDelegate.swift in Sources */,
+				801A468B33A6E60A0DBC379B10934D43 /* Model.swift in Sources */,
+				E70AF28E6AD9B64D98CF4087B8D6D2E5 /* QuantizationParameters.swift in Sources */,
+				6C584BCB201DAF32F27581DED001725A /* Tensor.swift in Sources */,
+				F7D8377F01DA70F418EA33938BB0B6AB /* TensorFlowLite.swift in Sources */,
+				968135A035E6ED5BF11846926DE74104 /* TensorFlowLiteSwift-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		004409410B74F83233B822DCE90986A8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TensorFlowLiteC;
-			target = AC559E53E13B6FBEF4F5CC310A73AFE6 /* TensorFlowLiteC */;
-			targetProxy = 735286925DDC207EA447D051FAFC65A0 /* PBXContainerItemProxy */;
-		};
-		22602FD6F9AB76CC9AE7440912E2DC5C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PerfittPartners_iOS;
-			target = 0BC8CC5EA43DC75631B33904BA6B8E97 /* PerfittPartners_iOS */;
-			targetProxy = AC964883E8D83F49F3753EB679393ADD /* PBXContainerItemProxy */;
-		};
-		6BB519326D62FD07C17E7AA6307274D5 /* PBXTargetDependency */ = {
+		2059D1EC39725AD5FA3AFC75084A101C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-PerfittPartners_iOS_Example";
 			target = B2CE9C8448581EF177F68CFD65CF238B /* Pods-PerfittPartners_iOS_Example */;
-			targetProxy = 2C4EFD8E29AAF559A2EC826ECDB88787 /* PBXContainerItemProxy */;
+			targetProxy = 4282CE770B79A326847CDD630968F973 /* PBXContainerItemProxy */;
 		};
-		6CFA05FD339043955263AA3C7851DE6B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TensorFlowLiteSwift;
-			target = 10418167F619D6DA72BADAD10F9EC02B /* TensorFlowLiteSwift */;
-			targetProxy = 785AB3F7DF63AC15793D7CE55EAB4411 /* PBXContainerItemProxy */;
-		};
-		A97B680D842EDC672AF273262A813754 /* PBXTargetDependency */ = {
+		4F0D27CD93E8E1095A485F39B7E66766 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = TensorFlowLiteC;
 			target = AC559E53E13B6FBEF4F5CC310A73AFE6 /* TensorFlowLiteC */;
-			targetProxy = 6264A6AC67DDF92AC95C68EA29C9760D /* PBXContainerItemProxy */;
+			targetProxy = 33DAA62745E0BA8E0306CA34093A7C71 /* PBXContainerItemProxy */;
 		};
-		C49F55AF8E6D2C02734B63B47E6CCD5B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TensorFlowLiteSwift;
-			target = 10418167F619D6DA72BADAD10F9EC02B /* TensorFlowLiteSwift */;
-			targetProxy = F30BE360DBA9AC01D7F518F3CC8A821C /* PBXContainerItemProxy */;
-		};
-		EC8CF0F8C8DAC04EF18D8EF7E396BABE /* PBXTargetDependency */ = {
+		553E56E7DD8617C4991EC79610BD169A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "PerfittPartners_iOS-PerfittPartners_iOS";
 			target = 46559E07E5CA88CC5CD07A08415992A8 /* PerfittPartners_iOS-PerfittPartners_iOS */;
-			targetProxy = C2004CBE6E1B66D44DDE2354D27D615A /* PBXContainerItemProxy */;
+			targetProxy = 5BBA929138C0AB80D4DDD2CFB8656B2D /* PBXContainerItemProxy */;
+		};
+		715E76B1EF4E92B6DC8078DACEFB833E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TensorFlowLiteSwift;
+			target = 10418167F619D6DA72BADAD10F9EC02B /* TensorFlowLiteSwift */;
+			targetProxy = 5620C8DBD4C259112185FBAF08272695 /* PBXContainerItemProxy */;
+		};
+		90246628F4233CFAE87CE63EC34BF23A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PerfittPartners_iOS;
+			target = 0BC8CC5EA43DC75631B33904BA6B8E97 /* PerfittPartners_iOS */;
+			targetProxy = C42920721723571382C826FBFC658341 /* PBXContainerItemProxy */;
+		};
+		DF5C7DDB3BE65648B6F110BD41EE3862 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TensorFlowLiteC;
+			target = AC559E53E13B6FBEF4F5CC310A73AFE6 /* TensorFlowLiteC */;
+			targetProxy = DDF8883BD6DEBE62C4FBC60847142311 /* PBXContainerItemProxy */;
+		};
+		E5943F4D508B19C423CB170A0A98752B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TensorFlowLiteSwift;
+			target = 10418167F619D6DA72BADAD10F9EC02B /* TensorFlowLiteSwift */;
+			targetProxy = C9B4B37DDD2F2E769DC004AD4D4CB2D4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		03E1C837C043F95D5317D49A6504174A /* Debug */ = {
+		0A3FDDBDCBCFD4830BCA32C55620BFE7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 195023F1232F59DC7609EC8B27ABF4CC /* TensorFlowLiteC.debug.xcconfig */;
+			baseConfigurationReference = 25E1663DC2EADFFA6C8B04A20662A1F4 /* Pods-PerfittPartners_iOS_Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		09785BFACD24FA948A252B4A8CBE5939 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF82B8C58A0FD821537E3660EAB99FAB /* TensorFlowLiteSwift.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -843,26 +819,27 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/TensorFlowLiteSwift/TensorFlowLiteSwift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TensorFlowLiteSwift/TensorFlowLiteSwift-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-PerfittPartners_iOS_Tests/Pods-PerfittPartners_iOS_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/TensorFlowLiteSwift/TensorFlowLiteSwift.modulemap";
-				PRODUCT_MODULE_NAME = TensorFlowLite;
-				PRODUCT_NAME = TensorFlowLite;
+				MODULEMAP_FILE = "Target Support Files/Pods-PerfittPartners_iOS_Tests/Pods-PerfittPartners_iOS_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		0A56D7AB37CC27550809570E2B8C072C /* Release */ = {
+		139DA57DEB5BB80FFF5CA3C5C4D8BFF6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -911,20 +888,21 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		2BF48B28CB7542A61C8087D2BA084B2F /* Release */ = {
+		2D086F8F8591E296B960833B042A34C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25E1663DC2EADFFA6C8B04A20662A1F4 /* Pods-PerfittPartners_iOS_Tests.release.xcconfig */;
+			baseConfigurationReference = 1CD4C4486D07871E971C4C0191DBF419 /* Pods-PerfittPartners_iOS_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
@@ -938,12 +916,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-PerfittPartners_iOS_Tests/Pods-PerfittPartners_iOS_Tests-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-PerfittPartners_iOS_Example/Pods-PerfittPartners_iOS_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-PerfittPartners_iOS_Tests/Pods-PerfittPartners_iOS_Tests.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-PerfittPartners_iOS_Example/Pods-PerfittPartners_iOS_Example.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -952,15 +930,47 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		3C4242D02099310C12EA916F6A22DFB5 /* Release */ = {
+		34118ED81F5452EE9B372F958D8E51FE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7DC911E4735E7FF695F58024B3BA19FC /* TensorFlowLiteC.release.xcconfig */;
+			baseConfigurationReference = CF82B8C58A0FD821537E3660EAB99FAB /* TensorFlowLiteSwift.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TensorFlowLiteSwift/TensorFlowLiteSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TensorFlowLiteSwift/TensorFlowLiteSwift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/TensorFlowLiteSwift/TensorFlowLiteSwift.modulemap";
+				PRODUCT_MODULE_NAME = TensorFlowLite;
+				PRODUCT_NAME = TensorFlowLite;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3DA3DC719BC73CAAECEA30FDAF32F2DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 195023F1232F59DC7609EC8B27ABF4CC /* TensorFlowLiteC.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -969,13 +979,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = Debug;
 		};
 		3DC725D10F71A573593FF73D9B6D101A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B5C3A326AB38E3D598105CDB217BE11 /* PerfittPartners_iOS.debug.xcconfig */;
+			baseConfigurationReference = 492907CDE832AEB2A022438039683AE4 /* PerfittPartners_iOS.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -1008,7 +1017,127 @@
 			};
 			name = Debug;
 		};
-		4F42D4F0195106FF71F6DA156B317D94 /* Release */ = {
+		3EA8D5E45F170CDD8B1AE3EFA322EA68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FA433443FB4D7A62E2A23DA04586AF4 /* PerfittPartners_iOS.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/PerfittPartners_iOS";
+				IBSC_MODULE = PerfittPartners_iOS;
+				INFOPLIST_FILE = "Target Support Files/PerfittPartners_iOS/ResourceBundle-PerfittPartners_iOS-PerfittPartners_iOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_NAME = PerfittPartners_iOS;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		3EE5D78E91C63CCD5C0228DF79BDF414 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46003A739E69558B2E14665BB651CF9F /* Pods-PerfittPartners_iOS_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-PerfittPartners_iOS_Tests/Pods-PerfittPartners_iOS_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-PerfittPartners_iOS_Tests/Pods-PerfittPartners_iOS_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C21B554159CADEE23F442D915236AF8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FA433443FB4D7A62E2A23DA04586AF4 /* PerfittPartners_iOS.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/PerfittPartners_iOS/PerfittPartners_iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PerfittPartners_iOS/PerfittPartners_iOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/PerfittPartners_iOS/PerfittPartners_iOS.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.PerfittPartners-iOS";
+				PRODUCT_MODULE_NAME = PerfittPartners_iOS;
+				PRODUCT_NAME = PerfittPartners_iOS;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D2788DCEFCD7D2D868E6979AD34C3410 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DC911E4735E7FF695F58024B3BA19FC /* TensorFlowLiteC.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D8DD0EDD110E7F72A85B86F5CACE6D30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 492907CDE832AEB2A022438039683AE4 /* PerfittPartners_iOS.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/PerfittPartners_iOS";
+				IBSC_MODULE = PerfittPartners_iOS;
+				INFOPLIST_FILE = "Target Support Files/PerfittPartners_iOS/ResourceBundle-PerfittPartners_iOS-PerfittPartners_iOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_NAME = PerfittPartners_iOS;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		DD21860CD501E3DCDE76934249DA95C4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4DEF9604B3A10391246BB01C3B360192 /* TensorFlowLiteSwift.release.xcconfig */;
 			buildSettings = {
@@ -1042,26 +1171,9 @@
 			};
 			name = Release;
 		};
-		65CE4174EEFE6A0DF9EC0543E51CC6AF /* Release */ = {
+		E69C86BCD07BA1A136F4F64F8AE9F5B0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9BCEE419D886ADDC5314F3753A4950BE /* PerfittPartners_iOS.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/PerfittPartners_iOS";
-				IBSC_MODULE = PerfittPartners_iOS;
-				INFOPLIST_FILE = "Target Support Files/PerfittPartners_iOS/ResourceBundle-PerfittPartners_iOS-PerfittPartners_iOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				PRODUCT_NAME = PerfittPartners_iOS;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		71F355227DA7526369A6E9A5E71B3CD3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1CD4C4486D07871E971C4C0191DBF419 /* Pods-PerfittPartners_iOS_Example.debug.xcconfig */;
+			baseConfigurationReference = D4EA1A3291A0B8D9D9C7B318BC8AB050 /* Pods-PerfittPartners_iOS_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
@@ -1077,7 +1189,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-PerfittPartners_iOS_Example/Pods-PerfittPartners_iOS_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-PerfittPartners_iOS_Example/Pods-PerfittPartners_iOS_Example.modulemap";
@@ -1089,12 +1201,13 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		7E37FCFC93F34594E320382230D18709 /* Debug */ = {
+		FAD277462AEE5D9A93DC229BF4D62732 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1146,7 +1259,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1159,138 +1272,32 @@
 			};
 			name = Debug;
 		};
-		8F3C6DFC91D905B5F15FACACC605A86B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46003A739E69558B2E14665BB651CF9F /* Pods-PerfittPartners_iOS_Tests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-PerfittPartners_iOS_Tests/Pods-PerfittPartners_iOS_Tests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-PerfittPartners_iOS_Tests/Pods-PerfittPartners_iOS_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		9FA04F4EBB21AFF9E0C7ABBD8B5C2D01 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4EA1A3291A0B8D9D9C7B318BC8AB050 /* Pods-PerfittPartners_iOS_Example.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-PerfittPartners_iOS_Example/Pods-PerfittPartners_iOS_Example-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-PerfittPartners_iOS_Example/Pods-PerfittPartners_iOS_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		C21B554159CADEE23F442D915236AF8D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9BCEE419D886ADDC5314F3753A4950BE /* PerfittPartners_iOS.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/PerfittPartners_iOS/PerfittPartners_iOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PerfittPartners_iOS/PerfittPartners_iOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/PerfittPartners_iOS/PerfittPartners_iOS.modulemap";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.PerfittPartners-iOS";
-				PRODUCT_MODULE_NAME = PerfittPartners_iOS;
-				PRODUCT_NAME = PerfittPartners_iOS;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		F6D598ECFE33297D2F04B5C020C2A178 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B5C3A326AB38E3D598105CDB217BE11 /* PerfittPartners_iOS.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/PerfittPartners_iOS";
-				IBSC_MODULE = PerfittPartners_iOS;
-				INFOPLIST_FILE = "Target Support Files/PerfittPartners_iOS/ResourceBundle-PerfittPartners_iOS-PerfittPartners_iOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				PRODUCT_NAME = PerfittPartners_iOS;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0EFBB45E2B833D7E5604C7FCAEF3327A /* Build configuration list for PBXNativeTarget "TensorFlowLiteSwift" */ = {
+		0E4BC850FE6C0F02CCAFC5A607ADC7EE /* Build configuration list for PBXAggregateTarget "TensorFlowLiteC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				09785BFACD24FA948A252B4A8CBE5939 /* Debug */,
-				4F42D4F0195106FF71F6DA156B317D94 /* Release */,
+				3DA3DC719BC73CAAECEA30FDAF32F2DE /* Debug */,
+				D2788DCEFCD7D2D868E6979AD34C3410 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1349719A0553AF43151F3F4A7132B209 /* Build configuration list for PBXNativeTarget "PerfittPartners_iOS-PerfittPartners_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8DD0EDD110E7F72A85B86F5CACE6D30 /* Debug */,
+				3EA8D5E45F170CDD8B1AE3EFA322EA68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		391BFC05CF240692A0088351977F84FA /* Build configuration list for PBXNativeTarget "TensorFlowLiteSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34118ED81F5452EE9B372F958D8E51FE /* Debug */,
+				DD21860CD501E3DCDE76934249DA95C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1298,26 +1305,8 @@
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7E37FCFC93F34594E320382230D18709 /* Debug */,
-				0A56D7AB37CC27550809570E2B8C072C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		720A43EB755350D09DD39700C819D30F /* Build configuration list for PBXAggregateTarget "TensorFlowLiteC" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				03E1C837C043F95D5317D49A6504174A /* Debug */,
-				3C4242D02099310C12EA916F6A22DFB5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AD4495ECBA4471EE665408110671B7EA /* Build configuration list for PBXNativeTarget "PerfittPartners_iOS-PerfittPartners_iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F6D598ECFE33297D2F04B5C020C2A178 /* Debug */,
-				65CE4174EEFE6A0DF9EC0543E51CC6AF /* Release */,
+				FAD277462AEE5D9A93DC229BF4D62732 /* Debug */,
+				139DA57DEB5BB80FFF5CA3C5C4D8BFF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1325,8 +1314,8 @@
 		D6F6F91A7082499A933C4F8F75D4F5C4 /* Build configuration list for PBXNativeTarget "Pods-PerfittPartners_iOS_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				71F355227DA7526369A6E9A5E71B3CD3 /* Debug */,
-				9FA04F4EBB21AFF9E0C7ABBD8B5C2D01 /* Release */,
+				2D086F8F8591E296B960833B042A34C5 /* Debug */,
+				E69C86BCD07BA1A136F4F64F8AE9F5B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1343,8 +1332,8 @@
 		EB96294C37CF41026D38BE26AE7DBF22 /* Build configuration list for PBXNativeTarget "Pods-PerfittPartners_iOS_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8F3C6DFC91D905B5F15FACACC605A86B /* Debug */,
-				2BF48B28CB7542A61C8087D2BA084B2F /* Release */,
+				3EE5D78E91C63CCD5C0228DF79BDF414 /* Debug */,
+				0A3FDDBDCBCFD4830BCA32C55620BFE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

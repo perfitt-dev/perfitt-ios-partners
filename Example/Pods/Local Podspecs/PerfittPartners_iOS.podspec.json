@@ -1,6 +1,6 @@
 {
   "name": "PerfittPartners_iOS",
-  "version": "1.0.0-alpha5",
+  "version": "1.0.0-alpha12",
   "summary": "PerfittPartners_iOS is camera lib",
   "description": "'PerfittParnert_iOS is camera lib for partners'",
   "homepage": "https://www.perfitt.io/",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/perfitt-dev/perfitt-ios-partners.git",
-    "tag": "1.0.0-alpha5"
+    "tag": "1.0.0-alpha12"
   },
   "platforms": {
     "ios": "12.0"
@@ -39,7 +39,7 @@
   "info_plist": {
     "CFBundleIdentifier": "org.cocoapods.PerfittPartners-iOS"
   },
-  "resources": "PerfittPartners_iOS/**/*",
+  "resources": "PerfittPartners_iOS/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}",
   "resource_bundles": {
     "PerfittPartners_iOS": [
       "PerfittPartners_iOS/Assets/**/*"

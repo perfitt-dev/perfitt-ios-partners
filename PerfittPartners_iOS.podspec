@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
     
     s.ios.deployment_target = '12.0'
     
-    s.source_files = 'Sources/PerfittPartners_iOS/Classes/**/*'
+    s.source_files = 'PerfittPartners_iOS/Classes/**/*'
     s.swift_version = '4.2'
 
     s.frameworks = 'UIKit', 'AVFoundation'
@@ -47,11 +47,11 @@ Pod::Spec.new do |s|
         'CFBundleIdentifier' => 'org.cocoapods.PerfittPartners-iOS'
     }
     
-    # s.resources = 'Sources/PerfittPartners_iOS/**/*'
+#     s.resources = 'Sources/PerfittPartners_iOS/**/*'
     s.resources = 'PerfittPartners_iOS/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}'
     
-#    s.resource_bundles = {
-#        'PerfittPartners_iOS' => ['PerfittPartners_iOS/Assets/**/*']
-#    }
+    s.resource_bundles = {
+        'PerfittPartners_iOS' => ['PerfittPartners_iOS/Assets/**/*']
+    }
     
 end
