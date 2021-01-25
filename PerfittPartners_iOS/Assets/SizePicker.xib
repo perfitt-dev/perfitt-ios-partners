@@ -16,51 +16,68 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CNP-V9-oXZ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.28000000000000003" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qSH-Wg-ZDc">
-                        <rect key="frame" x="20" y="298" width="374" height="300"/>
+                        <rect key="frame" x="20" y="210.5" width="374" height="475"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="평소에 어떤 사이즈를 주로 신으시나요?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSy-vp-iy3">
+                                <rect key="frame" x="33" y="40" width="308" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bkB-cQ-KHM" customClass="CustomPickerView" customModule="PerfittPartners_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="374" height="228"/>
+                                <rect key="frame" x="0.0" y="121" width="374" height="216"/>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpB-rR-jMj">
-                                <rect key="frame" x="326" y="248" width="32" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDd-G5-8Iw">
+                                <rect key="frame" x="234" y="407" width="120" height="48"/>
+                                <color key="backgroundColor" red="0.92941176469999998" green="0.0" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="J3T-8o-8YS"/>
+                                    <constraint firstAttribute="height" constant="48" id="ELy-mT-Hqx"/>
+                                    <constraint firstAttribute="width" constant="120" id="rVA-i7-2jU"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="확인">
-                                    <color key="titleColor" red="0.92941176470588238" green="0.0" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13.600000381469727"/>
+                                <state key="normal" title="확인"/>
                                 <connections>
-                                    <action selector="onConfirm:" destination="1RI-LC-Vbw" eventType="touchUpInside" id="CyT-4q-jTW"/>
+                                    <action selector="onConfirm:" destination="1RI-LC-Vbw" eventType="touchUpInside" id="ty0-3y-EYE"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="cDd-G5-8Iw" secondAttribute="bottom" constant="20" id="2NA-CR-df5"/>
                             <constraint firstAttribute="trailing" secondItem="bkB-cQ-KHM" secondAttribute="trailing" id="3gL-Z2-UKu"/>
-                            <constraint firstItem="bkB-cQ-KHM" firstAttribute="top" secondItem="qSH-Wg-ZDc" secondAttribute="top" id="EEp-OW-2Bs"/>
-                            <constraint firstItem="dpB-rR-jMj" firstAttribute="top" secondItem="bkB-cQ-KHM" secondAttribute="bottom" constant="20" id="M8n-3L-klC"/>
-                            <constraint firstAttribute="height" constant="300" id="Uev-Fx-Qv7"/>
+                            <constraint firstAttribute="trailing" secondItem="cDd-G5-8Iw" secondAttribute="trailing" constant="20" id="8SF-Vc-XhZ"/>
+                            <constraint firstItem="cDd-G5-8Iw" firstAttribute="top" secondItem="bkB-cQ-KHM" secondAttribute="bottom" constant="70" id="9Gj-Y1-JaK"/>
+                            <constraint firstItem="MSy-vp-iy3" firstAttribute="top" secondItem="qSH-Wg-ZDc" secondAttribute="top" constant="40" id="Feg-Dw-Z2O"/>
+                            <constraint firstItem="bkB-cQ-KHM" firstAttribute="top" secondItem="MSy-vp-iy3" secondAttribute="bottom" constant="60" id="KIu-6H-KVz"/>
+                            <constraint firstItem="MSy-vp-iy3" firstAttribute="leading" secondItem="qSH-Wg-ZDc" secondAttribute="leading" constant="33" id="Non-k6-Rxo"/>
                             <constraint firstItem="bkB-cQ-KHM" firstAttribute="leading" secondItem="qSH-Wg-ZDc" secondAttribute="leading" id="YaW-Ou-lff"/>
-                            <constraint firstAttribute="bottom" secondItem="dpB-rR-jMj" secondAttribute="bottom" constant="8" id="kgT-aj-1rR"/>
-                            <constraint firstAttribute="trailing" secondItem="dpB-rR-jMj" secondAttribute="trailing" constant="16" id="mgo-UK-lAm"/>
+                            <constraint firstAttribute="trailing" secondItem="MSy-vp-iy3" secondAttribute="trailing" constant="33" id="c2S-uo-B8C"/>
                         </constraints>
                     </view>
                 </subviews>
                 <viewLayoutGuide key="safeArea" id="UNM-q1-Foj"/>
-                <color key="backgroundColor" red="0.49411764705882355" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="CNP-V9-oXZ" firstAttribute="top" secondItem="UNM-q1-Foj" secondAttribute="top" id="23h-bR-dZ3"/>
+                    <constraint firstItem="UNM-q1-Foj" firstAttribute="bottom" secondItem="CNP-V9-oXZ" secondAttribute="bottom" id="5KK-xD-B8K"/>
                     <constraint firstItem="qSH-Wg-ZDc" firstAttribute="leading" secondItem="UNM-q1-Foj" secondAttribute="leading" constant="20" id="AGQ-kn-lNi"/>
                     <constraint firstItem="UNM-q1-Foj" firstAttribute="trailing" secondItem="qSH-Wg-ZDc" secondAttribute="trailing" constant="20" id="Aqm-qB-gFU"/>
                     <constraint firstItem="qSH-Wg-ZDc" firstAttribute="centerY" secondItem="kod-Ka-wha" secondAttribute="centerY" id="cYg-Am-iB5"/>
+                    <constraint firstItem="UNM-q1-Foj" firstAttribute="trailing" secondItem="CNP-V9-oXZ" secondAttribute="trailing" id="dFZ-gg-L4P"/>
+                    <constraint firstItem="CNP-V9-oXZ" firstAttribute="leading" secondItem="UNM-q1-Foj" secondAttribute="leading" id="ggg-pB-4Q7"/>
                     <constraint firstItem="qSH-Wg-ZDc" firstAttribute="centerX" secondItem="kod-Ka-wha" secondAttribute="centerX" id="wAd-9M-5YA"/>
                 </constraints>
             </view>
             <connections>
+                <outlet property="confirmButton" destination="cDd-G5-8Iw" id="CcZ-x5-ZDv"/>
                 <outlet property="pickerView" destination="bkB-cQ-KHM" id="FPD-cW-F6X"/>
             </connections>
-            <point key="canvasLocation" x="219" y="142"/>
+            <point key="canvasLocation" x="218.84057971014494" y="141.96428571428569"/>
         </viewController>
     </objects>
     <resources>

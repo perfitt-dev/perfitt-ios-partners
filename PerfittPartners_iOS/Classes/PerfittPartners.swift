@@ -84,9 +84,16 @@ open class PerfittPartners {
         let bundles = Bundle.main.loadNibNamed("PerfittKitTutorialVC", owner: nil, options: nil)
         let tutorialVC = bundles?.filter({ $0 is PerfittKitTutorialVC }).first as? PerfittKitTutorialVC
         
+        let backButtonImage = UIImage(named: "perfitt_backArrow_icon")!
+        
         let navigationController = UINavigationController(rootViewController: tutorialVC!)
-        navigationController.navigationItem.backBarButtonItem?.title = ""
         navigationController.modalPresentationStyle = .fullScreen
+        navigationController.navigationBar.tintColor = .black
+        navigationController.navigationBar.topItem?.title = ""
+        
+        let barAppearance = UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
+        barAppearance.backIndicatorImage = backButtonImage
+        barAppearance.backIndicatorTransitionMaskImage = backButtonImage
         
         let time = DispatchTime.now() + .milliseconds(300)
         DispatchQueue.main.asyncAfter(deadline: time) {
@@ -107,7 +114,7 @@ open class PerfittPartners {
     public func showAverageSizeAlert() {
         let alert = self.getAverageSizeAlert()
         alert.modalPresentationStyle = .overCurrentContext
-        self.ownerViewController?.present(alert, animated: true, completion: nil)
+        self.ownerViewController?.present(alert, animated: false, completion: nil)
     }
     
     public func onConfirm(completion: @escaping((String) -> Void) ) {
@@ -172,13 +179,7 @@ open class PerfittPartners {
             case .A4:
                 PerfittPartners.instance.getA4Camera()
             case .Kit:
-                
-                if UserDefaults.standard.bool(forKey: "perfittKitStart") {
-                    PerfittPartners.instance.getKitCamera()
-                }
-                else {
-                    PerfittPartners.instance.getKitTutorial()
-                }
+                PerfittPartners.instance.getKitTutorial()
                 
             case .none:
                 debugPrint("error!!!!!")

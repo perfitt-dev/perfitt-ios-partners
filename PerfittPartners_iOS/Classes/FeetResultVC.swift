@@ -41,6 +41,7 @@ class FeetResultVC: UIViewController {
     }
     
     private func setupUI() {
+        self.title = "측정 결과"
         self.leftWidth.text = String(format: "%.0fmm", model?.feet?.left?.width ?? 0.0)
         self.leftLength.text = String(format: "%.0fmm", model?.feet?.left?.length ?? 0.0)
         self.rightWidth.text = String(format: "%.0fmm", model?.feet?.right?.width ?? 0.0)

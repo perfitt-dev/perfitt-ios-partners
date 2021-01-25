@@ -9,6 +9,7 @@ import UIKit
 
 class SizePicker: UIViewController {
     @IBOutlet weak var pickerView: CustomPickerView!
+    @IBOutlet weak var confirmButton: UIButton!
     
     let minSize = 200
     let maxSize = 350
@@ -24,6 +25,20 @@ class SizePicker: UIViewController {
         }
         self.pickerView.delegate = self
         self.pickerView.selectRow(9, inComponent: 0, animated: false)
+        
+        self.confirmButton.layer.cornerRadius = 24
+        
+        self.setupUI()
+    }
+    
+    private func setupUI() {
+        let outsideTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.onOutSideTap))
+        self.view.addGestureRecognizer(outsideTapGesture)
+        
+    }
+    
+    @objc private func onOutSideTap() {
+        self.dismiss(animated: false, completion: nil)
     }
     
     @IBAction func onConfirm(_ sender: UIButton) {
