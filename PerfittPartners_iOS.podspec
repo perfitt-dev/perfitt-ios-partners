@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
 
     s.frameworks = 'UIKit', 'AVFoundation'
     
-    s.static_framework = truegit
+    s.static_framework = true
     s.dependency 'TensorFlowLiteSwift', '~> 2.2.0'
     
     s.pod_target_xcconfig = {
