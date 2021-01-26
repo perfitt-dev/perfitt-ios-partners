@@ -99,6 +99,10 @@ EOM
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/CaptureVC.nib"
   install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/FeetResultVC.nib"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/icBackBlack.pdf"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/icCompleted.pdf"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/icGeoFoot.pdf"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/icIncomplete.pdf"
   install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/PerfittCameraVC.nib"
   install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/PerfittKitCameraVC.nib"
   install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/PerfittKitTutorialVC.nib"
@@ -108,6 +112,10 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/CaptureVC.nib"
   install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/FeetResultVC.nib"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/icBackBlack.pdf"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/icCompleted.pdf"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/icGeoFoot.pdf"
+  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/icIncomplete.pdf"
   install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/PerfittCameraVC.nib"
   install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/PerfittKitCameraVC.nib"
   install_resource "${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/PerfittKitTutorialVC.nib"
