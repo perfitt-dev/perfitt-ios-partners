@@ -110,6 +110,19 @@ public class PerfittKitCameraVC: UIViewController {
         self.guideBox.layer.borderColor = UIColor.red.cgColor
 
         self.setButtonLayout()
+        
+        let nocompleteImage = UIImage(named: "perfitt_ncomplete_icon")
+        let completeImage = UIImage(named: "perfitt_completed_icon")
+        
+        self.balanceImage.image = nocompleteImage
+        self.detectedKitImage.image = nocompleteImage
+        self.detectedTrianglImage.image = nocompleteImage
+        self.footDectionImage.image = nocompleteImage
+        
+        self.balanceImage.highlightedImage = completeImage
+        self.detectedKitImage.highlightedImage = completeImage
+        self.detectedTrianglImage.highlightedImage = completeImage
+        self.footDectionImage.highlightedImage = completeImage
     }
     
     private func setupNavi() {

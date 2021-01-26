@@ -16,6 +16,7 @@ class FeetResultVC: UIViewController {
     @IBOutlet weak var rightLength: UILabel!
     
     @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var footImage: UIImageView!
     
     @IBOutlet weak var inputGender: UISegmentedControl!
     
@@ -49,6 +50,7 @@ class FeetResultVC: UIViewController {
         
         self.name.returnKeyType = .done
         self.name.delegate = self
+        self.footImage.image = UIImage(named: "perfitt_foot_icon")
     }
     
     @IBAction func onReset(_ sender: UIButton) {

@@ -85,7 +85,7 @@ open class PerfittPartners {
         let bundles = Bundle.main.loadNibNamed("PerfittKitTutorialVC", owner: nil, options: nil)
         let tutorialVC = bundles?.filter({ $0 is PerfittKitTutorialVC }).first as? PerfittKitTutorialVC
         
-        let backButtonImage = UIImage(named: "perfitt_backArrow_icon")!
+        let backButtonImage = UIImage(named: "perfitt_backArrow_icon")
         
         let navigationController = UINavigationController(rootViewController: tutorialVC!)
         navigationController.modalPresentationStyle = .fullScreen
