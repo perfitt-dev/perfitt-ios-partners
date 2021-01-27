@@ -66,7 +66,7 @@ public class PerfittKitCameraVC: UIViewController {
     
     
     // tensorflow lite model handler init
-    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: FileInfo(name: "model_kit", extension: "tflite"), labelsFileInfo: FileInfo(name: "dict_kit", extension: "txt"), thres: 0.9, baseThres: 0.8, triangleThres: 0.8 )
+    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: FileInfo(name: "model_kit", extension: "tflite"), labelsFileInfo: FileInfo(name: "dict_kit", extension: "txt"), thres: 0.9, baseThres: 0.75, triangleThres: 0.75 )
     
     // run model
     private var previousInferenceTimeMs: TimeInterval = Date.distantPast.timeIntervalSince1970 * 1000

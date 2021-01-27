@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'PerfittPartners_iOS'
-    s.version          = '1.0.0-alpha16'
+    s.version          = '1.0.0-alpha17'
     s.summary          = 'PerfittPartners_iOS is camera lib'
     
     # This description is used to generate tags and improve search results.
@@ -47,8 +47,10 @@ Pod::Spec.new do |s|
         'CFBundleIdentifier' => 'org.cocoapods.PerfittPartners-iOS'
     }
     
-#     s.resources = 'Sources/PerfittPartners_iOS/**/*'
-    s.resources = 'PerfittPartners_iOS/**/*.{png,jpeg,jpg,storyboard,xib,xcassets,pdf}'
+     s.resources = 'PerfittPartners_iOS/**/*'
+#    s.resources = 'PerfittPartners_iOS/**/*.{png,jpeg,jpg,storyboard,xib,xcassets,pdf}'
+
+
     
     s.resource_bundles = {
         'PerfittPartners_iOS' => ['PerfittPartners_iOS/Assets/**/*']
