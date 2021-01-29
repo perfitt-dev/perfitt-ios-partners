@@ -66,7 +66,7 @@ public class PerfittKitCameraVC: UIViewController {
     
     
     // tensorflow lite model handler init
-    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: FileInfo(name: "model_kit", extension: "tflite"), labelsFileInfo: FileInfo(name: "dict_kit", extension: "txt"), thres: 0.9, baseThres: 0.75, triangleThres: 0.75 )
+    private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: FileInfo(name: "model_kit", extension: "tflite"), labelsFileInfo: FileInfo(name: "dict_kit", extension: "txt"), thres: 0.9, baseThres: 0.75, triangleThres: 0.6 )
     
     // run model
     private var previousInferenceTimeMs: TimeInterval = Date.distantPast.timeIntervalSince1970 * 1000
@@ -388,8 +388,8 @@ extension PerfittKitCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
 //
 //        let width = CVPixelBufferGetWidth(pixelBuffer)
 //        let height = CVPixelBufferGetHeight(pixelBuffer)
-
-        // overlayView에 라벨과 텍스트를 업데이트합니다.
+//
+//        // overlayView에 라벨과 텍스트를 업데이트합니다.
 //        DispatchQueue.main.async {
 //            self.drawAfterPerformingCalculations(onInferences: displayResult.inferences, withImageSize: CGSize(width: CGFloat(width), height: CGFloat(height)))
 //        }
@@ -505,6 +505,8 @@ extension PerfittKitCameraVC: ModelDataHandlerDelegate {
     
     func detectedBase(rect: CGRect, imgSize: CGSize) {
         DispatchQueue.main.async {
+//            guideBox
+            
             if let isRight = self.rightImg, isRight {
                 self.baseRect = [Double(rect.minY), Double(rect.minX), Double(rect.maxY), Double(rect.maxX)]
             }
@@ -517,6 +519,7 @@ extension PerfittKitCameraVC: ModelDataHandlerDelegate {
     
     func isKit(status: Bool) {
         DispatchQueue.main.async {
+            debugPrint("~~> decting kit of guide box", self.guideBox.frame)
             self.detectedKitImage.isHighlighted = status
         }
     }

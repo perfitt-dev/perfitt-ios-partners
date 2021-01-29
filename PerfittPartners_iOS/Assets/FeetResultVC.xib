@@ -273,6 +273,7 @@
                 </constraints>
             </view>
             <connections>
+                <outlet property="footImage" destination="y0y-vC-YMU" id="NEb-LD-saQ"/>
                 <outlet property="inputGender" destination="j4d-NS-OqO" id="yT5-QE-8f5"/>
                 <outlet property="leftLength" destination="E30-c1-WmI" id="zZ7-LU-eMl"/>
                 <outlet property="leftWidth" destination="Ct5-ZX-Fpv" id="Xs5-II-dPI"/>
