@@ -505,8 +505,7 @@ extension PerfittKitCameraVC: ModelDataHandlerDelegate {
     
     func detectedBase(rect: CGRect, imgSize: CGSize) {
         DispatchQueue.main.async {
-//            guideBox
-            
+
             if let isRight = self.rightImg, isRight {
                 self.baseRect = [Double(rect.minY), Double(rect.minX), Double(rect.maxY), Double(rect.maxX)]
             }
@@ -519,7 +518,6 @@ extension PerfittKitCameraVC: ModelDataHandlerDelegate {
     
     func isKit(status: Bool) {
         DispatchQueue.main.async {
-            debugPrint("~~> decting kit of guide box", self.guideBox.frame)
             self.detectedKitImage.isHighlighted = status
         }
     }
