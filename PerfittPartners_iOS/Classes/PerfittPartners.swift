@@ -82,34 +82,50 @@ open class PerfittPartners {
     }
     
     private func getKitTutorial() {
-        let bundles = Bundle.main.loadNibNamed("PerfittKitTutorialVC", owner: nil, options: nil)
-        let tutorialVC = bundles?.filter({ $0 is PerfittKitTutorialVC }).first as? PerfittKitTutorialVC
         
-        let backButtonImage = UIImage(named: "perfitt_backArrow_icon")
-        
-        let navigationController = UINavigationController(rootViewController: tutorialVC!)
-        navigationController.modalPresentationStyle = .fullScreen
-        navigationController.navigationBar.tintColor = .black
-        navigationController.navigationBar.topItem?.title = ""
-        
-        let barAppearance = UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
-        barAppearance.backIndicatorImage = backButtonImage
-        barAppearance.backIndicatorTransitionMaskImage = backButtonImage
-        
-        let time = DispatchTime.now() + .milliseconds(300)
-        DispatchQueue.main.asyncAfter(deadline: time) {
-            self.ownerViewController!.present(navigationController, animated: true, completion: nil)
+        let podBundle = Bundle(for: PerfittPartners.self)
+        if let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") {
+            if let bundle = Bundle(url: bundleURL) {
+                let nib = UINib(nibName: "PerfittKitTutorialVC", bundle: bundle)
+                let vc = nib.instantiate(withOwner: nil, options: nil)
+                if let tutorialVC = vc.filter( { $0 is PerfittKitTutorialVC }).first as? PerfittKitTutorialVC {
+                    
+                    let backButtonImage = UIImage(named: "perfitt_backArrow_icon")
+                    
+                    let navigationController = UINavigationController(rootViewController: tutorialVC)
+                    navigationController.modalPresentationStyle = .fullScreen
+                    navigationController.navigationBar.tintColor = .black
+                    navigationController.navigationBar.topItem?.title = ""
+                    
+                    let barAppearance = UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
+                    barAppearance.backIndicatorImage = backButtonImage
+                    barAppearance.backIndicatorTransitionMaskImage = backButtonImage
+                    
+                    let time = DispatchTime.now() + .milliseconds(300)
+                    DispatchQueue.main.asyncAfter(deadline: time) {
+                        self.ownerViewController!.present(navigationController, animated: true, completion: nil)
+                    }
+                }
+            }
         }
+        
+        
     }
     
     //
     private func getAverageSizeAlert() -> UIViewController {
-        let bundles = Bundle.main.loadNibNamed("SizePicker", owner: nil, options: nil)
-        guard let averagePopup = bundles?.filter( { $0 is SizePicker }).first as? SizePicker else {
-            return UIViewController()
+        let podBundle = Bundle(for: PerfittPartners.self)
+        if let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") {
+            if let bundle = Bundle(url: bundleURL) {
+                let nib = UINib(nibName: "SizePicker", bundle: bundle)
+                let vc = nib.instantiate(withOwner: nil, options: nil)
+                if let averagePopup = vc.filter( { $0 is SizePicker }).first as? SizePicker {
+                    averagePopup.delegate = AverageSizeController()
+                    return averagePopup
+                }
+            }
         }
-        averagePopup.delegate = AverageSizeController()
-        return averagePopup
+        return UIViewController()
     }
     
     public func showAverageSizeAlert() {

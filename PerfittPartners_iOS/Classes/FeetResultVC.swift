@@ -50,7 +50,7 @@ class FeetResultVC: UIViewController {
         
         self.name.returnKeyType = .done
         self.name.delegate = self
-        self.footImage.image = UIImage(named: "perfitt_foot_icon")
+//        self.footImage.image = UIImage(named: "perfitt_foot_icon")
     }
     
     @IBAction func onReset(_ sender: UIButton) {

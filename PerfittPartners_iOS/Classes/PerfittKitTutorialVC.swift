@@ -33,10 +33,7 @@ extension PerfittKitTutorialVC: WKNavigationDelegate{
             if let url = navigationAction.request.url?.absoluteString {
                 
                 if url.contains("/app/guides/start") {
-                    let bundles = Bundle.main.loadNibNamed("PerfittKitCameraVC", owner: nil, options: nil)
-                    let cameraVC = bundles?.filter( { $0 is PerfittKitCameraVC }).first as? PerfittKitCameraVC
-                    cameraVC!.rightImg = true
-                    self.navigationController?.pushViewController(cameraVC!, animated: true)
+                    self.moveToCam()
                     
                     // 웹 뷰 페이지 전환 제어
                     decisionHandler(.cancel)
@@ -51,5 +48,21 @@ extension PerfittKitTutorialVC: WKNavigationDelegate{
         }
         decisionHandler(.allow)
 
+    }
+}
+
+extension PerfittKitTutorialVC {
+    private func moveToCam() {
+        let podBundle = Bundle(for: PerfittPartners.self)
+        if let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") {
+            if let bundle = Bundle(url: bundleURL) {
+                let nib = UINib(nibName: "PerfittKitCameraVC", bundle: bundle)
+                let vc = nib.instantiate(withOwner: nil, options: nil)
+                if let cameraVC = vc.filter( { $0 is PerfittKitCameraVC }).first as? PerfittKitCameraVC {
+                    cameraVC.rightImg = true
+                    self.navigationController?.pushViewController(cameraVC, animated: true)
+                }
+            }
+        }
     }
 }

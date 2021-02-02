@@ -111,18 +111,18 @@ public class PerfittKitCameraVC: UIViewController {
 
         self.setButtonLayout()
         
-        let nocompleteImage = UIImage(named: "perfitt_ncomplete_icon")
-        let completeImage = UIImage(named: "perfitt_completed_icon")
-        
-        self.balanceImage.image = nocompleteImage
-        self.detectedKitImage.image = nocompleteImage
-        self.detectedTrianglImage.image = nocompleteImage
-        self.footDectionImage.image = nocompleteImage
-        
-        self.balanceImage.highlightedImage = completeImage
-        self.detectedKitImage.highlightedImage = completeImage
-        self.detectedTrianglImage.highlightedImage = completeImage
-        self.footDectionImage.highlightedImage = completeImage
+//        let nocompleteImage = UIImage(named: "perfitt_ncomplete_icon")
+//        let completeImage = UIImage(named: "perfitt_completed_icon")
+//        
+//        self.balanceImage.image = nocompleteImage
+//        self.detectedKitImage.image = nocompleteImage
+//        self.detectedTrianglImage.image = nocompleteImage
+//        self.footDectionImage.image = nocompleteImage
+//        
+//        self.balanceImage.highlightedImage = completeImage
+//        self.detectedKitImage.highlightedImage = completeImage
+//        self.detectedTrianglImage.highlightedImage = completeImage
+//        self.footDectionImage.highlightedImage = completeImage
     }
     
     private func setupNavi() {
@@ -341,26 +341,30 @@ extension PerfittKitCameraVC: AVCapturePhotoCaptureDelegate {
             print("Fail to convert pixel buffer")
             return
         }
-
-        let bundles = Bundle.main.loadNibNamed("CaptureVC", owner: self, options: nil)
-        let captureVC = bundles?.filter({ $0 is CaptureVC }).first as? CaptureVC
         
         self.captureData.right?.base = self.baseRect
         
-        captureVC?.imageData = imageData
-        captureVC?.previewFor = "Right"
-        captureVC?.camMode = .KIT
-        captureVC?.captureData = self.captureData
-        
-        debugPrint(captureData)
-        if let isRight = rightImg, !isRight {
-            self.captureData.left?.base = self.baseRect
-            captureVC?.rightImgData = self.rightImgData
-            captureVC?.previewFor = "Left"
-            captureVC?.captureData = self.captureData
+        let podBundle = Bundle(for: PerfittPartners.self)
+        if let bundleURL = podBundle.url(forResource: "CaptureVC", withExtension: "bundle") {
+            if let bundle = Bundle(url: bundleURL) {
+                let nib = UINib(nibName: "SizePicker", bundle: bundle)
+                let vc = nib.instantiate(withOwner: nil, options: nil)
+                if let captureVC = vc.filter( { $0 is CaptureVC }).first as? CaptureVC {
+                    captureVC.imageData = imageData
+                    captureVC.previewFor = "Right"
+                    captureVC.camMode = .KIT
+                    captureVC.captureData = self.captureData
+                    
+                    if let isRight = rightImg, !isRight {
+                        self.captureData.left?.base = self.baseRect
+                        captureVC.rightImgData = self.rightImgData
+                        captureVC.previewFor = "Left"
+                        captureVC.captureData = self.captureData
+                    }
+                    self.navigationController?.pushViewController(captureVC, animated: true)
+                }
+            }
         }
-        
-        self.navigationController?.pushViewController(captureVC ?? self, animated: true)
     }
 }
 

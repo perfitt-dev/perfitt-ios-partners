@@ -174,7 +174,7 @@
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				7087B2D963814F2A8C258837 /* [CP] Copy Pods Resources */,
+				812203EF6CBCDD17277A2420 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -267,88 +267,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7087B2D963814F2A8C258837 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PerfittPartners_iOS_Example/Pods-PerfittPartners_iOS_Example-resources.sh",
-				"${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/CaptureVC.nib",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict.txt",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict_kit.txt",
-				"${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/FeetResultVC.nib",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/icBackBlack.pdf",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/icCompleted.pdf",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/icGeoFoot.pdf",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/icIncomplete.pdf",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model.tflite",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model_kit.tflite",
-				"${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/PerfittCameraVC.nib",
-				"${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/PerfittKitCameraVC.nib",
-				"${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/PerfittKitTutorialVC.nib",
-				"${BUILT_PRODUCTS_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.framework/SizePicker.nib",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIConsts.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIController.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/APIModel.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/CaptureVC.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/Extension.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/FeetResultVC.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/ModelDataHandler.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/Motion.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/OverlayView.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/PartnersVC.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/PerfittCameraVC.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/PerfittKitCameraVC.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/PerfittKitTutorialVC.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/PerfittPartners.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/SizePicker.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes/VideoView.swift",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets",
-				"${PODS_ROOT}/../../PerfittPartners_iOS/Classes",
-				"${PODS_CONFIGURATION_BUILD_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CaptureVC.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/dict.txt",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/dict_kit.txt",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FeetResultVC.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icBackBlack.pdf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icCompleted.pdf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icGeoFoot.pdf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/icIncomplete.pdf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/model.tflite",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/model_kit.tflite",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PerfittCameraVC.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PerfittKitCameraVC.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PerfittKitTutorialVC.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SizePicker.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/APIConsts.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/APIController.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/APIModel.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CaptureVC.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Extension.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FeetResultVC.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ModelDataHandler.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Motion.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/OverlayView.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PartnersVC.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PerfittCameraVC.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PerfittKitCameraVC.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PerfittKitTutorialVC.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PerfittPartners.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SizePicker.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/VideoView.swift",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Assets",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Classes",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PerfittPartners_iOS.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PerfittPartners_iOS_Example/Pods-PerfittPartners_iOS_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		792E136ED3095BC1A002ED89 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -369,6 +287,32 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		812203EF6CBCDD17277A2420 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PerfittPartners_iOS_Example/Pods-PerfittPartners_iOS_Example-resources.sh",
+				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict.txt",
+				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict_kit.txt",
+				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model.tflite",
+				"${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model_kit.tflite",
+				"${PODS_CONFIGURATION_BUILD_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/dict.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/dict_kit.txt",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/model.tflite",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/model_kit.tflite",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PerfittPartners_iOS.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PerfittPartners_iOS_Example/Pods-PerfittPartners_iOS_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		84670409E9BAA31AD2BD82BE /* [CP] Check Pods Manifest.lock */ = {

@@ -39,10 +39,10 @@
   "info_plist": {
     "CFBundleIdentifier": "org.cocoapods.PerfittPartners-iOS"
   },
-  "resources": "PerfittPartners_iOS/**/*",
+  "resources": "PerfittPartners_iOS/**/*.{tflite,txt}",
   "resource_bundles": {
     "PerfittPartners_iOS": [
-      "PerfittPartners_iOS/Assets/**/*"
+      "PerfittPartners_iOS/**/*"
     ]
   },
   "swift_version": "4.2"

@@ -89,15 +89,7 @@ class CaptureVC: UIViewController {
                 self.navigationController?.pushViewController(cameraVC ?? self, animated: true)
                 
             case .KIT:
-                let bundles = Bundle.main.loadNibNamed("PerfittKitCameraVC", owner: nil, options: nil)
-                let cameraVC = bundles?.filter( { $0 is PerfittKitCameraVC }).first as? PerfittKitCameraVC
-                
-                cameraVC?.rightImg = false
-                cameraVC?.rightImgData = base64Data
-                
-                cameraVC?.reciveCaptureData = self.captureData
-                
-                self.navigationController?.pushViewController(cameraVC ?? self, animated: true)
+                self.moveToCam()
             case .none: return
             }
             
@@ -110,6 +102,9 @@ class CaptureVC: UIViewController {
     
 }
 extension CaptureVC {
+    
+    
+    
     private func fetchFeetData() {
         guard let right = self.rightImgData else { return }
         guard let left = self.base64Data else { return }
@@ -138,10 +133,7 @@ extension CaptureVC {
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.removeFromSuperview()
-                let bundle = Bundle.main.loadNibNamed("FeetResultVC", owner: self, options: nil)
-                let feetRsultVC = bundle?.filter({ $0 is FeetResultVC }).first as? FeetResultVC
-                feetRsultVC?.model = response
-                self.navigationController?.pushViewController(feetRsultVC!, animated: true)
+                self.moveToFeetResult(model: response)
             }
 
         }, failedHandler: { requestError in
@@ -168,28 +160,40 @@ extension CaptureVC {
         let os = ProcessInfo().operatingSystemVersion
         return String(os.majorVersion) + "." + String(os.minorVersion) + "." + String(os.patchVersion)
     }
+    
+    private func moveToFeetResult(model: FeetModel?) {
+        let podBundle = Bundle(for: PerfittPartners.self)
+        if let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") {
+            if let bundle = Bundle(url: bundleURL) {
+                let nib = UINib(nibName: "FeetResultVC", bundle: bundle)
+                let vc = nib.instantiate(withOwner: nil, options: nil)
+                if let feetResultVC = vc.filter( { $0 is FeetResultVC }).first as? FeetResultVC {
+                    feetResultVC.model = model
+                    self.navigationController?.pushViewController(feetResultVC, animated: true)
+                }
+            }
+        }
+    }
+    
+    private func moveToCam() {
+        let podBundle = Bundle(for: PerfittPartners.self)
+        if let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") {
+            if let bundle = Bundle(url: bundleURL) {
+                let nib = UINib(nibName: "PerfittKitCameraVC", bundle: bundle)
+                let vc = nib.instantiate(withOwner: nil, options: nil)
+                if let cameraVC = vc.filter( { $0 is PerfittKitCameraVC }).first as? PerfittKitCameraVC {
+                    cameraVC.rightImg = false
+                    cameraVC.rightImgData = base64Data
+                    
+                    cameraVC.reciveCaptureData = self.captureData
+                    self.navigationController?.pushViewController(cameraVC, animated: true)
+                }
+            }
+        }
+    }
 }
 
 extension CaptureVC {
-//    func confirm(nickName: String?, gender: String?, averageSize: Int) {
-//        debugPrint("api request click ")
-//        guard let right = self.rightImgData else {
-//            debugPrint("right data empty")
-//            return
-//        }
-//
-//        guard let left = self.base64Data else {
-//            debugPrint("left data empty")
-//            return
-//        }
-//
-//
-//
-//
-//
-//
-//    }
-    
     private func showAlert(title: String, message: String, handler: ((UIAlertAction) -> ())?) {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)

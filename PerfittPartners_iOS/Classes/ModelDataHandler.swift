@@ -104,11 +104,28 @@ public class ModelDataHandler: NSObject {
         self.baseThreshold = baseThres
         self.triangleThreshold = triangleThres
         // 기존 코드
-        guard let modelPath = Bundle.main.path(
-            forResource: modelFilename,
-            ofType: modelFileInfo.extension
-            ) else {
-                print("Failed to load the model file with name: ghdfghdfg d\(modelFilename).")
+//        guard let modelPath = Bundle.main.path(
+//            forResource: modelFilename,
+//            ofType: modelFileInfo.extension
+//            ) else {
+//                print("Failed to load the model file with name: ghdfghdfg d\(modelFilename).")
+//            return nil
+//        }
+        
+        let podBundle = Bundle(for: PerfittPartners.self)
+//        if let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") {
+//            if let bundle = Bundle(url: bundleURL) {
+//                let nib = UINib(nibName: "SizePicker", bundle: bundle)
+//                let vc = nib.instantiate(withOwner: nil, options: nil)
+//                if let averagePopup = vc.filter( { $0 is SizePicker }).first as? SizePicker {
+//                    averagePopup.delegate = AverageSizeController()
+//                    return averagePopup
+//                }
+//            }
+//        }
+        
+        guard let modelPath = podBundle.path(forResource: modelFilename, ofType: modelFileInfo.extension) else {
+            debugPrint(" failed to load the model file with name : \(modelFilename).")
             return nil
         }
 

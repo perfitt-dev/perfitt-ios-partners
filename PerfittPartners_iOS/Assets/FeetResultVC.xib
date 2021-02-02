@@ -31,7 +31,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Zh-We-rpk">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="283"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="perfitt_foot_icon" translatesAutoresizingMaskIntoConstraints="NO" id="y0y-vC-YMU">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="foot_img" translatesAutoresizingMaskIntoConstraints="NO" id="y0y-vC-YMU">
                                                                 <rect key="frame" x="167" y="44" width="80" height="80"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="80" id="bgg-AF-djq"/>
@@ -285,7 +285,7 @@
         </viewController>
     </objects>
     <resources>
-        <image name="perfitt_foot_icon" width="84" height="83"/>
+        <image name="foot_img" width="84" height="83"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
