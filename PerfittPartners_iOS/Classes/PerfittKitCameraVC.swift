@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-public class PerfittKitCameraVC: UIViewController {
+class PerfittKitCameraVC: PerfittViewController {
     
     // 카메라 관련 컴포넌트
     private var session = AVCaptureSession()
@@ -64,7 +64,6 @@ public class PerfittKitCameraVC: UIViewController {
     @IBOutlet weak var leftCollision: UIView!
     @IBOutlet weak var rightCollision: UIView!
     
-    
     // tensorflow lite model handler init
     private var modelDataHandler: ModelDataHandler? = ModelDataHandler(modelFileInfo: FileInfo(name: "model_kit", extension: "tflite"), labelsFileInfo: FileInfo(name: "dict_kit", extension: "txt"), thres: 0.9, baseThres: 0.75, triangleThres: 0.6 )
     
@@ -77,13 +76,11 @@ public class PerfittKitCameraVC: UIViewController {
     private let edgeOffset: CGFloat = 2.0
     private let displayFont = UIFont.systemFont(ofSize: 14.0, weight: .medium)
     
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-//        UserDefaults.standard.set(true, forKey: "perfittKitStart")
     }
 
-    
-    public override func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // carmera start
         self.configCameraAndStartSession()
@@ -110,19 +107,6 @@ public class PerfittKitCameraVC: UIViewController {
         self.guideBox.layer.borderColor = UIColor.red.cgColor
 
         self.setButtonLayout()
-        
-//        let nocompleteImage = UIImage(named: "perfitt_ncomplete_icon")
-//        let completeImage = UIImage(named: "perfitt_completed_icon")
-//        
-//        self.balanceImage.image = nocompleteImage
-//        self.detectedKitImage.image = nocompleteImage
-//        self.detectedTrianglImage.image = nocompleteImage
-//        self.footDectionImage.image = nocompleteImage
-//        
-//        self.balanceImage.highlightedImage = completeImage
-//        self.detectedKitImage.highlightedImage = completeImage
-//        self.detectedTrianglImage.highlightedImage = completeImage
-//        self.footDectionImage.highlightedImage = completeImage
     }
     
     private func setupNavi() {
@@ -159,7 +143,7 @@ public class PerfittKitCameraVC: UIViewController {
     
 }
 
-//  카메라 관련 설정
+// MARK: - 카메라 관련 설정
 extension PerfittKitCameraVC {
     // 카메라 권한 확인및 설정
     private func configCameraAndStartSession() {
@@ -189,8 +173,7 @@ extension PerfittKitCameraVC {
     // 카메라 속성 설정
     private func setupSession() {
         self.session = AVCaptureSession()
-//        self.session.sessionPreset = .hd1280x720                // photo 해상도 결정
-        self.session.sessionPreset = .high
+        self.session.sessionPreset = .high                      // photo 해상도 결정
         self.session.beginConfiguration()                       // session 구성 시작
         
         // Add Video Input
@@ -280,28 +263,6 @@ extension PerfittKitCameraVC {
         videoPreviewLayer.frame = self.previewLayer.bounds
         self.previewLayer.layer.addSublayer(videoPreviewLayer)
         self.previewLayer.layer.layoutIfNeeded()
-        
-        // MARKT: - guide line remove
-//        self.setGuideLine()
-    }
-    
-    private func setGuideLine() {
-        self.guideLine.backgroundColor = .red
-        self.guideLine.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.overlayView.addSubview(guideLine)
-        let guideLineYPos = self.overlayView.bounds.size.height * 0.3
-        let baseRange = self.overlayView.bounds.size.height * 0.01
-        
-        self.minY = guideLineYPos - baseRange
-        self.maxY = guideLineYPos + baseRange
-        
-        NSLayoutConstraint.activate([
-            self.guideLine.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.guideLine.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            self.guideLine.heightAnchor.constraint(equalToConstant: 2),
-            self.guideLine.topAnchor.constraint(equalTo: self.overlayView.topAnchor, constant: guideLineYPos)
-        ])
     }
 }
 
@@ -344,27 +305,20 @@ extension PerfittKitCameraVC: AVCapturePhotoCaptureDelegate {
         
         self.captureData.right?.base = self.baseRect
         
-        let podBundle = Bundle(for: PerfittPartners.self)
-        if let bundleURL = podBundle.url(forResource: "CaptureVC", withExtension: "bundle") {
-            if let bundle = Bundle(url: bundleURL) {
-                let nib = UINib(nibName: "SizePicker", bundle: bundle)
-                let vc = nib.instantiate(withOwner: nil, options: nil)
-                if let captureVC = vc.filter( { $0 is CaptureVC }).first as? CaptureVC {
-                    captureVC.imageData = imageData
-                    captureVC.previewFor = "Right"
-                    captureVC.camMode = .KIT
-                    captureVC.captureData = self.captureData
-                    
-                    if let isRight = rightImg, !isRight {
-                        self.captureData.left?.base = self.baseRect
-                        captureVC.rightImgData = self.rightImgData
-                        captureVC.previewFor = "Left"
-                        captureVC.captureData = self.captureData
-                    }
-                    self.navigationController?.pushViewController(captureVC, animated: true)
-                }
-            }
+        let captureVC = CaptureVC.initViewController(viewControllerClass: CaptureVC.self)
+        captureVC.imageData = imageData
+        captureVC.previewFor = "Right"
+        captureVC.camMode = .KIT
+        captureVC.captureData = self.captureData
+        
+        if let isRight = rightImg, !isRight {
+            self.captureData.left?.base = self.baseRect
+            captureVC.rightImgData = self.rightImgData
+            captureVC.previewFor = "Left"
+            captureVC.captureData = self.captureData
         }
+        
+        self.navigationController?.pushViewController(captureVC, animated: true)
     }
 }
 
@@ -378,7 +332,6 @@ extension PerfittKitCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
             return
         }
         
-
         self.runModel(onPixelBuffer: imagePixelBuffer)
     }
     
@@ -431,21 +384,9 @@ extension PerfittKitCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
 
             let confidenceValue = Int(inference.confidence * 100.0)
             let string = "\(inference.className)  (\(confidenceValue)%)"
-            
-//            if self.leftCollision.bounds.intersects(convertedRect) && self.rightCollision.bounds.intersects(convertedRect) {
-//                self.leftCollision.backgroundColor = .blue
-//                self.rightCollision.backgroundColor = .blue
-//            }
-//            else {
-//                self.leftCollision.backgroundColor = .white
-//                self.rightCollision.backgroundColor = .white
-//            }
 
             let size = string.size(usingFont: self.displayFont)
-//            let size = CGSize(width: 100, height: 20)
             let objectOverlay = ObjectOverlay(name: string, borderRect: convertedRect, nameStringSize: size, color: inference.displayColor, font: self.displayFont)
-                
-//            debugPrint(<#T##items: Any...##Any#>)
 
             objectOverlays.append(objectOverlay)
         }
@@ -457,7 +398,6 @@ extension PerfittKitCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
     /** Calls methods to update overlay view with detected bounding boxes and class names.
      */
     func draw(objectOverlays: [ObjectOverlay]) {
-        
         self.overlayView.objectOverlays = objectOverlays
         self.overlayView.setNeedsDisplay()
     }
@@ -466,9 +406,7 @@ extension PerfittKitCameraVC: AVCaptureVideoDataOutputSampleBufferDelegate {
 extension PerfittKitCameraVC: ModelDataHandlerDelegate {
     func detectedFoot(status: Bool) {
         DispatchQueue.main.async {
-            
             self.footDectionImage.isHighlighted = status
-//            self.footDectionLabel.isHidden = status
         }
         
     }
@@ -480,8 +418,6 @@ extension PerfittKitCameraVC: ModelDataHandlerDelegate {
                 foot.leftRect = [Double(leftPos.minY), Double(leftPos.minX), Double(leftPos.maxY), Double(leftPos.maxX)]
                 foot.rightRect = [Double(rightPos.minY), Double(rightPos.minX), Double(rightPos.maxY), Double(rightPos.maxX)]
                 self.captureData.right = foot
-//                self.captureData.right?.leftRect =
-//                self.captureData.right?.rightRect = [Double(rightPos.minY), Double(rightPos.minX), Double(rightPos.maxY), Double(rightPos.maxX)]
             }
             else {
                 // left
@@ -489,8 +425,6 @@ extension PerfittKitCameraVC: ModelDataHandlerDelegate {
                 foot.leftRect = [Double(leftPos.minY), Double(leftPos.minX), Double(leftPos.maxY), Double(leftPos.maxX)]
                 foot.rightRect = [Double(rightPos.minY), Double(rightPos.minX), Double(rightPos.maxY), Double(rightPos.maxX)]
                 self.captureData.left = foot
-//                self.captureData.left?.leftRect = [Double(leftPos.minY), Double(leftPos.minX), Double(leftPos.maxY), Double(leftPos.maxX)]
-//                self.captureData.right?.rightRect = [Double(rightPos.minY), Double(rightPos.minX), Double(rightPos.maxY), Double(rightPos.maxX)]
             }
         }
     }
@@ -509,7 +443,6 @@ extension PerfittKitCameraVC: ModelDataHandlerDelegate {
     
     func detectedBase(rect: CGRect, imgSize: CGSize) {
         DispatchQueue.main.async {
-
             if let isRight = self.rightImg, isRight {
                 self.baseRect = [Double(rect.minY), Double(rect.minX), Double(rect.maxY), Double(rect.maxX)]
             }
@@ -564,27 +497,8 @@ extension PerfittKitCameraVC {
             }
             device.videoZoomFactor = factor
         } catch {
-            print("\(error.localizedDescription)")
+            debugPrint("\(error.localizedDescription)")
             
         }
     }
-}
-
-extension PerfittKitCameraVC {
-    private func showAlert(title: String, message: String, handler: ((UIAlertAction) -> ())?) {
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)
-        controller.addAction(okAction)
-        UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)
-    }
-    
-    func showAlertTwoBtn(title: String, message: String, handler: ((UIAlertAction) -> ())?, cancelHandler: ((UIAlertAction) -> ())?) {
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)
-        let cancelAction = UIAlertAction(title: "취소", style: .default, handler: cancelHandler)
-        controller.addAction(cancelAction)
-        controller.addAction(okAction)
-        UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)
-    }
-    
 }

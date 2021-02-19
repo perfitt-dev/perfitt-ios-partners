@@ -8,7 +8,7 @@
 import Foundation
 
 class APIConsts {
-    public static let BASE_URL = "https://dev-api.perfitt.io"
+    public static let BASE_URL = (PerfittPartners.instance.getAPIKey()?.contains("TEST_KEY") ?? false) ? "https://dev-api.perfitt.io" : "https://api.perfitt.io"
     
     public static let API_VERSION =  "/v2"
     

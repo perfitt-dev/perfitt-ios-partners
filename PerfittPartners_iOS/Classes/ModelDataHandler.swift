@@ -100,32 +100,23 @@ public class ModelDataHandler: NSObject {
     /// labels files are successfully loaded from the app's main bundle. Default `threadCount` is 1.
     init?(modelFileInfo: FileInfo, labelsFileInfo: FileInfo, threadCount: Int = 1, thres: Float, baseThres: Float? = nil, triangleThres: Float? = nil) {
         let modelFilename = modelFileInfo.name
+        // 통과 기준 설정
         self.threshold = thres
         self.baseThreshold = baseThres
         self.triangleThreshold = triangleThres
-        // 기존 코드
-//        guard let modelPath = Bundle.main.path(
-//            forResource: modelFilename,
-//            ofType: modelFileInfo.extension
-//            ) else {
-//                print("Failed to load the model file with name: ghdfghdfg d\(modelFilename).")
-//            return nil
-//        }
         
         let podBundle = Bundle(for: PerfittPartners.self)
-//        if let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") {
-//            if let bundle = Bundle(url: bundleURL) {
-//                let nib = UINib(nibName: "SizePicker", bundle: bundle)
-//                let vc = nib.instantiate(withOwner: nil, options: nil)
-//                if let averagePopup = vc.filter( { $0 is SizePicker }).first as? SizePicker {
-//                    averagePopup.delegate = AverageSizeController()
-//                    return averagePopup
-//                }
-//            }
-//        }
+        guard let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") else {
+            debugPrint("pod bundle failed")
+            return nil
+        }
+        guard let bundle = Bundle(url: bundleURL) else {
+            debugPrint("create bundle failed")
+            return nil
+        }
         
-        guard let modelPath = podBundle.path(forResource: modelFilename, ofType: modelFileInfo.extension) else {
-            debugPrint(" failed to load the model file with name : \(modelFilename).")
+        guard let modelPath = bundle.path(forResource: modelFilename, ofType: modelFileInfo.extension) else {
+            debugPrint("custom bundle failed to load the model file with name : \(modelFilename).")
             return nil
         }
 
@@ -336,7 +327,17 @@ public class ModelDataHandler: NSObject {
     private func loadLabels(fileInfo: FileInfo) {
         let filename = fileInfo.name
         let fileExtension = fileInfo.extension
-        guard let fileURL = Bundle.main.url(forResource: filename, withExtension: fileExtension) else {
+        let podBundle = Bundle(for: PerfittPartners.self)
+        guard let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") else {
+            debugPrint("pod bundle failed")
+            return
+        }
+        guard let bundle = Bundle(url: bundleURL) else {
+            debugPrint("create bundle failed")
+            return
+        }
+        
+        guard let fileURL = bundle.url(forResource: filename, withExtension: fileExtension) else {
             fatalError("Labels file not found in bundle. Please add a labels file with name " +
                 "\(filename).\(fileExtension) and try again.")
         }
@@ -473,6 +474,7 @@ extension Array {
         #endif  // swift(>=5.0)
     }
 }
+
 @objc protocol ModelDataHandlerDelegate {
     func detectedFoot(status: Bool)
     @objc optional func detectedBase(rect: CGRect, imgSize: CGSize)

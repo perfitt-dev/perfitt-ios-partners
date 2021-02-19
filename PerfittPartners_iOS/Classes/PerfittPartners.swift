@@ -1,211 +1,81 @@
 
-import WebKit
-
 enum CameraStatus {
     case Kit, A4
 }
 
 open class PerfittPartners {
     
+    // create singleton
     public static var instance = PerfittPartners()
     
-    private var apiKey: String?
-    private var customerId: String?
-    private var averageSize: Int?
-    private var ownerViewController: UIViewController?
+    var apiKey: String?
+    var customerId: String?
+    var averageSize: Int?
+    var ownerViewController: UIViewController?
     
-    private var status: CameraStatus! = .Kit
+    // camera mode
+    var status: CameraStatus = .Kit
     
-    public var contentKit: String {
-        get {
-            return "PERFITT_SDK_KIT"
-        }
-    }
+    // define interface name
+    public let contentKit: String = "PERFITT_SDK_KIT"
+    public let contentA4: String = "PERFITT_SDK_A4"
     
-    public var contentA4: String {
-        get {
-            return "PERFITT_SDK_A4"
-        }
-    }
+    // define webview interface
+    public let bridgeJavaScript: PerfittBridgeJavaScript = PerfittBridgeJavaScript()
     
-    
-    public var result: ((String) -> Void)?
+    // call web view
+    var result: ((String) -> Void)?
     public var callbackName: String? {
         didSet {
             self.result!(callbackName ?? "")
         }
     }
     
-    public var nativeResult: ((String) -> Void)?
+    // call native
+    var nativeResult: ((String) -> Void)?
     public var nativeCallbackName: String? {
         didSet {
             self.nativeResult!(nativeCallbackName ?? "")
         }
     }
-    
-    public func setAverageSize(to size: Int) {
-        self.averageSize = size
+}
+
+extension PerfittPartners {
+    // define sdk
+    public func initializeApiKey(APIKey: String, vc: UIViewController) {
+        // 인증에 성공하면 apikey를 저장합니다!
+        self.apiKey = APIKey
+        self.ownerViewController = vc
     }
     
-    public func getAverageSize() -> Int {
-        return self.averageSize ?? 0
-    }
- 
-    // A4 용지
-    private func getA4Camera() {
-        let bundles = Bundle.main.loadNibNamed("PerfittCameraVC", owner: nil, options: nil)
-        let cameraVC = bundles?.filter({ $0 is PerfittCameraVC }).first as? PerfittCameraVC
-        cameraVC?.rightImg = true
-        let navigationController = UINavigationController(rootViewController: cameraVC!)
-        navigationController.navigationItem.backBarButtonItem?.title = ""
-        navigationController.modalPresentationStyle = .fullScreen
+    // start native sdk
+    public func runSDK(_ customerId: String) {
+        self.customerId = customerId
+        PerfittPartners.instance.status = .Kit
         
-        let time = DispatchTime.now() + .milliseconds(300)
-        DispatchQueue.main.asyncAfter(deadline: time) {
-            self.ownerViewController?.present(navigationController, animated: true, completion: nil)
-        }
+        // show average size popup
+        let sizePicker = SizePicker.initViewController(viewControllerClass: SizePicker.self)
+        sizePicker.delegate = SizePickerController()
+        sizePicker.modalPresentationStyle = .overCurrentContext
+        self.ownerViewController?.present(sizePicker, animated: true, completion: nil)
     }
     
-    // Kit
-    private func getKitCamera()  {
-        let bundles = Bundle.main.loadNibNamed("PerfittKitCameraVC", owner: nil, options: nil)
-        let cameraVC = bundles?.filter( { $0 is PerfittKitCameraVC }).first as? PerfittKitCameraVC
-        cameraVC!.rightImg = true
-        let navigationController = UINavigationController(rootViewController: cameraVC!)
-        navigationController.navigationItem.backBarButtonItem?.title = ""
-        navigationController.modalPresentationStyle = .fullScreen
-        
-        let time = DispatchTime.now() + .milliseconds(300)
-        DispatchQueue.main.asyncAfter(deadline: time) {
-            self.ownerViewController!.present(navigationController, animated: true, completion: nil)
-        }
+    // get using api key
+    public func getAPIKey() -> String? {
+        return self.apiKey
     }
     
-    private func getKitTutorial() {
-        
-        let podBundle = Bundle(for: PerfittPartners.self)
-        if let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") {
-            if let bundle = Bundle(url: bundleURL) {
-                let nib = UINib(nibName: "PerfittKitTutorialVC", bundle: bundle)
-                let vc = nib.instantiate(withOwner: nil, options: nil)
-                if let tutorialVC = vc.filter( { $0 is PerfittKitTutorialVC }).first as? PerfittKitTutorialVC {
-                    
-                    let backButtonImage = UIImage(named: "perfitt_backArrow_icon")
-                    
-                    let navigationController = UINavigationController(rootViewController: tutorialVC)
-                    navigationController.modalPresentationStyle = .fullScreen
-                    navigationController.navigationBar.tintColor = .black
-                    navigationController.navigationBar.topItem?.title = ""
-                    
-                    let barAppearance = UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
-                    barAppearance.backIndicatorImage = backButtonImage
-                    barAppearance.backIndicatorTransitionMaskImage = backButtonImage
-                    
-                    let time = DispatchTime.now() + .milliseconds(300)
-                    DispatchQueue.main.asyncAfter(deadline: time) {
-                        self.ownerViewController!.present(navigationController, animated: true, completion: nil)
-                    }
-                }
-            }
-        }
-        
-        
-    }
-    
-    //
-    private func getAverageSizeAlert() -> UIViewController {
-        let podBundle = Bundle(for: PerfittPartners.self)
-        if let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") {
-            if let bundle = Bundle(url: bundleURL) {
-                let nib = UINib(nibName: "SizePicker", bundle: bundle)
-                let vc = nib.instantiate(withOwner: nil, options: nil)
-                if let averagePopup = vc.filter( { $0 is SizePicker }).first as? SizePicker {
-                    averagePopup.delegate = AverageSizeController()
-                    return averagePopup
-                }
-            }
-        }
-        return UIViewController()
-    }
-    
-    public func showAverageSizeAlert() {
-        let alert = self.getAverageSizeAlert()
-        alert.modalPresentationStyle = .overCurrentContext
-        self.ownerViewController?.present(alert, animated: false, completion: nil)
-    }
-    
+    // call back func
     public func onConfirm(completion: @escaping((String) -> Void) ) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.result = completion
         }
     }
     
+    // call back func
     public func onNativeConfirm(completion: @escaping( (String) -> Void)) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.nativeResult = completion
         }
     }
-    
-    public func runSDK(_ customerId: String) {
-        self.setCustomId(to: customerId)
-        PerfittPartners.instance.showAverageSizeAlert()
-        PerfittPartners.instance.status = .Kit
-    }
-    
-    public func initializeApiKey(APIKey: String, vc: UIViewController) {
-        // TODO: - APIKey 인증 방식 설정
-        
-        // 인증에 성공하면 apikey를 저장합니다!
-        self.apiKey = APIKey
-        
-        self.ownerViewController = vc
-    }
-    
-    public func getAPIKey() -> String? {
-        return self.apiKey
-    }
-    
-    public func setCustomId(to customId: String) {
-        self.customerId = customId
-    }
-    
-    public func getCustomerId() -> String? {
-        return self.customerId
-    }
-    
-    public class BridgeJavaScript: NSObject, WKScriptMessageHandler {
-        public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-            debugPrint("test message: \(message.name)")
-            // PERFITT_SDK ( KIT )
-            if (message.name == PerfittPartners.instance.contentKit) {
-                
-                PerfittPartners.instance.showAverageSizeAlert()
-                PerfittPartners.instance.status = .Kit
-            }
-            // PERFITT_SDK ( A4 )
-            else if (message.name == PerfittPartners.instance.contentA4) {
-                PerfittPartners.instance.showAverageSizeAlert()
-                PerfittPartners.instance.status = .A4
-            }
-        }
-    }
-    
-    public class AverageSizeController: NSObject, SizePickerDelegate {
-        func onConfirm() {
-            // move to camera
-            switch PerfittPartners.instance.status {
-            case .A4:
-                PerfittPartners.instance.getA4Camera()
-            case .Kit:
-                PerfittPartners.instance.getKitTutorial()
-                
-            case .none:
-                debugPrint("error!!!!!")
-            }
-        }
-    }
 }
-
-
-
-

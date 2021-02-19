@@ -53,16 +53,8 @@ extension PerfittKitTutorialVC: WKNavigationDelegate{
 
 extension PerfittKitTutorialVC {
     private func moveToCam() {
-        let podBundle = Bundle(for: PerfittPartners.self)
-        if let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") {
-            if let bundle = Bundle(url: bundleURL) {
-                let nib = UINib(nibName: "PerfittKitCameraVC", bundle: bundle)
-                let vc = nib.instantiate(withOwner: nil, options: nil)
-                if let cameraVC = vc.filter( { $0 is PerfittKitCameraVC }).first as? PerfittKitCameraVC {
-                    cameraVC.rightImg = true
-                    self.navigationController?.pushViewController(cameraVC, animated: true)
-                }
-            }
-        }
+        let kitCameraVC = PerfittKitCameraVC.initViewController(viewControllerClass: PerfittKitCameraVC.self)
+        kitCameraVC.rightImg = true
+        self.navigationController?.pushViewController(kitCameraVC, animated: true)
     }
 }

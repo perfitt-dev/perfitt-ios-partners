@@ -44,7 +44,7 @@ class SizePicker: UIViewController {
     @IBAction func onConfirm(_ sender: UIButton) {
         let row = pickerView.selectedRow(inComponent: 0)
         
-        PerfittPartners.instance.setAverageSize(to: Int(minSize + row * 5))
+        PerfittPartners.instance.averageSize = Int(minSize + row * 5)
         self.delegate?.onConfirm()
         
         self.dismiss(animated: true, completion: nil)

@@ -26,6 +26,13 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzc-0z-0HY">
+                                <rect key="frame" x="264" y="617" width="91" height="30"/>
+                                <state key="normal" title="native button"/>
+                                <connections>
+                                    <action selector="onRunSDK:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="aNj-rz-Ua6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -33,6 +40,8 @@
                             <constraint firstItem="pGa-AO-hSS" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="QIh-us-bKW"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="pGa-AO-hSS" secondAttribute="bottom" id="SuI-lA-hgb"/>
                             <constraint firstAttribute="trailing" secondItem="pGa-AO-hSS" secondAttribute="trailing" id="YTj-bp-6nc"/>
+                            <constraint firstAttribute="trailing" secondItem="Dzc-0z-0HY" secondAttribute="trailing" constant="20" id="eKn-oY-h9N"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Dzc-0z-0HY" secondAttribute="bottom" constant="20" id="yl4-x6-dRb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="QNm-L1-3IS"/>

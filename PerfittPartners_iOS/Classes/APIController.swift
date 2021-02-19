@@ -7,7 +7,7 @@
 
 import Foundation
 
-open class APIController {
+class APIController {
     // RESTFul API Type이 Get일 경우
     private func apiTypeTypeGet(url: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
         guard let encodingURL = url.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) else { return }
@@ -28,7 +28,6 @@ open class APIController {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
-            debugPrint("request body", request.httpBodyStream)
         }
         catch {
             debugPrint("params error")
@@ -47,7 +46,9 @@ open class APIController {
             self.apiTypePost(url: APIConsts.FOOTDATA + "?apiKey=\(APIKEY)", params: params ?? [:], completionHander: { (data, response, error) in
                 guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
                     let errModel = ErrorModel(message: "서버에러입니다.", type: "")
-                    failedHandler(errModel)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        failedHandler(errModel)
+                    }
                     return
                 }
                                 
@@ -57,14 +58,17 @@ open class APIController {
                     let decoder = JSONDecoder()
                     do {
                         let errModel = try decoder.decode(ErrorModel.self, from: responseData)
-                        failedHandler(errModel)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            failedHandler(errModel)
+                        }
                         return
                     }
                     catch {
                         if statusCode > 500 {
                             let errModel = ErrorModel(message: "time out", type: "time out")
-                            failedHandler(errModel)
-                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                failedHandler(errModel)
+                            }
                         }
                     }
                     return
@@ -74,25 +78,32 @@ open class APIController {
                     guard let responseData = data else { return }
                     let decoder = JSONDecoder()
                     let errModel = try! decoder.decode(ErrorModel.self, from: responseData)
-                    failedHandler(errModel)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        failedHandler(errModel)
+                    }
                     return
                 }
                 
                 if let responseData = data {
                     let json = try! JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
                     let successStr = json?["id"] as? String
-                    successHandler(successStr)   
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        successHandler(successStr)
+                    }
                 }
                 
                 
             })
         } catch {
-            failedHandler(ErrorModel(message: "서버에러입니다.", type: ""))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                failedHandler(ErrorModel(message: "서버에러입니다.", type: ""))
+            }
+            
         }
         
     }
     
-    
+    // feet data 전송
     func reqeustFeetData (_ feetData: FeetBody?, _ APIKEY: String, camMode: String, successHandler: @escaping (FeetModel) -> Void, failedHandler: @escaping(ErrorModel) -> Void) {
         do {
             let jsonData = try  JSONEncoder().encode(feetData)
@@ -103,7 +114,9 @@ open class APIController {
                 
                 guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
                     let errModel = ErrorModel(message: "서버에러입니다.", type: "")
-                    failedHandler(errModel)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        failedHandler(errModel)
+                    }
                     return
                 }
                                 
@@ -112,7 +125,10 @@ open class APIController {
                     guard let responseData = data else { return }
                     let decoder = JSONDecoder()
                     let errModel = try! decoder.decode(ErrorModel.self, from: responseData)
-                    failedHandler(errModel)
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        failedHandler(errModel)
+                    }
                     return
                 }
                 
@@ -120,7 +136,9 @@ open class APIController {
                     guard let responseData = data else { return }
                     let decoder = JSONDecoder()
                     let errModel = try! decoder.decode(ErrorModel.self, from: responseData)
-                    failedHandler(errModel)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        failedHandler(errModel)
+                    }
                     return
                 }
                 
@@ -130,16 +148,18 @@ open class APIController {
                     decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                     
                     let feetModel = try! decoder.decode(FeetModel.self, from: responseData)
-                    successHandler(feetModel)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        successHandler(feetModel)
+                    }
                 }
-                
-                
             })
         } catch {
-            failedHandler(ErrorModel(message: "서버에러입니다.", type: ""))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                failedHandler(ErrorModel(message: "서버에러입니다.", type: ""))
+            }
+            
         }
         
     }
-    
 }
 

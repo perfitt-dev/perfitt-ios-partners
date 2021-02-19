@@ -97,17 +97,9 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict.txt"
-  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict_kit.txt"
-  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model.tflite"
-  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model_kit.tflite"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict.txt"
-  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/dict_kit.txt"
-  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model.tflite"
-  install_resource "${PODS_ROOT}/../../PerfittPartners_iOS/Assets/model_kit.tflite"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/PerfittPartners_iOS/PerfittPartners_iOS.bundle"
 fi
 

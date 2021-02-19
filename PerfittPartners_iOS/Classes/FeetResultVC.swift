@@ -7,8 +7,7 @@
 
 import UIKit
 
-class FeetResultVC: UIViewController {
-    
+class FeetResultVC: PerfittViewController {
     @IBOutlet weak var leftWidth: UILabel!
     @IBOutlet weak var leftLength: UILabel!
     
@@ -22,15 +21,6 @@ class FeetResultVC: UIViewController {
     
     var model: FeetModel?
     
-    lazy var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        
-        indicator.color = .red
-        indicator.backgroundColor = .white
-        
-        return indicator
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,7 +30,10 @@ class FeetResultVC: UIViewController {
         super.viewWillAppear(animated)
         self.setupUI()
     }
-    
+}
+
+// MARK: - Data Bind
+extension FeetResultVC {
     private func setupUI() {
         self.title = "측정 결과"
         self.leftWidth.text = String(format: "%.0fmm", model?.feet?.left?.width ?? 0.0)
@@ -50,9 +43,11 @@ class FeetResultVC: UIViewController {
         
         self.name.returnKeyType = .done
         self.name.delegate = self
-//        self.footImage.image = UIImage(named: "perfitt_foot_icon")
     }
-    
+}
+
+// MARK: - Action
+extension FeetResultVC {
     @IBAction func onReset(_ sender: UIButton) {
         self.navigationController?.popToRootViewController(animated: true)
     }
@@ -61,69 +56,40 @@ class FeetResultVC: UIViewController {
         guard let nickname = self.name.text else { return }
         let gender = self.inputGender.selectedSegmentIndex == 0 ? "M" : "F"
         
-//        let body = FootModel(averageSize: PerfittPartners.instance.getAverageSize(), nickName: nickName, gender: gender, customerId: nil)
-        let body = FootModel(feetId: model?.id, averageSize: PerfittPartners.instance.getAverageSize(), nickname: nickname, gender: gender, customerId: PerfittPartners.instance.getCustomerId())
+        let body = FootModel(feetId: model?.id, averageSize: PerfittPartners.instance.averageSize ?? 0, nickname: nickname, gender: gender, customerId: PerfittPartners.instance.customerId)
         
-        self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(self.activityIndicator)
-        
-        NSLayoutConstraint.activate([
-            self.activityIndicator.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
-            self.activityIndicator.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor),
-            self.activityIndicator.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            self.activityIndicator.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
-        ])
-        
-        self.activityIndicator.startAnimating()
-        
-        APIController.init().reqeustFootData(body, PerfittPartners.instance.getAPIKey() ?? "", successHandler: { result in
-            
-            
-            DispatchQueue.main.async {
-                if let _ = PerfittPartners.instance.getCustomerId() {
-                    PerfittPartners.instance.nativeCallbackName = result ?? ""
-                }
-                else {
-                    let callBackResult = "PERFITT_CALLBACK('\(result ?? "")')"
-                    PerfittPartners.instance.callbackName = callBackResult
-                }
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.removeFromSuperview()
-                self.navigationController?.dismiss(animated: true, completion: nil)
-            }
-
-        }, failedHandler: { errorResult in
-            debugPrint("api request failed", errorResult.message)
-            
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.removeFromSuperview()
-                self.showAlert(title: "", message: errorResult.message, handler: { _ in
-                    self.navigationController?.dismiss(animated: true, completion: nil)
-                })
-            }
-            
-        })
+        self.requestFootInfo(body: body)
     }
-    
-    private func showAlert(title: String, message: String, handler: ((UIAlertAction) -> ())?) {
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)
-        controller.addAction(okAction)
-        
-        self.present(controller, animated: true, completion: nil)
-//        UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)
-    }
-
-
 }
 
+// MARK: - Call API
+extension FeetResultVC {
+    private func requestFootInfo(body: FootModel) {
+        self.showActivityIndicator()
+        
+        APIController.init().reqeustFootData(body, PerfittPartners.instance.getAPIKey() ?? "", successHandler: { result in
+            if let _ = PerfittPartners.instance.customerId {
+                PerfittPartners.instance.nativeCallbackName = result ?? ""
+            }
+            else {
+                let callBackResult = "PERFITT_CALLBACK('\(result ?? "")')"
+                PerfittPartners.instance.callbackName = callBackResult
+            }
+            self.hideActivityIndicator()
+            self.navigationController?.dismiss(animated: true, completion: nil)
+            
+        }, failedHandler: { errorResult in
+            self.hideActivityIndicator()
+            self.showAlert(title: "", message: errorResult.message, handler: { _ in
+                self.navigationController?.dismiss(animated: true, completion: nil)
+            })
+        })
+    }
+}
 extension FeetResultVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         self.view.endEditing(true)
-        
         return true
     }
 }

@@ -155,3 +155,53 @@ class CustomPickerView: UIPickerView {
         }
     }
 }
+extension UIViewController {
+    static func initViewController<T: UIViewController>(viewControllerClass: T.Type) -> T{
+        
+        let podBundle = Bundle(for: PerfittPartners.self)
+        if let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") {
+            if let bundle = Bundle(url: bundleURL) {
+                let nib = UINib(nibName: "\(T.self)", bundle: bundle)
+                let vc = nib.instantiate(withOwner: nil, options: nil)
+                if let callViewController = vc.filter( { $0 is T } ).first as? T {
+                    return callViewController
+                }
+            }
+        }
+        
+        return UIViewController() as! T
+    }
+}
+//private func getKitTutorial() {
+//
+//    let podBundle = Bundle(for: PerfittPartners.self)
+//    if let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") {
+//        if let bundle = Bundle(url: bundleURL) {
+//            let nib = UINib(nibName: "PerfittKitTutorialVC", bundle: bundle)
+//            let vc = nib.instantiate(withOwner: nil, options: nil)
+//            if let tutorialVC = vc.filter( { $0 is PerfittKitTutorialVC }).first as? PerfittKitTutorialVC {
+//
+//                let backButtonImage = UIImage(named: "perfitt_backArrow_icon")
+//
+//                let navigationController = UINavigationController(rootViewController: tutorialVC)
+//                navigationController.modalPresentationStyle = .fullScreen
+//                navigationController.navigationBar.tintColor = .black
+//                navigationController.navigationBar.topItem?.title = ""
+//
+//                let barAppearance = UINavigationBar.appearance(whenContainedInInstancesOf: [UINavigationController.self])
+//                barAppearance.backIndicatorImage = backButtonImage
+//                barAppearance.backIndicatorTransitionMaskImage = backButtonImage
+//
+//                let time = DispatchTime.now() + .milliseconds(300)
+//                DispatchQueue.main.asyncAfter(deadline: time) {
+//                    self.ownerViewController!.present(navigationController, animated: true, completion: nil)
+//                }
+//            }
+//        }
+//    }
+//    else {
+//        debugPrint("bundle empty")
+//    }
+//
+//
+//}

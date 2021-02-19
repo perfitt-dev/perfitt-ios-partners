@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CaptureVC: UIViewController {
+class CaptureVC: PerfittViewController {
     @IBOutlet weak var previewImageView: UIImageView!
     var imageData: Data!
     var previewFor: String?
@@ -26,30 +26,9 @@ class CaptureVC: UIViewController {
     
     var captureData: FeetBody?
     
-    lazy var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        
-        indicator.color = .red
-        indicator.backgroundColor = .white
-        
-        return indicator
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.init(white: 0, alpha: 0.28)
-                
         self.setNavi()
-    }
-    
-    private func setNavi() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.done))
-    }
-    
-    @objc private func done() {
-        DispatchQueue.main.async {
-            self.navigationController?.dismiss(animated: true, completion: nil)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,13 +42,17 @@ class CaptureVC: UIViewController {
         
         base64Data = jpeg.base64EncodedString()
         
-        if (previewFor == "Right") {
+        if previewFor == "Right" {
             self.title = "오른발 촬영결과"
         } else {
             self.title = "왼발 촬영결과"
         }
         
     }
+}
+
+// MARK: - Action
+extension CaptureVC {
     
     @IBAction func retake(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
@@ -79,31 +62,26 @@ class CaptureVC: UIViewController {
         if previewFor == "Right" {
             switch camMode {
             case .A4:
-                let bundles = Bundle.main.loadNibNamed("PerfittCameraVC", owner: self, options: nil)
-                let cameraVC = bundles?.filter({ $0 is PerfittCameraVC }).first as? PerfittCameraVC
-                
-                cameraVC?.rightImg = false
-                cameraVC?.rightImgData = base64Data
-                
-                
-                self.navigationController?.pushViewController(cameraVC ?? self, animated: true)
-                
+                self.moveToA4Cam()
             case .KIT:
-                self.moveToCam()
+                self.moveToKitCam()
             case .none: return
             }
-            
-            
         }
         else {
             self.fetchFeetData()
         }
     }
     
+    @objc private func done() {
+        DispatchQueue.main.async {
+            self.navigationController?.dismiss(animated: true, completion: nil)
+        }
+    }
 }
+
+// MARK: - Call API
 extension CaptureVC {
-    
-    
     
     private func fetchFeetData() {
         guard let right = self.rightImgData else { return }
@@ -111,42 +89,50 @@ extension CaptureVC {
         
         let sourceType = "\(APIConsts.SDK_VERSION)_\(UIDevice.current.name)_\(self.getOSInfo())"
         
-        self.captureData?.averageSize = PerfittPartners.init().getAverageSize()
+        self.captureData?.averageSize = PerfittPartners.instance.averageSize ?? 0
         self.captureData?.sourceType = sourceType
         self.captureData?.left?.image = left
         self.captureData?.right?.image = right
         
-        self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(self.activityIndicator)
-
-        NSLayoutConstraint.activate([
-            self.activityIndicator.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
-            self.activityIndicator.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor),
-            self.activityIndicator.topAnchor.constraint(equalTo: self.view.topAnchor),
-            self.activityIndicator.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
-        ])
-
-        self.activityIndicator.startAnimating()
-
+        
+        self.showActivityIndicator()
         APIController.init().reqeustFeetData(self.captureData, PerfittPartners.instance.getAPIKey() ?? "", camMode: self.camMode!.rawValue, successHandler: { response in
-
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.removeFromSuperview()
-                self.moveToFeetResult(model: response)
-            }
+            self.moveToFeetResult(model: response)
+            self.hideActivityIndicator()
 
         }, failedHandler: { requestError in
-
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.removeFromSuperview()
-
-                self.showAlert(title: "", message: requestError.message, handler: nil)
-            }
-
+            self.showAlert(title: "", message: requestError.message, handler: nil)
+            self.hideActivityIndicator()
         })
     }
+}
+
+// MARK: Flow
+extension CaptureVC {
+    private func moveToFeetResult(model: FeetModel?) {
+        let feetResultVC = FeetResultVC.initViewController(viewControllerClass: FeetResultVC.self)
+        feetResultVC.model = model
+        self.navigationController?.pushViewController(feetResultVC, animated: true)
+    }
+    
+    private func moveToKitCam() {
+        let cameraVC = PerfittKitCameraVC.initViewController(viewControllerClass: PerfittKitCameraVC.self)
+        cameraVC.rightImg = false
+        cameraVC.rightImgData = self.base64Data
+        cameraVC.reciveCaptureData = self.captureData
+        self.navigationController?.pushViewController(cameraVC, animated: true)
+    }
+    
+    private func moveToA4Cam() {
+        let cameraVC = PerfittCameraVC.initViewController(viewControllerClass: PerfittCameraVC.self)
+        cameraVC.rightImg = false
+        cameraVC.rightImgData = base64Data
+        self.navigationController?.pushViewController(cameraVC, animated: true)
+    }
+}
+
+// MARK: - ETC
+extension CaptureVC {
     private func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: targetSize.width, height: targetSize.height)
         UIGraphicsBeginImageContextWithOptions(targetSize, false, 1.0)
@@ -161,45 +147,7 @@ extension CaptureVC {
         return String(os.majorVersion) + "." + String(os.minorVersion) + "." + String(os.patchVersion)
     }
     
-    private func moveToFeetResult(model: FeetModel?) {
-        let podBundle = Bundle(for: PerfittPartners.self)
-        if let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") {
-            if let bundle = Bundle(url: bundleURL) {
-                let nib = UINib(nibName: "FeetResultVC", bundle: bundle)
-                let vc = nib.instantiate(withOwner: nil, options: nil)
-                if let feetResultVC = vc.filter( { $0 is FeetResultVC }).first as? FeetResultVC {
-                    feetResultVC.model = model
-                    self.navigationController?.pushViewController(feetResultVC, animated: true)
-                }
-            }
-        }
-    }
-    
-    private func moveToCam() {
-        let podBundle = Bundle(for: PerfittPartners.self)
-        if let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") {
-            if let bundle = Bundle(url: bundleURL) {
-                let nib = UINib(nibName: "PerfittKitCameraVC", bundle: bundle)
-                let vc = nib.instantiate(withOwner: nil, options: nil)
-                if let cameraVC = vc.filter( { $0 is PerfittKitCameraVC }).first as? PerfittKitCameraVC {
-                    cameraVC.rightImg = false
-                    cameraVC.rightImgData = base64Data
-                    
-                    cameraVC.reciveCaptureData = self.captureData
-                    self.navigationController?.pushViewController(cameraVC, animated: true)
-                }
-            }
-        }
-    }
-}
-
-extension CaptureVC {
-    private func showAlert(title: String, message: String, handler: ((UIAlertAction) -> ())?) {
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)
-        controller.addAction(okAction)
-        
-        self.present(controller, animated: true, completion: nil)
-//        UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)
+    private func setNavi() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.done))
     }
 }

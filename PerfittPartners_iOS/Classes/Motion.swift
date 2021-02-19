@@ -8,7 +8,7 @@
 import UIKit
 import CoreMotion
 
-open class Motion: UIView {
+class Motion: UIView {
     weak var delegate: MotionDelegate?
     private var button: UIButton?
     private let motionManager = CMMotionManager()
@@ -66,7 +66,6 @@ open class Motion: UIView {
     }
     
     @objc private func capture(_ sender: UITapGestureRecognizer) {
-        
         if self.isMotionStatusReady {
             delegate?.tapButton()
         }
@@ -88,10 +87,7 @@ open class Motion: UIView {
             movingImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             movingImageView.widthAnchor.constraint(equalToConstant: self.largeCircleRadius),
             movingImageView.heightAnchor.constraint(equalToConstant: self.largeCircleRadius)
-            
         ])
-        
-        
     }
 
     //MARK: Private Methods
@@ -163,7 +159,7 @@ open class Motion: UIView {
     }
 }
 
-public protocol MotionDelegate: class {
+protocol MotionDelegate: class {
     func tapButton()
     func setCurrentStatus(status: Bool);
 }
