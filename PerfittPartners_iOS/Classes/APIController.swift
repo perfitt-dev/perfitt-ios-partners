@@ -58,7 +58,7 @@ class APIController {
                     let decoder = JSONDecoder()
                     do {
                         let errModel = try decoder.decode(ErrorModel.self, from: responseData)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
                             failedHandler(errModel)
                         }
                         return
@@ -66,7 +66,7 @@ class APIController {
                     catch {
                         if statusCode > 500 {
                             let errModel = ErrorModel(message: "time out", type: "time out")
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
                                 failedHandler(errModel)
                             }
                         }
@@ -78,7 +78,7 @@ class APIController {
                     guard let responseData = data else { return }
                     let decoder = JSONDecoder()
                     let errModel = try! decoder.decode(ErrorModel.self, from: responseData)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
                         failedHandler(errModel)
                     }
                     return
@@ -87,15 +87,20 @@ class APIController {
                 if let responseData = data {
                     let json = try! JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
                     let successStr = json?["id"] as? String
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        successHandler(successStr)
+                    
+                    let errModel = ErrorModel(message: "time out", type: "time out")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+                        failedHandler(errModel)
                     }
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+//                        successHandler(successStr)
+//                    }
                 }
                 
                 
             })
         } catch {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 failedHandler(ErrorModel(message: "서버에러입니다.", type: ""))
             }
             
@@ -126,7 +131,7 @@ class APIController {
                     let decoder = JSONDecoder()
                     let errModel = try! decoder.decode(ErrorModel.self, from: responseData)
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
                         failedHandler(errModel)
                     }
                     return
@@ -136,7 +141,7 @@ class APIController {
                     guard let responseData = data else { return }
                     let decoder = JSONDecoder()
                     let errModel = try! decoder.decode(ErrorModel.self, from: responseData)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
                         failedHandler(errModel)
                     }
                     return
@@ -148,13 +153,13 @@ class APIController {
                     decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                     
                     let feetModel = try! decoder.decode(FeetModel.self, from: responseData)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
                         successHandler(feetModel)
                     }
                 }
             })
         } catch {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
                 failedHandler(ErrorModel(message: "서버에러입니다.", type: ""))
             }
             

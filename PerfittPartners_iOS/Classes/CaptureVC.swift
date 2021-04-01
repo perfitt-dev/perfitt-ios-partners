@@ -97,12 +97,13 @@ extension CaptureVC {
         
         self.showActivityIndicator()
         APIController.init().reqeustFeetData(self.captureData, PerfittPartners.instance.getAPIKey() ?? "", camMode: self.camMode!.rawValue, successHandler: { response in
-            self.moveToFeetResult(model: response)
             self.hideActivityIndicator()
+            self.moveToFeetResult(model: response)
 
         }, failedHandler: { requestError in
-            self.showAlert(title: "", message: requestError.message, handler: nil)
             self.hideActivityIndicator()
+            
+            self.showAlert(title: "", message: requestError.message, vc: self, handler: nil)
         })
     }
 }

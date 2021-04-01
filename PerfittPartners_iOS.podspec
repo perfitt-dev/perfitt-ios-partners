@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'PerfittPartners_iOS'
-    s.version          = '1.0.0-alpha20'
+    s.version          = '1.0.0-alpha21'
     s.summary          = 'PerfittPartners_iOS is camera lib'
     
     s.description      = <<-DESC
@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
     }
     
     s.resource_bundles = {
-        'PerfittPartners_iOS' => ['PerfittPartners_iOS/**/*']
+        'PerfittPartners_iOS' => ['PerfittPartners_iOS/Assets/**/*']
     }
     
 end

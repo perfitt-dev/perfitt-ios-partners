@@ -64,6 +64,10 @@ extension SizePicker: UIPickerViewDelegate, UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return (String)(minSize + row * 5)
     }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        return NSAttributedString(string: (String)(minSize + row * 5), attributes: [NSAttributedString.Key.foregroundColor : UIColor.black])
+    }
 
     public func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return CGFloat(63)

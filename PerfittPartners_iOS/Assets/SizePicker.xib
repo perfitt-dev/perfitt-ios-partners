@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CNP-V9-oXZ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.28000000000000003" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qSH-Wg-ZDc">
@@ -31,6 +30,8 @@
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bkB-cQ-KHM" customClass="CustomPickerView" customModule="PerfittPartners_iOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="121" width="374" height="216"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDd-G5-8Iw">
                                 <rect key="frame" x="234" y="407" width="120" height="48"/>
@@ -46,7 +47,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="cDd-G5-8Iw" secondAttribute="bottom" constant="20" id="2NA-CR-df5"/>
                             <constraint firstAttribute="trailing" secondItem="bkB-cQ-KHM" secondAttribute="trailing" id="3gL-Z2-UKu"/>
@@ -63,8 +64,8 @@
                 <viewLayoutGuide key="safeArea" id="UNM-q1-Foj"/>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="CNP-V9-oXZ" firstAttribute="top" secondItem="UNM-q1-Foj" secondAttribute="top" id="23h-bR-dZ3"/>
-                    <constraint firstItem="UNM-q1-Foj" firstAttribute="bottom" secondItem="CNP-V9-oXZ" secondAttribute="bottom" id="5KK-xD-B8K"/>
+                    <constraint firstItem="CNP-V9-oXZ" firstAttribute="top" secondItem="kod-Ka-wha" secondAttribute="top" id="23h-bR-dZ3"/>
+                    <constraint firstAttribute="bottom" secondItem="CNP-V9-oXZ" secondAttribute="bottom" id="5KK-xD-B8K"/>
                     <constraint firstItem="qSH-Wg-ZDc" firstAttribute="leading" secondItem="UNM-q1-Foj" secondAttribute="leading" constant="20" id="AGQ-kn-lNi"/>
                     <constraint firstItem="UNM-q1-Foj" firstAttribute="trailing" secondItem="qSH-Wg-ZDc" secondAttribute="trailing" constant="20" id="Aqm-qB-gFU"/>
                     <constraint firstItem="qSH-Wg-ZDc" firstAttribute="centerY" secondItem="kod-Ka-wha" secondAttribute="centerY" id="cYg-Am-iB5"/>
@@ -80,9 +81,4 @@
             <point key="canvasLocation" x="218.84057971014494" y="141.96428571428569"/>
         </viewController>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

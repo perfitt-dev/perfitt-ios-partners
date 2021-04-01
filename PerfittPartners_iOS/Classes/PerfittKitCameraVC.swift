@@ -163,7 +163,7 @@ extension PerfittKitCameraVC {
             }, cancelHandler: nil)
             
         case .restricted:
-            self.showAlert(title: "알림", message: "카메라를 사용할 수 없습니다.", handler: nil)
+            self.showAlert(title: "알림", message: "카메라를 사용할 수 없습니다.", vc: self, handler: nil)
         default:
             debugPrint("status failed")
             break

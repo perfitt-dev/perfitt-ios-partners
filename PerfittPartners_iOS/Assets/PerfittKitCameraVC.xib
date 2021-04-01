@@ -102,7 +102,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수평" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ex3-1m-TDF">
                                                         <rect key="frame" x="0.0" y="28" width="49.5" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11.699999809265137"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -129,7 +129,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfC-IL-Yq7">
                                                         <rect key="frame" x="0.0" y="28" width="49.5" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11.699999809265137"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -156,7 +156,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="조명" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LzG-OX-0IW">
                                                         <rect key="frame" x="0.0" y="28" width="49.5" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11.699999809265137"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -183,7 +183,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가이드" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfB-ql-fDD">
                                                         <rect key="frame" x="0.0" y="28" width="49.5" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11.699999809265137"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -227,7 +227,7 @@
                     </view>
                 </subviews>
                 <viewLayoutGuide key="safeArea" id="d4V-kc-gih"/>
-                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="vwA-oo-qxx" firstAttribute="trailing" secondItem="d4V-kc-gih" secondAttribute="trailing" id="5he-LH-cwG"/>
                     <constraint firstItem="b2s-3a-UTQ" firstAttribute="trailing" secondItem="tJO-uP-q5m" secondAttribute="trailing" id="8Sc-mr-a1b"/>

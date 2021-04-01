@@ -67,14 +67,14 @@ extension PerfittPartners {
     
     // call back func
     public func onConfirm(completion: @escaping((String) -> Void) ) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
             self.result = completion
         }
     }
     
     // call back func
     public func onNativeConfirm(completion: @escaping( (String) -> Void)) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
             self.nativeResult = completion
         }
     }

@@ -23,7 +23,7 @@ class FeetResultVC: PerfittViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,8 +41,13 @@ extension FeetResultVC {
         self.rightWidth.text = String(format: "%.0fmm", model?.feet?.right?.width ?? 0.0)
         self.rightLength.text = String(format: "%.0fmm", model?.feet?.right?.length ?? 0.0)
         
+        self.inputGender.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        
         self.name.returnKeyType = .done
         self.name.delegate = self
+        if #available(iOS 13.0, *) {
+            self.name.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
+        }
     }
 }
 
@@ -80,7 +85,7 @@ extension FeetResultVC {
             
         }, failedHandler: { errorResult in
             self.hideActivityIndicator()
-            self.showAlert(title: "", message: errorResult.message, handler: { _ in
+            self.showAlert(title: "", message: errorResult.message, vc: self, handler: { _ in
                 self.navigationController?.dismiss(animated: true, completion: nil)
             })
         })

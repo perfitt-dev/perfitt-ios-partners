@@ -61,7 +61,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="lc5-RL-ist" secondAttribute="bottom" id="BZ2-MH-SGh"/>
                             <constraint firstAttribute="trailing" secondItem="lc5-RL-ist" secondAttribute="trailing" id="Cke-6w-zc4"/>
@@ -72,7 +72,7 @@
                     </view>
                 </subviews>
                 <viewLayoutGuide key="safeArea" id="eUj-c7-ShQ"/>
-                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="eUj-c7-ShQ" firstAttribute="bottom" secondItem="dHb-Ti-oN6" secondAttribute="bottom" id="095-2O-lLZ"/>
                     <constraint firstItem="eUj-c7-ShQ" firstAttribute="bottom" secondItem="iQp-8q-h9K" secondAttribute="bottom" id="PLG-Tg-Fh1"/>
@@ -91,9 +91,6 @@
         </viewController>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

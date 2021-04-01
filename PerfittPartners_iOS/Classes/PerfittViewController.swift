@@ -27,12 +27,6 @@ class PerfittViewController: UIViewController {
 
 // MARK : Alert
 extension PerfittViewController {
-    func showAlert(title: String, message: String, handler: ((UIAlertAction) -> ())?) {
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)
-        controller.addAction(okAction)
-        UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)
-    }
     
     func showAlertTwoBtn(title: String, message: String, handler: ((UIAlertAction) -> ())?, cancelHandler: ((UIAlertAction) -> ())?) {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -41,6 +35,14 @@ extension PerfittViewController {
         controller.addAction(cancelAction)
         controller.addAction(okAction)
         UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true, completion: nil)
+    }
+    
+    func showAlert(title: String, message: String, vc: UIViewController, handler: ((UIAlertAction) -> ())?) {
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default, handler: handler)
+        controller.addAction(okAction)
+        
+        vc.present(controller, animated: true, completion: nil)
     }
 
 }

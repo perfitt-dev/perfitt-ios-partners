@@ -37,7 +37,7 @@
   },
   "resource_bundles": {
     "PerfittPartners_iOS": [
-      "PerfittPartners_iOS/**/*"
+      "PerfittPartners_iOS/Assets/**/*"
     ]
   },
   "swift_version": "4.2"
