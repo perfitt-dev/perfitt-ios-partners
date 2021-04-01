@@ -88,13 +88,9 @@ class APIController {
                     let json = try! JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any]
                     let successStr = json?["id"] as? String
                     
-                    let errModel = ErrorModel(message: "time out", type: "time out")
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
-                        failedHandler(errModel)
+                        successHandler(successStr)
                     }
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
-//                        successHandler(successStr)
-//                    }
                 }
                 
                 
