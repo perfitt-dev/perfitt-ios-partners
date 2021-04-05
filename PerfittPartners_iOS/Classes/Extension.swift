@@ -124,6 +124,20 @@ extension UIImage {
         }
         return self
     }
+    
+    static func getImageResource(imageName: String) -> UIImage? {
+        let podBundle = Bundle(for: PerfittPartners.self)
+        guard let bundleURL = podBundle.url(forResource: "PerfittPartners_iOS", withExtension: "bundle") else {
+            debugPrint("pod bundle failed")
+            return nil
+        }
+        guard let bundle = Bundle(url: bundleURL) else {
+            debugPrint("create bundle failed")
+            return nil
+        }
+        
+        return UIImage(named: imageName, in: bundle, compatibleWith: nil)
+    }
 }
 
 extension DateFormatter {

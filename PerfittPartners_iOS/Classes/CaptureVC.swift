@@ -28,7 +28,7 @@ class CaptureVC: PerfittViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setNavi()
+        self.setNaviRightItem()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,12 +70,6 @@ extension CaptureVC {
         }
         else {
             self.fetchFeetData()
-        }
-    }
-    
-    @objc private func done() {
-        DispatchQueue.main.async {
-            self.navigationController?.dismiss(animated: true, completion: nil)
         }
     }
 }
@@ -146,9 +140,5 @@ extension CaptureVC {
     private func getOSInfo() -> String {
         let os = ProcessInfo().operatingSystemVersion
         return String(os.majorVersion) + "." + String(os.minorVersion) + "." + String(os.patchVersion)
-    }
-    
-    private func setNavi() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.done))
     }
 }

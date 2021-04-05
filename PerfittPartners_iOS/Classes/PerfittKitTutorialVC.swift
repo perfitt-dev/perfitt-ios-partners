@@ -8,8 +8,9 @@
 import UIKit
 import WebKit
 
-class PerfittKitTutorialVC: UIViewController {
+class PerfittKitTutorialVC: PerfittViewController {
     @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var closeButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,11 +18,13 @@ class PerfittKitTutorialVC: UIViewController {
         // Do any additional setup after loading the view.
         let urlStr = "https://service.perfitt.io/app/guides?app=mobile"
         guard let url = URL(string: urlStr) else { return }
+        self.setNaviRightItem()
         
         let request = URLRequest(url: url)
         
         self.webView.load(request)
         self.webView.navigationDelegate = self
+        
     }
 }
 
@@ -57,4 +60,16 @@ extension PerfittKitTutorialVC {
         kitCameraVC.rightImg = true
         self.navigationController?.pushViewController(kitCameraVC, animated: true)
     }
+    
+//    private func setNaviRightItem() {
+//        let barItemImage = UIImage(named: "icCloseBlack")
+//        let rightItem = UIBarButtonItem(image: barItemImage, style: .plain, target: self, action: #selector(self.onClose))
+//        self.navigationItem.setRightBarButton(rightItem, animated: true)
+//    }
+//
+//    @objc private func onClose() {
+//        DispatchQueue.main.async {
+//            self.navigationController?.dismiss(animated: true, completion: nil)
+//        }
+//    }
 }

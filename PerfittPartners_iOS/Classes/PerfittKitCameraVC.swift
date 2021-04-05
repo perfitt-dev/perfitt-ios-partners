@@ -89,7 +89,7 @@ class PerfittKitCameraVC: PerfittViewController {
         if let data = self.reciveCaptureData {
             self.captureData = data
         }
-        self.setupNavi()
+        self.setNaviRightItem()
         self.setupUI()
     }
     
@@ -109,15 +109,7 @@ class PerfittKitCameraVC: PerfittViewController {
         self.setButtonLayout()
     }
     
-    private func setupNavi() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.done))
-    }
     
-    @objc func done() {
-        DispatchQueue.main.async {
-            self.navigationController?.dismiss(animated: true, completion: nil)
-        }
-    }
     
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

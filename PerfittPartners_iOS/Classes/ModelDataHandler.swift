@@ -81,16 +81,6 @@ public class ModelDataHandler: NSObject {
         UIColor.brown
     ]
     
-    private func findBundle() -> Bundle{
-        let bundle = Bundle(for: PerfittPartners.self)
-        if let path = bundle.path(forResource: "PerfittPartners_iOS", ofType: "bundle") {
-            if let inner = Bundle(path: path) {
-                return inner
-            }
-        }
-        return bundle
-    }
-    
     var delegate: ModelDataHandlerDelegate?
     var isFoot: Bool = false
     

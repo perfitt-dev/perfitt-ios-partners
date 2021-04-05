@@ -68,4 +68,17 @@ extension PerfittViewController {
         self.activityIndicator.removeFromSuperview()
     }
     
+    func setNaviRightItem() {
+
+        let barItemImage = UIImage.getImageResource(imageName: "icCloseBlack")
+        let rightItem = UIBarButtonItem(image: barItemImage, style: .plain, target: self, action: #selector(self.onClose))
+        self.navigationItem.setRightBarButton(rightItem, animated: true)
+    }
+    
+    @objc private func onClose() {
+        DispatchQueue.main.async {
+            self.navigationController?.dismiss(animated: true, completion: nil)
+        }
+    }
+    
 }

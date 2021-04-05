@@ -12,14 +12,22 @@ class PerfittNavigationController: UINavigationController {
         
         self.modalPresentationStyle = .fullScreen
         
+//        var backButtonBackgroundImage = UIImage(named: "icBackBlack")!
+        var backButtonBackgroundImage = UIImage.getImageResource(imageName: "icBackBlack")!
+        backButtonBackgroundImage = backButtonBackgroundImage.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: backButtonBackgroundImage.size.width - 1, bottom: 0, right: 0))
+        
         let barButtonItemAppearance = UIBarButtonItem.appearance()
         barButtonItemAppearance.setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .normal)
         barButtonItemAppearance.setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .selected)
+        
         
         let barAppearance =
                 UINavigationBar.appearance(whenContainedInInstancesOf: [PerfittNavigationController.self])
         
         barAppearance.backItem?.title = ""
+        barAppearance.backIndicatorImage = backButtonBackgroundImage
+        barAppearance.backIndicatorTransitionMaskImage = backButtonBackgroundImage
+        
         
         
         
@@ -35,6 +43,6 @@ class PerfittNavigationController: UINavigationController {
         navigationBar.barTintColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
         navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
 
-//
     }
+    
 }

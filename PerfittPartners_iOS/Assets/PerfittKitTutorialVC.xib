@@ -23,6 +23,13 @@
                             <wkPreferences key="preferences"/>
                         </wkWebViewConfiguration>
                     </wkWebView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dpu-8N-lqD">
+                        <rect key="frame" x="374" y="60" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="HXX-AV-PyN"/>
+                            <constraint firstAttribute="height" constant="24" id="SWw-pc-9sj"/>
+                        </constraints>
+                    </button>
                 </subviews>
                 <viewLayoutGuide key="safeArea" id="2sk-AI-JBJ"/>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -30,10 +37,13 @@
                     <constraint firstItem="2sk-AI-JBJ" firstAttribute="bottom" secondItem="vxy-jY-0YM" secondAttribute="bottom" id="4P8-rk-ea3"/>
                     <constraint firstItem="vxy-jY-0YM" firstAttribute="leading" secondItem="2sk-AI-JBJ" secondAttribute="leading" id="XEa-Iq-FtT"/>
                     <constraint firstItem="vxy-jY-0YM" firstAttribute="top" secondItem="2sk-AI-JBJ" secondAttribute="top" id="c4o-fd-32t"/>
+                    <constraint firstItem="Dpu-8N-lqD" firstAttribute="top" secondItem="2sk-AI-JBJ" secondAttribute="top" constant="16" id="cIV-OK-OBE"/>
                     <constraint firstItem="2sk-AI-JBJ" firstAttribute="trailing" secondItem="vxy-jY-0YM" secondAttribute="trailing" id="rpb-r9-NOt"/>
+                    <constraint firstItem="2sk-AI-JBJ" firstAttribute="trailing" secondItem="Dpu-8N-lqD" secondAttribute="trailing" constant="16" id="tmw-c5-Phy"/>
                 </constraints>
             </view>
             <connections>
+                <outlet property="closeButton" destination="Dpu-8N-lqD" id="kgs-2Z-CmM"/>
                 <outlet property="webView" destination="vxy-jY-0YM" id="ljR-h8-X07"/>
             </connections>
             <point key="canvasLocation" x="387" y="102"/>
