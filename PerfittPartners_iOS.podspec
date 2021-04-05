@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'PerfittPartners_iOS'
-    s.version          = '1.0.0-alpha22'
+    s.version          = '1.0.0-alpha23'
     s.summary          = 'PerfittPartners_iOS is camera lib'
     
     s.description      = <<-DESC
