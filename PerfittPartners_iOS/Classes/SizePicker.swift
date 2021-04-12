@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreText
 
 class SizePicker: UIViewController {
     @IBOutlet weak var pickerView: CustomPickerView!

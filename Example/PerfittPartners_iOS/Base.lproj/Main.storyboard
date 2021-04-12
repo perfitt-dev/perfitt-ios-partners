@@ -27,10 +27,10 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzc-0z-0HY">
-                                <rect key="frame" x="325" y="633" width="30" height="14"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="1"/>
+                                <rect key="frame" x="255" y="615" width="100" height="32"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="native button">
-                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="onRunSDK:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="aNj-rz-Ua6"/>
@@ -50,6 +50,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="QNm-L1-3IS"/>
                     <connections>
+                        <outlet property="button" destination="Dzc-0z-0HY" id="6Uf-6l-PeR"/>
                         <outlet property="webView" destination="pGa-AO-hSS" id="qu3-xl-Uyc"/>
                     </connections>
                 </viewController>

@@ -12,8 +12,10 @@ import PerfittPartners_iOS
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var button: UIButton!
     @IBOutlet weak var webView: WKWebView!
     var popupWebView: WKWebView?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

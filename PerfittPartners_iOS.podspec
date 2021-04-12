@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'PerfittPartners_iOS'
-    s.version          = '1.0.0-alpha23'
+    s.version          = '1.0.0-alpha24'
     s.summary          = 'PerfittPartners_iOS is camera lib'
     
     s.description      = <<-DESC
@@ -16,8 +16,6 @@ Pod::Spec.new do |s|
     
     s.source_files = 'PerfittPartners_iOS/Classes/**/*'
     s.swift_version = '4.2'
-
-#    s.frameworks = 'UIKit', 'AVFoundation'
     
     s.static_framework = true
     s.dependency 'TensorFlowLiteSwift', '~> 2.2.0'
